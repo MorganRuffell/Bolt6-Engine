@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="External">
+      <UniqueIdentifier>{c1090d20-4436-479b-955c-5e61ba9e9316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{13c92e9d-6f6e-448d-a741-d55ea7801baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{aa93313b-e51d-477d-a89a-801bd6e1fae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine">
+      <UniqueIdentifier>{5b1be235-e37a-4eaf-87bf-598652015aa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics">
+      <UniqueIdentifier>{9c18fdaa-92d5-4c6f-86a3-2b51499f87c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Geometry">
+      <UniqueIdentifier>{cc993196-a9d4-4895-8c56-d1c2d599d794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Mathematics">
+      <UniqueIdentifier>{0719502d-b694-428f-a6e1-166756bc26f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{67571d99-ab87-40c7-ae24-b4381c6ea90c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Pixel">
+      <UniqueIdentifier>{fee04529-4ac7-49dd-87e5-0e73b9815df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Vertex">
+      <UniqueIdentifier>{91e957b8-ff0c-47a2-b4fd-9f901a7f0aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Camera">
+      <UniqueIdentifier>{646106bb-9ad8-4bcc-ae5b-b6605caa0e62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\imgui">
+      <UniqueIdentifier>{d23c47ec-76a7-49cd-bf70-e0c260be0acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\OpenFBX">
+      <UniqueIdentifier>{91de01c3-d931-4d23-9e80-1b0c55353a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Skeleton">
+      <UniqueIdentifier>{8b2ad68f-4c8a-4e9f-a8fc-ce50949eaa97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Device">
+      <UniqueIdentifier>{7c24c08f-ed35-443b-a004-ff979179db19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Renderer">
+      <UniqueIdentifier>{af612aeb-6be7-4fc8-8214-ac16d56c78a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Materials">
+      <UniqueIdentifier>{26d461fb-215b-40ed-8fde-5441201a7342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Shaders">
+      <UniqueIdentifier>{3fc79acd-9482-4370-8bf2-86e575d531de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Shaders\Core">
+      <UniqueIdentifier>{9674d74c-d131-4179-9387-2f29997c48d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Shaders\Structures">
+      <UniqueIdentifier>{dc0ab6fe-3458-4f95-865b-ec1b5e5923a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Shaders\Shaders">
+      <UniqueIdentifier>{5b10d9d5-f993-4a3a-ab2d-645f8b063a98}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\..\backends\imgui_demo.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui_draw.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui_impl_dx11.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui_impl_win32.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui_tables.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui_widgets.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\imgui.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\TestEngine.cpp">
+      <Filter>sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCamera.cpp">
+      <Filter>sources\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\OpenFBX\miniz.c">
+      <Filter>External\OpenFBX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\External\OpenFBX\ofbx.cpp">
+      <Filter>External\OpenFBX</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDevice.cpp">
+      <Filter>sources\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDeviceBase.cpp">
+      <Filter>sources\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\backends\ImGuizmo.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMesh.cpp">
+      <Filter>sources\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseRenderer.cpp">
+      <Filter>sources\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>sources\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>sources\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\BaseShader.cpp">
+      <Filter>sources\Graphics\Shaders\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Resources\BoltAILogo.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="..\..\Resources\BoltAILogo.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Application.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\backends\imconfig.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imgui_impl_dx11.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imgui_impl_win32.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imgui_internal.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imstb_rectpack.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imstb_textedit.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imstb_truetype.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\imgui.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\TestEngine.h">
+      <Filter>sources\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\TestEngineBase.h">
+      <Filter>sources\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>sources\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>sources\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCamera.h">
+      <Filter>sources\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\New folder\Joint.h">
+      <Filter>sources\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\OpenFBX\miniz.h">
+      <Filter>External\OpenFBX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\OpenFBX\ofbx.h">
+      <Filter>External\OpenFBX</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\New folder\Bone.h">
+      <Filter>sources\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\New folder\Skeleton.h">
+      <Filter>sources\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDevice.h">
+      <Filter>sources\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDeviceBase.h">
+      <Filter>sources\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\backends\ImGuizmo.h">
+      <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticMesh.h">
+      <Filter>sources\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRenderer.h">
+      <Filter>sources\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\BaseMesh.h">
+      <Filter>sources\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>sources\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>sources\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderStructures.h">
+      <Filter>sources\Graphics\Shaders\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\GraphicsBufferBase.h">
+      <Filter>sources\Graphics\Shaders\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\BaseGraphicsProgram.h">
+      <Filter>sources\Graphics\Shaders\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\BaseShader.h">
+      <Filter>sources\Graphics\Shaders\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\VertexShader.h">
+      <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\PixelShader.h">
+      <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\misc\debuggers\imgui.natvis">
+      <Filter>sources</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="FBX\New folder\BasePS.hlsl">
+      <Filter>Shaders\Pixel</Filter>
+    </FxCompile>
+    <FxCompile Include="FBX\New folder\BaseVS.hlsl">
+      <Filter>Shaders\Vertex</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
