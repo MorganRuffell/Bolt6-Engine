@@ -26,6 +26,8 @@ public:
 	//Pure virtuals, this class SHOULD NEVER be instantiated directly
 	virtual bool SetSRV(std::string& name, ID3D11ShaderResourceView* srv) = 0;
 	virtual bool SetSamplerState(std::string& name, ID3D11SamplerState* samplerState) = 0;
+	virtual void SetShaderAndCBs() = 0;
+
 
 public:
 
@@ -54,7 +56,13 @@ private:
 
 	bool Valid;
 
+protected:
 
+	ShaderVariable* FindVariable(std::string& name, int size);
+	ConstantBuffer* FindConstantBuffer(std::string& name);
+
+
+private:
 
 	// Inherited via BaseGraphicsProgram
 	virtual bool CreateProgram(ID3DBlob* shaderBlob) override;

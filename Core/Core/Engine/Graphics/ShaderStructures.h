@@ -24,7 +24,7 @@ struct ConstantBuffer : public GraphicsBufferBase
 
 	ID3D11Buffer* GetResource()
 	{
-		Resource.Get();
+		return Resource;
 	}
 
 	int GetBufferSize()
@@ -42,6 +42,21 @@ struct ConstantBuffer : public GraphicsBufferBase
 		return BindIndex;
 	}
 
+public:
+
+	void SetBindIndex(int a)
+	{
+		BindIndex = a;
+	}
+
+	void SetSize(int a)
+	{
+		BufferSize = a;
+	}
+
+	std::vector<ShaderVariable> Variables;
+
+
 private:
 
 	int BindIndex;
@@ -49,8 +64,8 @@ private:
 
 struct SRV
 {
-	unsigned int Index;		
-	unsigned int BindIndex; 
+	unsigned int Index;
+	unsigned int BindIndex;
 };
 
 struct UAV
@@ -61,6 +76,6 @@ struct UAV
 
 struct Sampler
 {
-	unsigned int Index;		
-	unsigned int BindIndex; 
+	unsigned int Index;
+	unsigned int BindIndex;
 };

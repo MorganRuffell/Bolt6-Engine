@@ -1,6 +1,7 @@
 #pragma once
 #include "TestEngineBase.h"
-
+#include <Core/Core/UIComponent.h>
+#include "Core/Core/Engine/Graphics/Accelerator.h"
 
 
 /// <summary>
@@ -14,13 +15,10 @@ public:
     std::string ApplicationName = "DirectX 11 Animation Application";
     int UseVsync = 1;
 
-    GraphicsDevice* m_GraphicsDevice;
-
 public:
 
-    void SetupImGui();
-    void DrawImGui();
-    bool DestroyImGui();
+    GraphicsDevice*         m_GraphicsDevice;
+    UIComponent*            m_UIComponent;
 
 public:
 

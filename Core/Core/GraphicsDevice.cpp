@@ -1,4 +1,5 @@
 #include "GraphicsDevice.h"
+#include <iostream>
 
 bool GraphicsDevice::CreateDevice(HWND Window)
 {
@@ -22,17 +23,28 @@ bool GraphicsDevice::CreateDevice(HWND Window)
 
     D3D_FEATURE_LEVEL featureLevel;
 
+    m_Accelerator = std::make_shared<Accelerator>();
 
-    if (D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, SupportedFeatureLevels, 2, D3D11_SDK_VERSION, &SwapChainDesc, &SwapChain, &Device, &featureLevel, &DeviceContext) != S_OK)
+    std::cout << "Accelerator - Graphics Injected Object Initalization Succeeded" << std::endl;
+
+    if (D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, SupportedFeatureLevels, 2, D3D11_SDK_VERSION, &SwapChainDesc, &SwapChain, &m_Accelerator->Device, &featureLevel, &m_Accelerator->DeviceContext) != S_OK)
     {
+        std::cout << "Swapchain Initalization Failed" << std::endl;
+
         return false;
     }
+
+    std::cout << "Swapchain Initalization Succeeded" << std::endl;
+
 
     CreateRenderTarget();
     CreateDepthStencil();
     CreateViewport();
 
-    DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    std::cout << "Viewport Initalization Succeeded" << std::endl;
+
+
+    m_Accelerator->DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	return true;
 }
@@ -46,15 +58,8 @@ bool GraphicsDevice::CleanupDevice()
         SwapChain->Release();
     }
 
-    if (DeviceContext)
-    {
-        DeviceContext->Release();
-    }
-
-    if (Device)
-    {
-        Device->Release();
-    }
+    m_Accelerator->TerminateAccelerator();
+    
 
     return true;
 }
@@ -63,7 +68,7 @@ void GraphicsDevice::CreateRenderTarget()
 {
     //RenderTargetTexture
     SwapChain->GetBuffer(0, IID_PPV_ARGS(&RenderTargetTexture));
-    Device->CreateRenderTargetView(RenderTargetTexture.Get(), NULL, &MainRenderTargetView);
+    m_Accelerator->Device->CreateRenderTargetView(RenderTargetTexture.Get(), NULL, &MainRenderTargetView);
 }
 
 void GraphicsDevice::CleanupRenderTarget()
@@ -90,11 +95,11 @@ void GraphicsDevice::CreateDepthStencil()
     depthStencilDesc.SampleDesc.Quality = 0;
 
     ID3D11Texture2D* depthBufferTexture;
-    Device->CreateTexture2D(&depthStencilDesc, 0, &depthBufferTexture);
-    Device->CreateDepthStencilView(depthBufferTexture, 0, &MainDepthStencilView);
+    m_Accelerator->Device->CreateTexture2D(&depthStencilDesc, 0, &depthBufferTexture);
+    m_Accelerator->Device->CreateDepthStencilView(depthBufferTexture, 0, &MainDepthStencilView);
     depthBufferTexture->Release();
 
-    DeviceContext->OMSetRenderTargets(1, &MainRenderTargetView, MainDepthStencilView);
+    m_Accelerator->DeviceContext->OMSetRenderTargets(1, &MainRenderTargetView, MainDepthStencilView);
 }
 
 void GraphicsDevice::CreateViewport()
@@ -107,5 +112,5 @@ void GraphicsDevice::CreateViewport()
     viewport.MinDepth = 0.0f;
     viewport.MaxDepth = 1.0f;
 
-    DeviceContext->RSSetViewports(1, &viewport);
+    m_Accelerator->DeviceContext->RSSetViewports(1, &viewport);
 }

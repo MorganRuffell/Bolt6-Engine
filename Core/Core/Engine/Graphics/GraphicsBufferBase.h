@@ -7,11 +7,14 @@ using namespace Microsoft::WRL;
 
 class GraphicsBufferBase
 {
-protected:
+public:
 
 	//Im used to DX12 so I normally think of everything as a resource :D
 	//This is the underlying resource of the constant buffer.
-	ComPtr<ID3D11Buffer> Resource;
+	ID3D11Buffer* Resource;
+
+
+protected:
 
 	int BufferSize;
 	int ElementCount;

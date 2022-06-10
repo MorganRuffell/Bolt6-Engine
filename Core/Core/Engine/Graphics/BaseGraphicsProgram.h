@@ -36,9 +36,12 @@ protected:
 	int ConstantBufferCount;
 
 protected:
+
 	std::vector<SRV*>		shaderResourceViews;
 	std::vector<Sampler*>	samplerStates;
 
-	std::unordered_map<std::string, ConstantBuffer*> ConstantBufferGrid;
-	std::unordered_map<std::string, ShaderVariable> VarGrid;
+protected:
+
+	std::unordered_map<std::string, ConstantBuffer*>	ConstantBufferGrid;
+	std::unordered_map<std::string, ShaderVariable>		VarGrid;
 };

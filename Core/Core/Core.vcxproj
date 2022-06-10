@@ -23,6 +23,7 @@
     <ProjectGuid>{9F316E83-5AE5-4939-A723-305A94F48005}</ProjectGuid>
     <RootNamespace>example_win32_directx11</RootNamespace>
     <ProjectName>Application</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -167,6 +168,7 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UIComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Application.rc" />
@@ -189,6 +191,7 @@
     <ClInclude Include="..\..\External\OpenFBX\ofbx.h" />
     <ClInclude Include="BaseCamera.h" />
     <ClInclude Include="BaseRenderer.h" />
+    <ClInclude Include="Engine\Graphics\Accelerator.h" />
     <ClInclude Include="Engine\Graphics\BaseGraphicsProgram.h" />
     <ClInclude Include="Engine\Graphics\BaseShader.h" />
     <ClInclude Include="Engine\Graphics\GraphicsBufferBase.h" />
@@ -207,6 +210,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>

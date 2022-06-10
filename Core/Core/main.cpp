@@ -84,7 +84,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     switch (msg)
     {
     case WM_SIZE:
-        if (Engine.m_GraphicsDevice->GetDevice() != NULL && wParam != SIZE_MINIMIZED)
+        if (Engine.m_GraphicsDevice->m_Accelerator->GetDevice() != NULL && wParam != SIZE_MINIMIZED)
         {
             Engine.m_GraphicsDevice->CleanupRenderTarget();
             Engine.m_GraphicsDevice->GetSwapChain()->ResizeBuffers(0, (UINT)LOWORD(lParam), (UINT)HIWORD(lParam), DXGI_FORMAT_UNKNOWN, 0);

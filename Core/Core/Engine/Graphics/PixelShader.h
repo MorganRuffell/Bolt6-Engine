@@ -14,7 +14,7 @@ protected:
 	ID3D11PixelShader* shader;
 
 	bool CreateShader(ID3DBlob* shaderBlob);
-	void SetShaderAndCBs();
+	void SetShaderAndCBs() override;
 	void Terminate();
 
 };

@@ -64,6 +64,12 @@
     <Filter Include="sources\Graphics\Shaders\Shaders">
       <UniqueIdentifier>{5b10d9d5-f993-4a3a-ab2d-645f8b063a98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\UI">
+      <UniqueIdentifier>{830a22c1-3718-48f1-8360-e10154192c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Device\Accelerator">
+      <UniqueIdentifier>{82e138a0-2336-4de8-aafd-1b3361887d17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -125,6 +131,7 @@
       <Filter>sources\Graphics\Shaders\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
+    <ClCompile Include="UIComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -235,6 +242,10 @@
     </ClInclude>
     <ClInclude Include="Engine\Graphics\PixelShader.h">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComponent.h" />
+    <ClInclude Include="Engine\Graphics\Accelerator.h">
+      <Filter>sources\Graphics\Device\Accelerator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

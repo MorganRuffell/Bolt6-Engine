@@ -1,7 +1,8 @@
 #pragma once
 
 #include "GraphicsDeviceBase.h"
-#include <wrl.h>
+#include <memory>
+#include <Core/Core/Engine/Graphics/Accelerator.h>
 
 
 using namespace Microsoft::WRL;
@@ -23,18 +24,7 @@ public:
 	void CreateDepthStencil();
 	void CreateViewport();
 
-
-public:
-
-	ID3D11Device* GetDevice()
-	{
-		return Device.Get();
-	}
-
-	ID3D11DeviceContext* GetDeviceContext()
-	{
-		return DeviceContext.Get();
-	}
+	std::shared_ptr<Accelerator> m_Accelerator;
 
 public:
 
@@ -53,10 +43,9 @@ public:
 		return MainRenderTargetView;
 	}
 
-private:
+public:
 
-	ComPtr<ID3D11Device>			Device;
-	ComPtr<ID3D11DeviceContext>		DeviceContext;
+	bool UseVsync;
 
 public:
 
@@ -66,6 +55,6 @@ public:
 private:
 
 	ComPtr<ID3D11Texture2D>			RenderTargetTexture;
-
+	
 };
 
