@@ -79,6 +79,9 @@
     <Filter Include="sources\Graphics\Engine Components\Renderer">
       <UniqueIdentifier>{fc346bde-c31c-4abe-a4fe-4024dbcd7d17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Renderer\RasterizerStates">
+      <UniqueIdentifier>{dbde06ba-16d0-426d-9c5f-954a3cabe5d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -156,6 +159,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Graphics\PixelShader.cpp">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterizerState.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer\RasterizerStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +300,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Singleton.h">
       <Filter>sources\Design Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRasterizerState.h">
+      <Filter>sources\Graphics\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterizerState.h">
+      <Filter>sources\Graphics\Engine Components\Renderer\RasterizerStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

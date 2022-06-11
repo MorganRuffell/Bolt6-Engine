@@ -170,6 +170,7 @@
     <ClCompile Include="GraphicsDeviceBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="RasterizerState.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIComponent.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="..\..\External\OpenFBX\miniz.h" />
     <ClInclude Include="..\..\External\OpenFBX\ofbx.h" />
     <ClInclude Include="BaseCamera.h" />
+    <ClInclude Include="BaseRasterizerState.h" />
     <ClInclude Include="BaseRendererComponent.h" />
     <ClInclude Include="DirectX11RendererComponent.h" />
     <ClInclude Include="EngineComponent.h" />
@@ -218,6 +220,7 @@
     <ClInclude Include="Mathematics\Vector3.h" />
     <ClInclude Include="Mathematics\Vector4.h" />
     <ClInclude Include="Mesh\BaseMesh.h" />
+    <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
