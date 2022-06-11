@@ -7,5 +7,7 @@ rather than Khronos's. So I decided to comprimise on DirectX 11.
 
 I had one week to do this, this is the results of that week.
 
+Part of the task was to build this whole project from scratch, I started just with the header files from ImGui, OpenFBX and DirectX11.
+
 ### External Libraries
 https://github.com/nem0/OpenFBX
