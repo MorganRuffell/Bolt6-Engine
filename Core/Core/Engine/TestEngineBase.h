@@ -14,9 +14,9 @@
 
 #include <string>
 
-
 enum EngineState
 {
+    PreInit,
     Init,
     Rendering,
     Updating,
@@ -24,10 +24,10 @@ enum EngineState
     Idle
 };
 
-
 class TestEngineBase
 {
 protected:
+
 
     EngineState State;
 
@@ -36,7 +36,6 @@ public:
     virtual EngineState GetState() = 0;
 
     virtual void SetState(EngineState state) = 0;
-
 
 public:
     virtual bool Init(HWND window) = 0;

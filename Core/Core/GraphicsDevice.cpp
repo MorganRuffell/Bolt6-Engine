@@ -66,7 +66,11 @@ bool GraphicsDevice::CleanupDevice()
 
 void GraphicsDevice::CreateRenderTarget()
 {
-    //RenderTargetTexture
+    //Check that this actually contains a Swapchain from the graphics device
+    //And that the Graphics Device has a valid accelerator sub-Component
+    assert(SwapChain != nullptr);
+    assert(m_Accelerator != nullptr);
+
     SwapChain->GetBuffer(0, IID_PPV_ARGS(&RenderTargetTexture));
     m_Accelerator->Device->CreateRenderTargetView(RenderTargetTexture.Get(), NULL, &MainRenderTargetView);
 }

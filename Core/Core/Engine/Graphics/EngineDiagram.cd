@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TestEngine">
+    <Position X="5.25" Y="0.75" Width="3" />
+    <AssociationLine Name="m_GraphicsComponent" Type="GraphicsComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="5.064" />
+        <Point X="7.25" Y="5.562" />
+        <Point X="10.75" Y="5.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAJEgAAAQkQAAAQAAAAAACACAAAAAACBQGAAAACAA=</HashCode>
+      <FileName>Engine\TestEngine.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_UIComponent" />
+      <Field Name="m_RendererComponent" />
+      <Field Name="m_GraphicsComponent" />
+      <Field Name="m_GraphicsDevice" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestEngineBase">
+    <Position X="2.5" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABEAAAAAAAAAAAAAAAAAAAAAAAAAAABAGBAAAAAA=</HashCode>
+      <FileName>Engine\TestEngineBase.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="State" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Singleton">
+    <Position X="2.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAA=</HashCode>
+      <FileName>Engine\Singleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EngineComponent">
+    <Position X="16.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAIAQAQAAAAAAAAABEBAAAAAA=</HashCode>
+      <FileName>EngineComponent.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="State" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GraphicsComponent">
+    <Position X="10.75" Y="5" Width="2.5" />
+    <InheritanceLine Type="EngineComponent" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="16.25" Y="4.514" />
+        <Point X="15.875" Y="4.514" />
+        <Point X="15.875" Y="5.499" />
+        <Point X="13.25" Y="5.499" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GraphicsComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIComponent">
+    <Position X="10.75" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAEAAIBAAIQAAAAAAAAAAAAAAIIAAAAA=</HashCode>
+      <FileName>UIComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseRendererComponent">
+    <Position X="12.5" Y="0.5" Width="2" />
+    <InheritanceLine Type="EngineComponent" FixedFromPoint="true">
+      <Path>
+        <Point X="16.25" Y="2.656" />
+        <Point X="15.875" Y="2.656" />
+        <Point X="15.875" Y="0.999" />
+        <Point X="14.5" Y="0.999" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseRendererComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DirectX11RendererComponent">
+    <Position X="10.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DirectX11RendererComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GraphicsDevice">
+    <Position X="9.75" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAUAAwAAAAAAAAAAADAAAAAAAAAAACAANAAgAA=</HashCode>
+      <FileName>GraphicsDevice.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_Accelerator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GraphicsDeviceBase">
+    <Position X="13" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEAAgAAAAAAAAAAAAAAAACgAAAAACCAAAAAAA=</HashCode>
+      <FileName>GraphicsDeviceBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="std::shared_ptr&lt;_Ty&gt;">
+    <Position X="16" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAEAAAIAgAAEAEAAICgAQAgAAAAAAA=</HashCode>
+      <FileName>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\memory</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerator">
+    <Position X="18.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwAAAAGAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Graphics\Accelerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VideoAccelerator">
+    <Position X="20.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Graphics\Accelerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="EngineState">
+    <Position X="0.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAIAAAAAAAAAACIAAAAAAAAAAAIAACAAAAAAA=</HashCode>
+      <FileName>Engine\TestEngineBase.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ComponentState">
+    <Position X="19.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAIAAAEAAAAAAA=</HashCode>
+      <FileName>EngineComponent.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

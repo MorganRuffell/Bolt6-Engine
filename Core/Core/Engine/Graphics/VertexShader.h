@@ -6,9 +6,11 @@ using namespace Microsoft::WRL;
 
 class VertexShader : public BaseShader
 {
+	VertexShader() = delete;
 public:
-	VertexShader(ID3D11Device* device, ID3D11DeviceContext* context);
-	VertexShader(ID3D11Device* device, ID3D11DeviceContext* context, ID3D11InputLayout* InputLayout, bool PerInstanceCompatible);
+
+	VertexShader(_Inout_ ID3D11Device* device, _Inout_ ID3D11DeviceContext* context);
+	VertexShader(_Inout_ ID3D11Device* device, _Inout_ ID3D11DeviceContext* context, _Inout_ ID3D11InputLayout* InputLayout, bool PerInstanceCompatible);
 
 	//~VertexShader();
 
@@ -17,15 +19,17 @@ public:
 		return m_PerInstanceCompatible; 
 	}
 
-	bool SetShaderResourceView(std::string name, ID3D11ShaderResourceView* srv);
-	bool SetSamplerState(std::string name, ID3D11SamplerState* samplerState);
+	bool SetShaderResourceView(std::string name, _Inout_ ID3D11ShaderResourceView* srv);
+	bool SetSamplerState(std::string name, _Inout_ ID3D11SamplerState* samplerState);
 
 protected:
 
 	bool								m_PerInstanceCompatible;
 
-	ComPtr<ID3D11InputLayout>			m_inputLayout;
-	ComPtr<ID3D11VertexShader>			m_VertexShader;
+	ID3D11InputLayout*					m_inputLayout;
+
+	ID3D11VertexShader*					m_VertexShader;
+	ID3D11SamplerState*					m_SamplerState;
 
 public:
 
@@ -39,6 +43,11 @@ public:
 	bool SetSRV(std::string& name, ID3D11ShaderResourceView* srv) override;
 
 	bool SetSamplerState(std::string& name, ID3D11SamplerState* samplerState) override;
+
+
+
+	// Inherited via BaseShader
+	virtual void SetShaderAndCBs() override;
 
 
 };

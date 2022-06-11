@@ -158,10 +158,14 @@
     <ClCompile Include="..\..\External\OpenFBX\miniz.c" />
     <ClCompile Include="..\..\External\OpenFBX\ofbx.cpp" />
     <ClCompile Include="BaseCamera.cpp" />
-    <ClCompile Include="BaseRenderer.cpp" />
+    <ClCompile Include="BaseRendererComponent.cpp" />
+    <ClCompile Include="DirectX11RendererComponent.cpp" />
+    <ClCompile Include="EngineComponent.cpp" />
     <ClCompile Include="Engine\Graphics\BaseShader.cpp" />
+    <ClCompile Include="Engine\Graphics\PixelShader.cpp" />
     <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
     <ClCompile Include="Engine\TestEngine.cpp" />
+    <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="GraphicsDeviceBase.cpp" />
     <ClCompile Include="main.cpp" />
@@ -190,7 +194,9 @@
     <ClInclude Include="..\..\External\OpenFBX\miniz.h" />
     <ClInclude Include="..\..\External\OpenFBX\ofbx.h" />
     <ClInclude Include="BaseCamera.h" />
-    <ClInclude Include="BaseRenderer.h" />
+    <ClInclude Include="BaseRendererComponent.h" />
+    <ClInclude Include="DirectX11RendererComponent.h" />
+    <ClInclude Include="EngineComponent.h" />
     <ClInclude Include="Engine\Graphics\Accelerator.h" />
     <ClInclude Include="Engine\Graphics\BaseGraphicsProgram.h" />
     <ClInclude Include="Engine\Graphics\BaseShader.h" />
@@ -198,14 +204,19 @@
     <ClInclude Include="Engine\Graphics\PixelShader.h" />
     <ClInclude Include="Engine\Graphics\ShaderStructures.h" />
     <ClInclude Include="Engine\Graphics\VertexShader.h" />
+    <ClInclude Include="Engine\Singleton.h" />
     <ClInclude Include="Engine\TestEngine.h" />
     <ClInclude Include="Engine\TestEngineBase.h" />
     <ClInclude Include="FBX\New folder\Bone.h" />
     <ClInclude Include="FBX\New folder\Joint.h" />
     <ClInclude Include="FBX\New folder\Skeleton.h" />
+    <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="GraphicsDeviceBase.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Mathematics\Scalar.h" />
+    <ClInclude Include="Mathematics\Vector3.h" />
+    <ClInclude Include="Mathematics\Vector4.h" />
     <ClInclude Include="Mesh\BaseMesh.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StaticMesh.h" />
@@ -215,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis" />
+    <None Include="Engine\Graphics\EngineDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,6 @@
 #include "UIComponent.h"
 #include "Core/Core/Engine/Graphics/Accelerator.h"
 
-UIComponent::~UIComponent()
-{
-}
-
 void UIComponent::SetupImGui()
 {
     IMGUI_CHECKVERSION();
@@ -263,4 +259,18 @@ bool UIComponent::DestroyImGui()
 
 
     return true;
+}
+
+void UIComponent::InitalizeComponent()
+{
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+    ImGui::StyleColorsDark();
+}
+
+bool UIComponent::TerminateComponent()
+{
+    return DestroyImGui();
 }

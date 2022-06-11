@@ -40,14 +40,8 @@
     <Filter Include="External\OpenFBX">
       <UniqueIdentifier>{91de01c3-d931-4d23-9e80-1b0c55353a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sources\Skeleton">
-      <UniqueIdentifier>{8b2ad68f-4c8a-4e9f-a8fc-ce50949eaa97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sources\Graphics\Device">
       <UniqueIdentifier>{7c24c08f-ed35-443b-a004-ff979179db19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sources\Graphics\Renderer">
-      <UniqueIdentifier>{af612aeb-6be7-4fc8-8214-ac16d56c78a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\Graphics\Materials">
       <UniqueIdentifier>{26d461fb-215b-40ed-8fde-5441201a7342}</UniqueIdentifier>
@@ -64,11 +58,26 @@
     <Filter Include="sources\Graphics\Shaders\Shaders">
       <UniqueIdentifier>{5b10d9d5-f993-4a3a-ab2d-645f8b063a98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sources\UI">
-      <UniqueIdentifier>{830a22c1-3718-48f1-8360-e10154192c04}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sources\Graphics\Device\Accelerator">
       <UniqueIdentifier>{82e138a0-2336-4de8-aafd-1b3361887d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Animation">
+      <UniqueIdentifier>{a368d189-73dd-4c2c-8109-ae7eb3b663cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Animation\Skeleton">
+      <UniqueIdentifier>{8b2ad68f-4c8a-4e9f-a8fc-ce50949eaa97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Animation\Structures">
+      <UniqueIdentifier>{c8b00e4c-e965-45a6-9eb3-b1bdf0fd6f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components">
+      <UniqueIdentifier>{af612aeb-6be7-4fc8-8214-ac16d56c78a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Design Patterns">
+      <UniqueIdentifier>{7120a9c5-ac4e-4fb7-bdc0-aa4cf938309c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Renderer">
+      <UniqueIdentifier>{fc346bde-c31c-4abe-a4fe-4024dbcd7d17}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -118,9 +127,6 @@
     <ClCompile Include="StaticMesh.cpp">
       <Filter>sources\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="BaseRenderer.cpp">
-      <Filter>sources\Graphics\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>sources\Graphics\Materials</Filter>
     </ClCompile>
@@ -130,8 +136,27 @@
     <ClCompile Include="Engine\Graphics\BaseShader.cpp">
       <Filter>sources\Graphics\Shaders\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComponent.cpp">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\VertexShader.cpp">
+      <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineComponent.cpp">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseRendererComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11RendererComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\PixelShader.cpp">
+      <Filter>sources\Graphics\Shaders\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -187,7 +212,7 @@
       <Filter>sources\Camera</Filter>
     </ClInclude>
     <ClInclude Include="FBX\New folder\Joint.h">
-      <Filter>sources\Skeleton</Filter>
+      <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="..\..\External\OpenFBX\miniz.h">
       <Filter>External\OpenFBX</Filter>
@@ -196,10 +221,10 @@
       <Filter>External\OpenFBX</Filter>
     </ClInclude>
     <ClInclude Include="FBX\New folder\Bone.h">
-      <Filter>sources\Skeleton</Filter>
+      <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="FBX\New folder\Skeleton.h">
-      <Filter>sources\Skeleton</Filter>
+      <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsDevice.h">
       <Filter>sources\Graphics\Device</Filter>
@@ -212,9 +237,6 @@
     </ClInclude>
     <ClInclude Include="StaticMesh.h">
       <Filter>sources\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseRenderer.h">
-      <Filter>sources\Graphics\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\BaseMesh.h">
       <Filter>sources\Geometry</Filter>
@@ -243,9 +265,35 @@
     <ClInclude Include="Engine\Graphics\PixelShader.h">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Engine\Graphics\Accelerator.h">
       <Filter>sources\Graphics\Device\Accelerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Vector4.h">
+      <Filter>sources\Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Scalar.h">
+      <Filter>sources\Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Vector3.h">
+      <Filter>sources\Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComponent.h">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineComponent.h">
+      <Filter>sources\Graphics\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRendererComponent.h">
+      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11RendererComponent.h">
+      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Singleton.h">
+      <Filter>sources\Design Patterns</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +301,9 @@
       <Filter>sources</Filter>
     </None>
     <None Include="packages.config" />
+    <None Include="Engine\Graphics\EngineDiagram.cd">
+      <Filter>sources\Engine</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FBX\New folder\BasePS.hlsl">

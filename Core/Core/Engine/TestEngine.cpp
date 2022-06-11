@@ -17,6 +17,8 @@ bool TestEngine::Init(HWND window)
 
     std::cout << "Graphics Device Creation Succeeded!" << std::endl;
 
+
+
     ShowWindow(window, SW_SHOWDEFAULT);
     UpdateWindow(window);
 

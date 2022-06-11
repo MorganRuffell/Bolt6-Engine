@@ -17,7 +17,7 @@ int main(int, char**)
 {
     std::cout << "Bolt6.ai Programming Test" << std::endl;
     std::cout << "Candidate: Mr Morgan Ruffell" << std::endl;
-    std::cout << "Task Set By: Mr Luke Dodd" << std::endl;
+    std::cout << "Task Set By: Mr Luke Dodd" << std::endl << std::endl;
 
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();

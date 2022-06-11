@@ -37,14 +37,17 @@ public:
 	const Sampler* GetSamplerInfo(unsigned int index);
 	size_t GetSamplerCount() { return samplerGrid.size(); }
 	
+	const SRV* GetShaderResourceViewInfo(std::string& name);
+	const SRV* GetShaderResourceViewInfo(int Index);
+
 	// Get data about constant buffers
 	unsigned int GetBufferCount();
 	unsigned int GetBufferSize(unsigned int index);
 
-	const Sampler* GetBufferInfo(std::string name);
-	const Sampler* GetBufferInfo(unsigned int index);
+	const ConstantBuffer* GetBufferInfo(std::string& name);
+	const ConstantBuffer* GetBufferInfo(unsigned int index);
 
-private:
+protected:
 
 	std::unordered_map<std::string, SRV*>			textureGrid;
 	std::unordered_map<std::string, Sampler*>		samplerGrid;
@@ -54,20 +57,18 @@ private:
 
 	ConstantBuffer*									ConstantBuffers;
 
-	bool Valid;
 
 protected:
 
 	ShaderVariable* FindVariable(std::string& name, int size);
 	ConstantBuffer* FindConstantBuffer(std::string& name);
 
+	bool											Valid;
 
 private:
 
 	// Inherited via BaseGraphicsProgram
-	virtual bool CreateProgram(ID3DBlob* shaderBlob) override;
-
-	virtual void SetProgramAndConstantBuffers() override;
+	//virtual bool CreateProgram(ID3DBlob* shaderBlob) override;
 
 	virtual void Terminate() override;
 

@@ -230,24 +230,52 @@ bool BaseShader::SetData(std::string& Name, const void* data, int size)
 	return true;
 }
 
+//This is wrapped in a nullptr, if nothing is found it just returns null
 ShaderVariable* BaseShader::FindVariable(std::string& name, int size)
 {
-	return nullptr;
+	if (VarGrid.size() >= 1)
+	{
+		std::unordered_map<std::string, ShaderVariable>::iterator result = VarGrid.find(name);
+
+		if (result == VarGrid.end())
+		{
+			return nullptr;
+		}
+
+		ShaderVariable* SearchResult = &(result->second);
+
+		if (size > 0 && SearchResult->Size != size)
+		{
+			return nullptr;
+		}
+
+		return SearchResult;
+
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 ConstantBuffer* BaseShader::FindConstantBuffer(std::string& name)
 {
-	return nullptr;
+	//If name is invalid
+	if (name.size() <= 0)
+	{
+		return nullptr;
+	}
+
+	std::unordered_map<std::string, ConstantBuffer*>::iterator result = ConstantBufferGrid.find(name);
+
+	if (result == ConstantBufferGrid.end())
+	{
+		return nullptr;
+	}
+	
+	return result->second;
 }
 
-bool BaseShader::CreateProgram(ID3DBlob* shaderBlob)
-{
-	return false;
-}
-
-void BaseShader::SetProgramAndConstantBuffers()
-{
-}
 
 void BaseShader::Terminate()
 {
@@ -267,22 +295,36 @@ const Sampler* BaseShader::GetSamplerInfo(unsigned int index)
 	return nullptr;
 }
 
-unsigned int BaseShader::GetBufferCount()
+const SRV* BaseShader::GetShaderResourceViewInfo(std::string& name)
 {
-	return 0;
+	std::unordered_map<std::string, SRV*>::iterator result = textureGrid.find(name);
+
+	if (result == textureGrid.end())
+		return nullptr;
+
+	return result->second;
 }
+
+const SRV* BaseShader::GetShaderResourceViewInfo(int Index)
+{
+	if (Index >= shaderResourceViews.size()) return 0;
+
+	return shaderResourceViews[Index];
+}
+
+unsigned int BaseShader::GetBufferCount() { return ConstantBufferCount; }
 
 unsigned int BaseShader::GetBufferSize(unsigned int index)
 {
-	return 0;
+	return ConstantBuffers[index].GetBufferSize();
 }
 
-const Sampler* BaseShader::GetBufferInfo(std::string name)
+const ConstantBuffer* BaseShader::GetBufferInfo(std::string& name)
 {
-	return nullptr;
+	return FindConstantBuffer(name);
 }
 
-const Sampler* BaseShader::GetBufferInfo(unsigned int index)
+const ConstantBuffer* BaseShader::GetBufferInfo(unsigned int index)
 {
-	return nullptr;
+	return &ConstantBuffers[index];
 }

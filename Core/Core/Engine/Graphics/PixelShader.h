@@ -13,8 +13,14 @@ protected:
 
 	ID3D11PixelShader* shader;
 
+protected:
+
 	bool CreateShader(ID3DBlob* shaderBlob);
 	void SetShaderAndCBs() override;
 	void Terminate();
+	
+protected:
 
+	bool SetShaderResourceView(std::string& name, ID3D11ShaderResourceView* srv);
+	bool SetSamplerState(std::string& name, ID3D11SamplerState* SamplerState);
 };
