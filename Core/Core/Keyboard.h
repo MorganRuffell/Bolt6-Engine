@@ -1,7 +1,6 @@
 #pragma once
 
 #include "InputDeviceBase.h"
-#include "Engine/Singleton.h"
 
 enum Keys
 {
@@ -123,10 +122,18 @@ enum NumpadKeys
 	Therefore I'm going to make something bespoke.
 */
 
-class Keyboard : public InputDeviceBase, public Singleton
+class Keyboard : public InputDeviceBase
 {
-protected:
+public:
+	Keyboard();
+	~Keyboard();
 
-	static Keyboard* KeyboardInstance;
+public:
+
+
+	// Inherited via InputDeviceBase
+	virtual void DeviceInit() override;
+	virtual void DeviceUpdate() override;
+	virtual void DeviceTerminate() override;
 };
 

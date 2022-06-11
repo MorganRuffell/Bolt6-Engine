@@ -5,6 +5,7 @@
 #include <Core/Core/GraphicsComponent.h>
 #include "Singleton.h"
 #include <Core/Core/DirectX11RendererComponent.h>
+#include <Core/Core/InputComponent.h>
 
 
 /// <summary>
@@ -36,6 +37,7 @@ public:
     GraphicsComponent*              m_GraphicsComponent;
     DirectX11RendererComponent*     m_RendererComponent;
     UIComponent*                    m_UIComponent;
+    InputComponent*                 m_InputComponent;
 
 public:
 
