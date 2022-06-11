@@ -168,9 +168,14 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="GraphicsDeviceBase.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="InputDeviceBase.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RasterizerState.cpp" />
+    <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIComponent.cpp" />
@@ -215,13 +220,18 @@
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="GraphicsDeviceBase.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="InputDeviceBase.h" />
+    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mathematics\Scalar.h" />
     <ClInclude Include="Mathematics\Vector3.h" />
     <ClInclude Include="Mathematics\Vector4.h" />
     <ClInclude Include="Mesh\BaseMesh.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SamplerState.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UIComponent.h" />
@@ -230,6 +240,7 @@
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis" />
     <None Include="Engine\Graphics\EngineDiagram.cd" />
+    <None Include="Engine\Graphics\MaterialsTexturesClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -17,15 +17,20 @@ bool TestEngine::Init(HWND window)
 
     std::cout << "Graphics Device Creation Succeeded!" << std::endl;
 
+    m_RendererComponent = new DirectX11RendererComponent(m_GraphicsDevice);
 
+    std::cout << "Renderer Component Creation Succeeded!" << std::endl;
 
-    ShowWindow(window, SW_SHOWDEFAULT);
-    UpdateWindow(window);
 
     m_UIComponent = new UIComponent(m_GraphicsDevice->m_Accelerator, window);
 
     std::cout << "UI Component Creation Succeeded!" << std::endl;
 
+
+    ShowWindow(window, SW_SHOWDEFAULT);
+    UpdateWindow(window);
+
+    
     
 
     return true;

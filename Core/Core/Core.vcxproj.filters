@@ -82,6 +82,30 @@
     <Filter Include="sources\Graphics\Engine Components\Renderer\RasterizerStates">
       <UniqueIdentifier>{dbde06ba-16d0-426d-9c5f-954a3cabe5d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Renderer\Renderer Components">
+      <UniqueIdentifier>{a21d76b2-681e-4cb9-8b48-80c0e6e51a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Renderer\SamplerStates">
+      <UniqueIdentifier>{eeb92424-01bd-4966-a25f-25913be0dc61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Geometry\SpecializedMeshes">
+      <UniqueIdentifier>{feeb0aba-9d2f-41b9-95ae-88c6249b1daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Graphics">
+      <UniqueIdentifier>{ee1102d4-b452-4ae2-ab53-37f21eeb668e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\UI">
+      <UniqueIdentifier>{3f2bb576-0881-4bbd-b327-93a9163de522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Core">
+      <UniqueIdentifier>{606e4bf2-0a01-4a0b-8b3c-e697f276a512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Input">
+      <UniqueIdentifier>{789699bb-c314-42a9-b982-6a74a2f5905f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Input\InputDevice">
+      <UniqueIdentifier>{e38c769f-78ec-42cb-b0ca-06164fc2c2fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -127,9 +151,6 @@
     <ClCompile Include="..\..\backends\ImGuizmo.cpp">
       <Filter>External\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>sources\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>sources\Graphics\Materials</Filter>
     </ClCompile>
@@ -139,29 +160,47 @@
     <ClCompile Include="Engine\Graphics\BaseShader.cpp">
       <Filter>sources\Graphics\Shaders\Core</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsComponent.cpp">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClCompile>
-    <ClCompile Include="UIComponent.cpp">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Graphics\VertexShader.cpp">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineComponent.cpp">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseRendererComponent.cpp">
-      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX11RendererComponent.cpp">
-      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\PixelShader.cpp">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="RasterizerState.cpp">
       <Filter>sources\Graphics\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseRendererComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11RendererComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp">
+      <Filter>sources\Graphics\Engine Components\Renderer\SamplerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMesh.cpp">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDeviceBase.cpp">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,9 +280,6 @@
     <ClInclude Include="..\..\backends\ImGuizmo.h">
       <Filter>External\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="StaticMesh.h">
-      <Filter>sources\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh\BaseMesh.h">
       <Filter>sources\Geometry</Filter>
     </ClInclude>
@@ -283,21 +319,6 @@
     <ClInclude Include="Mathematics\Vector3.h">
       <Filter>sources\Mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsComponent.h">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UIComponent.h">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineComponent.h">
-      <Filter>sources\Graphics\Engine Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseRendererComponent.h">
-      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX11RendererComponent.h">
-      <Filter>sources\Graphics\Engine Components\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Singleton.h">
       <Filter>sources\Design Patterns</Filter>
     </ClInclude>
@@ -307,6 +328,39 @@
     <ClInclude Include="RasterizerState.h">
       <Filter>sources\Graphics\Engine Components\Renderer\RasterizerStates</Filter>
     </ClInclude>
+    <ClInclude Include="BaseRendererComponent.h">
+      <Filter>sources\Graphics\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11RendererComponent.h">
+      <Filter>sources\Graphics\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerState.h">
+      <Filter>sources\Graphics\Engine Components\Renderer\SamplerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticMesh.h">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>sources\Graphics\Engine Components\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComponent.h">
+      <Filter>sources\Graphics\Engine Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineComponent.h">
+      <Filter>sources\Graphics\Engine Components\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>sources\Graphics\Engine Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDeviceBase.h">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis">
@@ -315,6 +369,9 @@
     <None Include="packages.config" />
     <None Include="Engine\Graphics\EngineDiagram.cd">
       <Filter>sources\Engine</Filter>
+    </None>
+    <None Include="Engine\Graphics\MaterialsTexturesClassDiagram.cd">
+      <Filter>sources\Graphics\Materials</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

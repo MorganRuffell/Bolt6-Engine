@@ -3,15 +3,19 @@
 #include "BaseRendererComponent.h"
 #include "RasterizerState.h"
 #include <memory>
+#include <Core/Core/GraphicsDevice.h>
 
 class DirectX11RendererComponent : public BaseRendererComponent
 {
 public:
 
-	DirectX11RendererComponent(Accelerator* Accel);
+	DirectX11RendererComponent(GraphicsDevice* Accel);
 
 	virtual void InitalizeComponent() override;
 	virtual bool TerminateComponent() override;
+
+	virtual void Update();
+	virtual void Render();
 
 protected:
 
@@ -21,11 +25,15 @@ protected:
 
 protected:
 
+	void BeginFrame(Accelerator* Accel);
+	void EndFrame(Accelerator* Accel);
+
+
+protected:
+
 	RasterizerState* StandardRS;
 	RasterizerState* WireframeRS;
 
-
-private:
 
 	int AmountOfRasterizerStates;
 
@@ -37,6 +45,5 @@ protected:
 protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY primitiveTopology;
-
 };
 

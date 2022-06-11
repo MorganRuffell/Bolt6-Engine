@@ -1,15 +1,13 @@
 #pragma once
 
 #include <DirectXMath.h>
-#include "Vertex.h"
+//#include "Vertex.h"
 #include <d3d11.h>
+#include <vector>
+#include <Core/Core/Material.h>
 
 class BaseMesh
 {
-protected:
-
-	ID3D11Buffer* VertexBuffer;
-	ID3D11Buffer* IndexBuffer;
 
 public:
 
@@ -22,5 +20,31 @@ public:
 	{
 		return IndexBuffer;
 	}
+
+public:
+
+	Material* GetMaterialatIndex(int index)
+	{
+		if (index > MeshMaterials.size())
+		{
+			return nullptr;
+		}
+		else
+		{
+			return MeshMaterials.at(index);
+
+		}
+	}
+
+
+
+protected:
+
+	std::vector<Material*> MeshMaterials;
+
+protected:
+
+	ID3D11Buffer* VertexBuffer;
+	ID3D11Buffer* IndexBuffer;
 
 };

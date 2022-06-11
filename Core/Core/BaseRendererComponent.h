@@ -4,6 +4,10 @@
 
 class BaseRendererComponent : EngineComponent
 {
+protected:
+
+	
+
 
 
 };

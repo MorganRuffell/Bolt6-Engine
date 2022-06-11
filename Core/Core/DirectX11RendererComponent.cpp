@@ -1,11 +1,16 @@
 #include "DirectX11RendererComponent.h"
 #include <assert.h>
 
-DirectX11RendererComponent::DirectX11RendererComponent(Accelerator* Accel)
+
+
+DirectX11RendererComponent::DirectX11RendererComponent(GraphicsDevice* Accel)
 {
     assert(Accel != nullptr);
 
-    InitalizeRasterizerStates(Accel);
+    InitalizeRasterizerStates(Accel->m_Accelerator.get());
+
+
+
 }
 
 void DirectX11RendererComponent::InitalizeComponent()
@@ -32,3 +37,21 @@ void DirectX11RendererComponent::DestroyRasterizerStates()
     delete StandardRS;
     delete WireframeRS;
 }
+
+void DirectX11RendererComponent::BeginFrame(Accelerator* Accel)
+{
+
+}
+
+void DirectX11RendererComponent::EndFrame(Accelerator* Accel)
+{
+}
+
+void DirectX11RendererComponent::Update()
+{
+}
+
+void DirectX11RendererComponent::Render()
+{
+}
+

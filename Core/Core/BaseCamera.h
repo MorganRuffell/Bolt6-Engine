@@ -34,6 +34,8 @@ public:
 	void RotateX(float x);
 	void RotateY(float y);
 
+	void Update(float DeltaFrame);
+
 public:
 
 	void SetRotation(XMFLOAT3 rotation);

@@ -72,3 +72,17 @@ bool PixelShader::SetSamplerState(std::string& name, ID3D11SamplerState* Sampler
 
 	return true;
 }
+
+bool PixelShader::CreateProgram(ID3DBlob* shaderBlob)
+{
+	return false;
+}
+
+void PixelShader::SetProgramAndConstantBuffers()
+{
+}
+
+bool PixelShader::SetSRV(std::string& name, ID3D11ShaderResourceView* srv)
+{
+	return false;
+}

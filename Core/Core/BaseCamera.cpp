@@ -17,6 +17,20 @@ void BaseCamera::RotateY(float y)
 {
 }
 
+void BaseCamera::Update(float DeltaFrame)
+{
+    float speed = 10.0f;
+
+    XMVECTOR cachedPosition = XMVectorSet(position.x, position.y, position.z,0);
+    XMVECTOR cachedDirection = XMVectorSet(direction.x, direction.y, direction.z, 0);
+
+    auto Rotation = XMQuaternionRotationRollPitchYaw(rotation.x, rotation.y, rotation.z);
+    cachedDirection = XMVector3Rotate(cachedDirection, Rotation);
+
+
+
+}
+
 void BaseCamera::SetRotation(XMFLOAT3 rotation)
 {
 }

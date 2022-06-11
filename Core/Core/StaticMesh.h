@@ -1,5 +1,8 @@
 #pragma once
-class StaticMesh
+
+#include "Mesh/BaseMesh.h"
+
+class StaticMesh : public BaseMesh
 {
 
 };

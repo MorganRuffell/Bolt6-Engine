@@ -4,6 +4,7 @@
 
 class PixelShader : public BaseShader
 {
+public:
 	PixelShader(ID3D11Device* device, ID3D11DeviceContext* context);
 	~PixelShader();
 
@@ -23,4 +24,9 @@ protected:
 
 	bool SetShaderResourceView(std::string& name, ID3D11ShaderResourceView* srv);
 	bool SetSamplerState(std::string& name, ID3D11SamplerState* SamplerState);
+
+	// Inherited via BaseShader
+	virtual bool CreateProgram(ID3DBlob* shaderBlob) override;
+	virtual void SetProgramAndConstantBuffers() override;
+	virtual bool SetSRV(std::string& name, ID3D11ShaderResourceView* srv) override;
 };
