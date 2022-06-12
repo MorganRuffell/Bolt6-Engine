@@ -4,6 +4,9 @@
 
 class StaticMesh : public BaseMesh
 {
-
+	StaticMesh()
+	{
+		SetTag(EngineObjTag::NonEngine);
+	}
 };
 

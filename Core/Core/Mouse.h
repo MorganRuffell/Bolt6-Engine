@@ -59,6 +59,9 @@ public:
 	{
 		assert(window != nullptr);
 
+		SetTag(EngineObjTag::Engine);
+
+
 		std::thread InitalizeMouseThread{ [&]() {
 			MouseKeysInputMap.insert(GeneratePair(MB_Left, VK_LBUTTON));
 			MouseKeysInputMap.insert(GeneratePair(MB_Right, VK_RBUTTON));

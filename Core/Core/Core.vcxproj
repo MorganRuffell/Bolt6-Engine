@@ -181,12 +181,14 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RasterizerState.cpp" />
+    <ClCompile Include="ResourceManagerComponent.cpp" />
     <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldBase.cpp" />
+    <ClCompile Include="WorldComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Application.rc" />
@@ -207,12 +209,14 @@
     <ClInclude Include="..\..\backends\imstb_truetype.h" />
     <ClInclude Include="..\..\External\OpenFBX\miniz.h" />
     <ClInclude Include="..\..\External\OpenFBX\ofbx.h" />
+    <ClInclude Include="AnimObject.h" />
     <ClInclude Include="BaseCamera.h" />
     <ClInclude Include="BaseRasterizerState.h" />
     <ClInclude Include="BaseRendererComponent.h" />
     <ClInclude Include="DirectX11RendererComponent.h" />
     <ClInclude Include="DynamicMesh.h" />
     <ClInclude Include="EngineComponent.h" />
+    <ClInclude Include="Engine\Animation\AnimationStructures.h" />
     <ClInclude Include="Engine\Graphics\Accelerator.h" />
     <ClInclude Include="Engine\Graphics\BaseGraphicsProgram.h" />
     <ClInclude Include="Engine\Graphics\BaseShader.h" />
@@ -241,8 +245,10 @@
     <ClInclude Include="Mathematics\Vector4.h" />
     <ClInclude Include="Mesh\BaseMesh.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResourceManagerComponent.h" />
     <ClInclude Include="SamplerState.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
@@ -250,6 +256,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldBase.h" />
+    <ClInclude Include="WorldComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis" />

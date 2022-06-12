@@ -4,8 +4,10 @@
 
 class FBXComponent : public ImportComponent
 {
+public:
 	FBXComponent()
 	{
+		SetTag(EngineObjTag::Engine);
 
 	}
 

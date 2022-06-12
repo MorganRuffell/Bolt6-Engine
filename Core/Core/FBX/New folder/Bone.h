@@ -12,7 +12,7 @@ using namespace DirectX;
 enum BoneTranslationMode
 {
 	Animation,
-	Skeleton,
+	Parental,
 };
 
 /*
@@ -27,22 +27,23 @@ enum BoneType
 	Branch
 };
 
-class Bone
+class Bone2
 {
+public:
 	//Constructor for creating a new bone relative to it's parent
-	Bone(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone* Parent)
+	Bone2(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone2* Parent)
 	{
 		SetName(Name);
 
 		//Rewrite the maths on this -- This isn't accurate enough
-		XMFLOAT4X4 Position = Parent->BoneTransform;
+		XMFLOAT4X4 Position = m_ParentBone->BoneTransform;
 
 		ApplyTranslationFromParent(Position, OffsetPosition);
 
 		BoneTransform = Position;
-		TranslationMode = Skeleton;
-		this->Parent = Parent;
-		
+		TranslationMode = Parental;
+		//this->m_ParentBone = m_ParentBone;
+
 		if (this->NumberOfChildren = 0)
 		{
 			TypeOfBone = BoneType::Leaf;
@@ -54,20 +55,20 @@ class Bone
 	}
 
 	//Constructor for creating a new bone relative to it's parent, name is ommited
-	Bone(XMFLOAT4X4 OffsetPosition, Bone* Parent)
+	Bone2(XMFLOAT4X4 OffsetPosition, Bone2* Parent)
 	{
-		std::string Name = Parent->GetName() + "_" + std::to_string(Parent->NumberOfChildren + 1);
+		std::string Name = m_ParentBone->GetName() + "_" + std::to_string(m_ParentBone->NumberOfChildren + 1);
 
 		SetName(Name);
 
 		//Rewrite the maths on this -- This isn't accurate enough
-		XMFLOAT4X4 Position = Parent->BoneTransform;
+		XMFLOAT4X4 Position = m_ParentBone->BoneTransform;
 
 		ApplyTranslationFromParent(Position, OffsetPosition);
 
 		BoneTransform = Position;
-		TranslationMode = Skeleton;
-		this->Parent = Parent;
+		TranslationMode = Parental;
+		this->m_ParentBone = Parent;
 
 		if (this->NumberOfChildren = 0)
 		{
@@ -79,18 +80,18 @@ class Bone
 		}
 	}
 
-	
+
 	//Constructor for creating a parent bone
-	Bone(std::string& Name, XMFLOAT4X4 Position, BoneType Type)
+	Bone2(std::string& Name, XMFLOAT4X4 Position, BoneType Type)
 	{
 		if (Type == BoneType::Parent)
 		{
 			SetName(Name);
 			BoneTransform = Position;
-			TranslationMode = Skeleton;
+			TranslationMode = Parental;
 			TypeOfBone = BoneType::Parent;
 			NumberOfChildren = 0;
-			Parent == nullptr;
+			m_ParentBone = nullptr;
 		}
 		else
 		{
@@ -98,14 +99,14 @@ class Bone
 		}
 	}
 
-	
+
 public:
 
 	void SetTranslationMode(BoneTranslationMode Mode)
 	{
 		TranslationMode = Mode;
 	}
-	
+
 	BoneTranslationMode GetTranslationMode()
 	{
 		return TranslationMode;
@@ -115,19 +116,19 @@ public:
 
 	void RemoveParent()
 	{
-		Parent = nullptr;
+		m_ParentBone = nullptr;
 	}
 
-	void AddParent(Bone* NewParent)
+	void AddParent(Bone2* NewParent)
 	{
 		if (GetParentBone() == nullptr)
 		{
-			Parent = NewParent;
+			m_ParentBone = NewParent;
 		}
 		else
 		{
 			RemoveParent();
-			Parent = NewParent;
+			m_ParentBone = NewParent;
 		}
 	}
 
@@ -145,11 +146,11 @@ public:
 
 public:
 
-	Bone* GetParentBone()
+	Bone2* GetParentBone()
 	{
-		if (Parent != nullptr)
+		if (m_ParentBone != nullptr)
 		{
-			return Parent;
+			return m_ParentBone;
 		}
 		else
 		{
@@ -157,7 +158,7 @@ public:
 		}
 	}
 
-	Bone* GetChildBoneByName(std::string& Name)
+	Bone2* GetChildBoneByName(std::string& Name)
 	{
 		for (auto& element : Children)
 		{
@@ -166,7 +167,7 @@ public:
 				return element;
 			}
 		}
-		
+
 		//No child bone found by name
 		return nullptr;
 	}
@@ -186,7 +187,7 @@ protected:
 
 public:
 
-	bool AddChild(Bone* Child)
+	bool AddChild(Bone2* Child)
 	{
 		assert(Child != nullptr);
 
@@ -202,11 +203,11 @@ public:
 		}
 	}
 
-	bool AddChild(std::string& Name, std::map<std::string, Bone*> Collection)
+	bool AddChild(std::string& Name, std::map<std::string, Bone2*> Collection)
 	{
 		if (Collection.contains(Name) && Collection.at(Name) != nullptr)
 		{
-			Bone* NewChild = Collection.at(Name);
+			Bone2* NewChild = Collection.at(Name);
 
 			if (NumberOfChildren < MaximumNumberOfChildBones)
 			{
@@ -223,11 +224,11 @@ public:
 		}
 	}
 
-	bool AddChild(int index, std::vector<Bone*> Collection)
+	bool AddChild(int index, std::vector<Bone2*> Collection)
 	{
 		if (index > Collection.size())
 		{
-			Bone* NewChild = Collection.at(index);
+			Bone2* NewChild = Collection.at(index);
 
 			if (NumberOfChildren < MaximumNumberOfChildBones)
 			{
@@ -250,7 +251,7 @@ public:
 	{
 		NumberOfChildren = 0;
 
-		for (Bone* Element : Children)
+		for (Bone2* Element : Children)
 		{
 			delete(Element);
 		}
@@ -277,9 +278,9 @@ private:
 
 private:
 
-	Bone*					Parent;
+	Bone2* m_ParentBone;
 
-	std::vector<Bone*>		Children;
+	std::vector<Bone2*>		Children;
 
 	int						NumberOfChildren;
 	int						MaximumNumberOfChildBones = 25;

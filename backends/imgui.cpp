@@ -6046,7 +6046,7 @@ bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
         flags = window->Flags;
     }
 
-    // Parent window is latched only on the first call to Begin() of the frame, so further append-calls can be done from a different window stack
+    // m_ParentBone window is latched only on the first call to Begin() of the frame, so further append-calls can be done from a different window stack
     ImGuiWindow* parent_window_in_stack = g.CurrentWindowStack.empty() ? NULL : g.CurrentWindowStack.back().Window;
     ImGuiWindow* parent_window = first_begin_of_the_frame ? ((flags & (ImGuiWindowFlags_ChildWindow | ImGuiWindowFlags_Popup)) ? parent_window_in_stack : NULL) : window->ParentWindow;
     IM_ASSERT(parent_window != NULL || !(flags & ImGuiWindowFlags_ChildWindow));
@@ -12417,7 +12417,7 @@ void ImGui::ShowMetricsWindow(bool* p_open)
         DebugNodeWindowsList(&g.WindowsFocusOrder, "By focus order (root windows)");
         if (TreeNode("By submission order (begin stack)"))
         {
-            // Here we display windows in their submitted order/hierarchy, however note that the Begin stack doesn't constitute a Parent<>Child relationship!
+            // Here we display windows in their submitted order/hierarchy, however note that the Begin stack doesn't constitute a m_ParentBone<>Child relationship!
             ImVector<ImGuiWindow*>& temp_buffer = g.WindowsTempSortBuffer;
             temp_buffer.resize(0);
             for (int i = 0; i < g.Windows.Size; i++)

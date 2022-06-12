@@ -27,7 +27,7 @@ public:
 
 	World()
 	{
-
+		SetTag(EngineObjTag::NonEngine);
 	}
 
 	~World()
@@ -114,6 +114,14 @@ public:
 		}
 	}
 
+
+
+	// Inherited via WorldBase
+	virtual void Initalize() override;
+
+	virtual void Update() override;
+
+	virtual void Terminate() override;
 
 };
 

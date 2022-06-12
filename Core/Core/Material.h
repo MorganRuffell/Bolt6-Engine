@@ -7,6 +7,7 @@
 #include <cassert>
 #include <Core/Core/Engine/Graphics/Accelerator.h>
 #include "SamplerState.h"
+#include <Core/Core/Object.h>
 
 /// <summary>
 /// 
@@ -15,7 +16,7 @@
 /// 
 /// </summary>
 
-class Material
+class Material : public Object
 {
 public:
 
@@ -30,6 +31,8 @@ public:
 		this->Sampler = _SamplerState;
 
 		SetName(Name);
+		SetTag(EngineObjTag::NonEngine);
+
 	}
 
 	Material(TESamplerState* _SamplerState, std::string& Name, Accelerator* Accel)
@@ -41,6 +44,8 @@ public:
 		this->Sampler = _SamplerState;
 
 		SetName(Name);
+		SetTag(EngineObjTag::NonEngine);
+
 	}
 
 	Material(std::string& Name, Accelerator* Accel)
@@ -50,6 +55,8 @@ public:
 		this->Sampler = new TESamplerState(Accel);
 
 		SetName(Name);
+		SetTag(EngineObjTag::NonEngine);
+
 	}
 
 public:

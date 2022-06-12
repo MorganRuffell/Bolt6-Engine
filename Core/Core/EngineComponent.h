@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "Object.h"
 enum ComponentState
 {
 	Initialized,
@@ -9,7 +9,7 @@ enum ComponentState
 	Terminate
 };
 
-class EngineComponent
+class EngineComponent : public Object
 {
 	std::string Name;
 	ComponentState State;

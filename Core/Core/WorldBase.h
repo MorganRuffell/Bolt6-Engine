@@ -14,14 +14,14 @@
 *	Also allows for further specialization!
 */
 
-class WorldBase
+class WorldBase : public Object
 {
 
 protected:
 
-	virtual void Initalize();
-	virtual void Update();
-	virtual void Terminate();
+	virtual void Initalize() = 0;
+	virtual void Update() = 0;
+	virtual void Terminate() = 0;
 
 
 

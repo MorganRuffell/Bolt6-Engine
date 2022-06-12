@@ -9,11 +9,12 @@
 #include <d3d11.h>
 #include <wrl.h>
 #include <cassert>
+#include "Object.h"
 
 using namespace Microsoft::WRL;
 
 
-class GraphicsDeviceBase
+class GraphicsDeviceBase : public Object
 {
 protected:
 

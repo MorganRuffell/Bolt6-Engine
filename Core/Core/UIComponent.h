@@ -25,6 +25,7 @@ public:
 	UIComponent(_In_ Accelerator* Accel, _In_ HWND window)
 	{
 		assert(Accel != nullptr);
+		SetTag(EngineObjTag::Engine);
 
 		InitalizeComponent();
 		SetComponentState(Initialized);
@@ -37,6 +38,9 @@ public:
 	UIComponent(_In_ std::shared_ptr<Accelerator> Accel, _In_ HWND window)
 	{
 		assert(Accel != nullptr);
+		SetTag(EngineObjTag::Engine);
+
+
 		InitalizeComponent();
 		SetComponentState(Initialized);
 		SetComponentName(m_ComponentName);

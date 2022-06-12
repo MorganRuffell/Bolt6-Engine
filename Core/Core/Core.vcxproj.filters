@@ -112,6 +112,15 @@
     <Filter Include="sources\Graphics\Engine Components\Import Component">
       <UniqueIdentifier>{59ac0d0d-61de-4bbe-ab6f-08f71833dcb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Asset">
+      <UniqueIdentifier>{2c70c442-7e0e-41b1-b6ec-1083959ffd3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\World Component">
+      <UniqueIdentifier>{5f2c09eb-a044-47c2-9eac-eb8e71943504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\World Component\Sub Components">
+      <UniqueIdentifier>{b5c7f1fa-d8e5-4fa3-9ea9-f6ca377d055b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -223,7 +232,13 @@
     <ClCompile Include="FBXComponent.cpp">
       <Filter>sources\Graphics\Engine Components\Import Component</Filter>
     </ClCompile>
-    <ClCompile Include="FBX\New folder\Skeleton.cpp" />
+    <ClCompile Include="WorldComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\World Component</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\New folder\Skeleton.cpp">
+      <Filter>sources\Animation\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManagerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -401,6 +416,19 @@
     <ClInclude Include="Mathematics\Matrix4x4.h">
       <Filter>sources\Mathematics</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>sources\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimObject.h">
+      <Filter>sources\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Animation\AnimationStructures.h">
+      <Filter>sources\Animation\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldComponent.h">
+      <Filter>sources\Graphics\Engine Components\World Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis">

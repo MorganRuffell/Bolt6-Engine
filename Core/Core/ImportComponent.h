@@ -1,17 +1,20 @@
 #pragma once
 
 #include "EngineComponent.h"
+#include "Object.h"
 
-enum ImportState
+namespace ImportComponentState
 {
-	Loading,
-	Importing,
-	Constructing,
-	Ending,
-	Error,
-	Complete
-};
-
+	enum ImportState
+	{
+		Loading,
+		Importing,
+		Constructing,
+		Ending,
+		Error,
+		Complete
+	};
+}
 
 class ImportComponent : public EngineComponent
 {
@@ -34,6 +37,6 @@ public:
 
 protected:
 
-	ImportState State;
+	ImportComponentState::ImportState State;
 };
 

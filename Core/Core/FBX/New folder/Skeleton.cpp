@@ -1,7 +1,10 @@
 #include "Skeleton.h"
 
-Skeleton::Skeleton(Bone* _RootBone)
+Skeleton::Skeleton(Bone2* _RootBone)
 {
+	SetType(Hierarchy);
+	SetTag(EngineObjTag::NonEngine);
+
 	if (_RootBone == nullptr)
 	{
 		throw new std::exception("Skeleton cannot be created, there is no root bone!");
@@ -9,14 +12,19 @@ Skeleton::Skeleton(Bone* _RootBone)
 
 	RootBone = _RootBone;
 
+	
 	SkeletonRoot = RootBone->BoneTransform;
 }
 
 //Constructs a skeleton object at the position
 Skeleton::Skeleton(XMFLOAT4X4 Position)
 {
-	RootBone = new Bone();
+	SetType(Hierarchy);
+	SetTag(EngineObjTag::NonEngine);
 
+	std::string Name = "Root";
 
+	RootBone = new Bone2(Name, Position, BoneType::Parent);
+	SkeletonRoot = RootBone->BoneTransform;
 }
 

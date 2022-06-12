@@ -1,13 +1,21 @@
 #pragma once
 
 #include "EngineComponent.h"
+#include <Core/Core/World.h>
+#include "GraphicsDevice.h"
 
 class BaseRendererComponent : EngineComponent
 {
 protected:
+	BaseRendererComponent()
+	{
+		SetTag(EngineObjTag::Engine);
+	}
 
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+protected:
+
+	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) = 0;
+	virtual void Render(GraphicsDevice* accel) = 0;
 
 
 };

@@ -15,7 +15,9 @@ public:
 	virtual void InitalizeComponent() override;
 	virtual bool TerminateComponent() override;
 
+	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) override;
 
+	void Render(GraphicsDevice* accel);
 
 protected:
 
@@ -51,8 +53,7 @@ protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY primitiveTopology;
 
-	// Inherited via BaseRendererComponent
-	virtual void Update() override;
-	virtual void Render() override;
+
+	
 };
 

@@ -5,8 +5,9 @@
 #include <d3d11.h>
 #include <vector>
 #include <Core/Core/Material.h>
+#include <Core/Core/Object.h>
 
-class BaseMesh
+class BaseMesh : public Object
 {
 
 public:

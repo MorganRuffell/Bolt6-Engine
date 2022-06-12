@@ -6,14 +6,15 @@
 #include "Singleton.h"
 #include <Core/Core/DirectX11RendererComponent.h>
 #include <Core/Core/InputComponent.h>
-#include <Core/Core/FBXComponent.h>
+#include <Core/Core/Object.h>
+#include <Core/Core/WorldComponent.h>
 
 
 /// <summary>
 /// This is the test engine class, this contains all of the information about the engine current state.
 /// This was developed as a test for Bolt6 from Morgan Ruffell, use at your lesiure!
 /// </summary>
-class TestEngine : public TestEngineBase, public Singleton
+class TestEngine : public TestEngineBase, public Singleton, public Object
 {
 public:
 
@@ -23,7 +24,10 @@ public:
     TestEngine()
         :TestEngineBase()
     {
+
         State = EngineState::PreInit;
+        SetTag(EngineObjTag::Engine);
+
     }
 
     //This utilizes Dependency injection to inject new instances of Engine Components
@@ -38,8 +42,7 @@ public:
     GraphicsComponent*              m_GraphicsComponent;
     DirectX11RendererComponent*     m_RendererComponent;
 
-    FBXComponent*                   m_FBXImportComponent;
-
+    WorldComponent*                 m_WorldComponent;
 
     UIComponent*                    m_UIComponent;
     InputComponent*                 m_InputComponent;

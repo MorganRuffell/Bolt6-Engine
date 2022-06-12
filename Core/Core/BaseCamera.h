@@ -2,14 +2,21 @@
 
 #include <DirectXMath.h>
 #include <Windows.h>
+#include "Object.h"
 
 using namespace DirectX;
 
-class BaseCamera
+class BaseCamera : public Object
 {
 public:
-	BaseCamera();
-	~BaseCamera();
+	BaseCamera()
+	{
+		SetTag(EngineObjTag::NonEngine);
+	}
+	~BaseCamera()
+	{
+
+	}
 
 public:
 

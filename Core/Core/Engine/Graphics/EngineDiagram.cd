@@ -2,23 +2,46 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TestEngine">
     <Position X="8.25" Y="4.75" Width="3" />
+    <InheritanceLine Type="Object" FixedToPoint="true">
+      <Path>
+        <Point X="27.5" Y="8.438" />
+        <Point X="27.125" Y="8.438" />
+        <Point X="27.125" Y="5.188" />
+        <Point X="19.708" Y="5.187" Type="JumpStart" />
+        <Point X="19.542" Y="5.188" Type="JumpEnd" />
+        <Point X="11.25" Y="5.188" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="m_GraphicsDevice" Type="GraphicsDevice" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.188" Y="9.385" />
+        <Point X="10.188" Y="12.842" />
+        <Point X="13.25" Y="12.842" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="m_GraphicsComponent" Type="GraphicsComponent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.562" Y="9.385" />
+        <Point X="10.562" Y="9.84" />
+        <Point X="13.75" Y="9.84" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="m_RendererComponent" Type="DirectX11RendererComponent" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="11.25" Y="5.407" />
-        <Point X="11.625" Y="5.407" />
-        <Point X="11.625" Y="3.637" />
-        <Point X="12.5" Y="3.637" />
+        <Point X="10.062" Y="4.75" />
+        <Point X="10.062" Y="2.887" />
+        <Point X="12.5" Y="2.887" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="m_InputComponent" Type="InputComponent" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8.969" Y="9.064" />
-        <Point X="8.969" Y="14.75" />
-        <Point X="12.25" Y="14.75" />
+        <Point X="9.875" Y="9.385" />
+        <Point X="9.875" Y="16.501" />
+        <Point X="12.75" Y="16.501" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAQAJEgAAAQkQAAAQAAAAAACACAAAAIACBQGAAAACAA=</HashCode>
+      <HashCode>AAQAJEgAAAQkQAAAQAAAAAACACAAAAMACBQGAAAACAA=</HashCode>
       <FileName>Engine\TestEngine.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -30,7 +53,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="TestEngineBase">
-    <Position X="5.5" Y="5.25" Width="2.5" />
+    <Position X="4.5" Y="5.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAQABEAAAAAAAAAAAAAAAAAAAAAAAAAAABAGBAAAAAA=</HashCode>
       <FileName>Engine\TestEngineBase.h</FileName>
@@ -40,14 +63,22 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Singleton">
-    <Position X="5.5" Y="7.75" Width="2.5" />
+    <Position X="4.5" Y="7.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAA=</HashCode>
       <FileName>Engine\Singleton.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EngineComponent">
-    <Position X="19.25" Y="6.25" Width="2.5" />
+    <Position X="20" Y="6.25" Width="2.5" />
+    <InheritanceLine Type="Object" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="27.5" Y="8.938" />
+        <Point X="23.516" Y="8.938" />
+        <Point X="23.516" Y="7.962" />
+        <Point X="22.5" Y="7.962" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEBAAAAAIAQAQAAAAAAAAABEBAAAAAA=</HashCode>
       <FileName>EngineComponent.h</FileName>
@@ -60,41 +91,41 @@
     <Position X="13.75" Y="9" Width="2.5" />
     <InheritanceLine Type="EngineComponent" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="19.25" Y="8.514" />
-        <Point X="18.875" Y="8.514" />
-        <Point X="18.875" Y="9.499" />
+        <Point X="20" Y="8.125" />
+        <Point X="17.116" Y="8.125" />
+        <Point X="17.116" Y="9.499" />
         <Point X="16.25" Y="9.499" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GraphicsComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UIComponent">
-    <Position X="13.75" Y="5.75" Width="3.25" />
+    <Position X="13.5" Y="5.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAACAEAAAAAAAEAAIBAAIQAAAAAAAAAAAAAAIIAAAAA=</HashCode>
       <FileName>UIComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseRendererComponent">
-    <Position X="16.5" Y="3.5" Width="2" />
+    <Position X="16.5" Y="2.75" Width="2" />
     <InheritanceLine Type="EngineComponent" FixedFromPoint="true">
       <Path>
-        <Point X="19.25" Y="6.656" />
-        <Point X="18.875" Y="6.656" />
-        <Point X="18.875" Y="3.999" />
-        <Point X="18.5" Y="3.999" />
+        <Point X="20" Y="6.656" />
+        <Point X="19.625" Y="6.656" />
+        <Point X="19.625" Y="3.559" />
+        <Point X="18.5" Y="3.559" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAA=</HashCode>
       <FileName>BaseRendererComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DirectX11RendererComponent">
-    <Position X="12.5" Y="2" Width="2.25" />
+    <Position X="12.5" Y="1.25" Width="2.25" />
     <Members>
       <Method Name="DirectX11RendererComponent" Hidden="true" />
       <Method Name="EndFrame" Hidden="true" />
@@ -102,7 +133,7 @@
       <Method Name="InitalizeRasterizerStates" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AASAEgAAAAAAAEUAQAEAIAAMAAAAAAADABAAAAAAAAA=</HashCode>
+      <HashCode>AASAEoAAAAAAAEUAQAEAIAAMAAAAAAADABAAAAAAAAA=</HashCode>
       <FileName>DirectX11RendererComponent.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -110,48 +141,65 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GraphicsDevice">
-    <Position X="12.75" Y="10.25" Width="2.75" />
+    <Position X="13.25" Y="10.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAUAAwAAAAAAAAAAADAAAAAAAAAAACAANAAgAA=</HashCode>
+      <HashCode>CAAAAAAUAAwAAAAAAAAAAADAAAAAAAAAAACEANAAgAA=</HashCode>
       <FileName>GraphicsDevice.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphicsDeviceBase">
-    <Position X="16" Y="10.25" Width="2.5" />
+    <Position X="16.5" Y="10.75" Width="2.5" />
+    <InheritanceLine Type="Object" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="27.5" Y="9.625" />
+        <Point X="21.099" Y="9.625" />
+        <Point X="21.099" Y="11.25" />
+        <Point X="19.414" Y="11.25" Type="JumpStart" />
+        <Point X="19.247" Y="11.25" Type="JumpEnd" />
+        <Point X="19" Y="11.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>CAAAAAAEAAgAAAAAAAAAAAAAAAACgAAAAACCAAAAAAA=</HashCode>
       <FileName>GraphicsDeviceBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Accelerator">
-    <Position X="18.75" Y="10.25" Width="1.5" />
+    <Position X="23.25" Y="10.75" Width="2.5" />
+    <InheritanceLine Type="Object" FixedFromPoint="true">
+      <Path>
+        <Point X="27.5" Y="10.125" />
+        <Point X="27.125" Y="10.125" />
+        <Point X="27.125" Y="11.977" />
+        <Point X="25.75" Y="11.977" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAwAAAAGAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAwAAAAGAAgAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Engine\Graphics\Accelerator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputComponent">
-    <Position X="12.25" Y="14.5" Width="2.75" />
-    <InheritanceLine Type="EngineComponent" ManuallyRouted="true" FixedToPoint="true">
+    <Position X="12.75" Y="15.5" Width="3" />
+    <InheritanceLine Type="EngineComponent" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="20.5" Y="8.767" />
-        <Point X="20.5" Y="14.75" />
-        <Point X="15" Y="14.75" />
+        <Point X="20" Y="8.562" />
+        <Point X="19.331" Y="8.562" />
+        <Point X="19.331" Y="16.156" />
+        <Point X="15.75" Y="16.156" />
       </Path>
     </InheritanceLine>
     <AssociationLine Name="m_Keyboard" Type="Keyboard" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="13.25" Y="16.502" />
-        <Point X="13.25" Y="18.688" />
-        <Point X="16.75" Y="18.688" />
+        <Point X="13.841" Y="17.502" />
+        <Point X="13.841" Y="18.938" />
+        <Point X="16.75" Y="18.938" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="m_Mouse" Type="Mouse" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="m_Mouse" Type="Mouse" FixedFromPoint="true">
       <Path>
-        <Point X="15" Y="16" />
-        <Point X="15.375" Y="16" />
-        <Point X="15.375" Y="16.875" />
-        <Point X="16.75" Y="16.875" />
+        <Point X="15.75" Y="16.875" />
+        <Point X="19.75" Y="16.875" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -164,51 +212,72 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Keyboard">
-    <Position X="16.75" Y="18.25" Width="2.75" />
+    <Position X="16.75" Y="18.5" Width="2.75" />
+    <InheritanceLine Type="InputDeviceBase" FixedToPoint="true">
+      <Path>
+        <Point X="28.625" Y="17.867" />
+        <Point X="28.625" Y="22.25" />
+        <Point X="19.5" Y="22.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAACACAAAAAAACQMiAAAAAACQCBAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAICAACACAAAAAAACQMAAAAAMACQCAAAAAAA=</HashCode>
       <FileName>Keyboard.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Mouse">
-    <Position X="16.75" Y="15.5" Width="2.75" />
+    <Position X="19.75" Y="15.5" Width="3" />
     <InheritanceLine Type="InputDeviceBase" FixedFromPoint="true">
       <Path>
-        <Point X="20.5" Y="17.875" />
-        <Point X="19.5" Y="17.875" />
+        <Point X="27.5" Y="16.875" />
+        <Point X="22.75" Y="16.875" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAggAAACAIAAAAAIAAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAQAAAAAAAABKAQAAgABiCAJAAAQBoICQABAACAAA=</HashCode>
       <FileName>Mouse.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputDeviceBase">
-    <Position X="20.5" Y="17.25" Width="2.25" />
+    <Position X="27.5" Y="16.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAIAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>InputDeviceBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RasterizerState" Collapsed="true">
-    <Position X="16.75" Y="2" Width="1.5" />
+    <Position X="16.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AASAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAA=</HashCode>
       <FileName>RasterizerState.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Object">
+    <Position X="27.5" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAgAAAgAAAAIAAAAAIAAAAAAAAAQAAABAA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="EngineState">
-    <Position X="3.75" Y="5.25" Width="1.5" />
+    <Position X="2.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAIAAAAAAAAAACIAAAAAAAAAAAIAACAAAAAAA=</HashCode>
       <FileName>Engine\TestEngineBase.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ComponentState">
-    <Position X="22.75" Y="6.25" Width="1.5" />
+    <Position X="23.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAIAAAEAAAAAAA=</HashCode>
       <FileName>EngineComponent.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EngineObjTag::ObjectTag">
+    <Position X="30.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIAAAAA=</HashCode>
+      <FileName>Object.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

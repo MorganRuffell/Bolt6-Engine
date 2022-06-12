@@ -154,6 +154,9 @@ public:
 
 	Keyboard()
 	{
+		SetTag(EngineObjTag::Engine);
+
+
 		DeviceInit();
 		
 		//Attempted this concurrently, not sure if working 100% will debug after second interivew

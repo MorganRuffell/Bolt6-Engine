@@ -182,6 +182,9 @@ struct Object
 
 	Object(const Scene& _scene, const IElement& _element);
 
+	
+
+
 	virtual ~Object() {}
 	virtual Type getType() const = 0;
 

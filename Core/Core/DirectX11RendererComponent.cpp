@@ -4,17 +4,19 @@
 
 
 DirectX11RendererComponent::DirectX11RendererComponent(GraphicsDevice* Accel)
+    : BaseRendererComponent()
 {
     assert(Accel != nullptr);
 
     InitalizeRasterizerStates(Accel->m_Accelerator.get());
-
+    ViewportCamera = nullptr;
 
 
 }
 
 void DirectX11RendererComponent::InitalizeComponent()
 {
+
 }
 
 bool DirectX11RendererComponent::TerminateComponent()
@@ -47,19 +49,13 @@ void DirectX11RendererComponent::EndFrame(Accelerator* Accel)
 {
 }
 
-void DirectX11RendererComponent::Update()
+void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accelerator* accel)
 {
 }
 
-void DirectX11RendererComponent::Render()
+void DirectX11RendererComponent::Render(GraphicsDevice* accel)
 {
+    accel->GetSwapChain()->Present(1,0);
 }
 
-void DirectX11RendererComponent::Update()
-{
-}
-
-void DirectX11RendererComponent::Render()
-{
-}
 

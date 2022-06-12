@@ -21,17 +21,18 @@ bool TestEngine::Init(HWND window)
 
     std::cout << "Renderer Component Creation Succeeded!" << std::endl;
 
+    InitalizeScene();
+
     m_UIComponent = new UIComponent(m_GraphicsDevice->m_Accelerator, window);
 
     std::cout << "UI Component Creation Succeeded!" << std::endl;
-
-    ShowWindow(window, SW_SHOWDEFAULT);
-    UpdateWindow(window);
 
     m_InputComponent = new InputComponent(window);
 
     std::cout << "Input Component Creation Succeeded!" << std::endl;
 
+    ShowWindow(window, SW_SHOWDEFAULT);
+    UpdateWindow(window);
 
     return true;
 }
@@ -65,8 +66,7 @@ void TestEngine::Render()
     Accelerator->GetDeviceContext()->ClearRenderTargetView(m_GraphicsDevice->GetMainRenderTargetView(), clear_color_with_alpha);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-    m_GraphicsDevice->GetSwapChain()->Present(1, 0);
-
+    m_RendererComponent->Render(m_GraphicsDevice);
 }
 
 void TestEngine::Terminate()
@@ -84,6 +84,14 @@ void TestEngine::Terminate()
 
 void TestEngine::InitalizeScene()
 {
+    //Heap allocate our new world -- This will contain all of our scene components
+
+    World* Stage = new World();
+
+    m_WorldComponent = new WorldComponent(Stage);
+    std::cout << "World Component Creation Succeeded!" << std::endl;
+
+
 
 }
 

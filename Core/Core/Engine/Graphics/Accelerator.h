@@ -2,14 +2,21 @@
 
 #include <wrl.h>
 #include <d3d11.h>
+#include "Core/Core/Object.h"
 
 using namespace Microsoft::WRL;
 
 //Accelerators are your internal graphics card, or
 //literally anything else. I'm using it's 'Proper name' because it sounds cooler
 
-class Accelerator
+class Accelerator : public Object
 {
+public:
+	Accelerator()
+	{
+		SetTag(EngineObjTag::Engine);
+	}
+
 public:
 
 	ID3D11Device* GetDevice()

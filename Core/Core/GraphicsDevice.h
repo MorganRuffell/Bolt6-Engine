@@ -10,6 +10,12 @@ using namespace Microsoft::WRL;
 class GraphicsDevice : public GraphicsDeviceBase
 {
 public:
+	GraphicsDevice()
+	{
+		SetTag(EngineObjTag::Engine);
+	}
+
+public:
 
 	bool CreateDevice(HWND Window) override;
 

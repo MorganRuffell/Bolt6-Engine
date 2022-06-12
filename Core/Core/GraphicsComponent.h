@@ -4,6 +4,9 @@
 
 class GraphicsComponent : public EngineComponent
 {
-
+	GraphicsComponent()
+	{
+		SetTag(EngineObjTag::Engine);
+	}
 };
 

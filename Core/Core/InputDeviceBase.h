@@ -1,5 +1,8 @@
 #pragma once
-class InputDeviceBase
+
+#include "Object.h"
+
+class InputDeviceBase : public Object
 {
 
 	virtual void DeviceInit() = 0;
