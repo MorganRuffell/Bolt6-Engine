@@ -156,11 +156,15 @@ public:
 	{
 		DeviceInit();
 		
+		//Attempted this concurrently, not sure if working 100% will debug after second interivew
 		while (KeysInit == false && FunctionsInit == false && NumpadInit == false)
 		{
-			//Wait for init to complete, waiting on the execution of three threads;
+			if (KeysInit == true && FunctionsInit == true && NumpadInit == true)
+			{
+				std::cout << "Keyboard Object Initalized" << std::endl;
+				return;
+			}
 		}
-		std::cout << "Keyboard Object Initalized" << std::endl;
 	}
 
 	~Keyboard();
@@ -168,11 +172,11 @@ public:
 
 public:
 
-	virtual bool IsKeyPressed(wchar_t _Key);
+	bool IsKeyPressed(wchar_t _Key);
 
-	virtual bool IsKeyPressed(Keys _Key);
-	virtual bool IsKeyPressed(FunctionKeys _Key);
-	virtual bool IsKeyPressed(NumpadKeys _Key);
+	bool IsKeyPressed(Keys _Key);
+	bool IsKeyPressed(FunctionKeys _Key);
+	bool IsKeyPressed(NumpadKeys _Key);
 
 
 	

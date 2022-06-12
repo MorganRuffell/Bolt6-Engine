@@ -21,7 +21,6 @@ bool TestEngine::Init(HWND window)
 
     std::cout << "Renderer Component Creation Succeeded!" << std::endl;
 
-    
     m_UIComponent = new UIComponent(m_GraphicsDevice->m_Accelerator, window);
 
     std::cout << "UI Component Creation Succeeded!" << std::endl;

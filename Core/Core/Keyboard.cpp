@@ -1,27 +1,10 @@
 #include "Keyboard.h"
-#include <WinUser.h>
 
-Keyboard::Keyboard()
-{
-}
-
-Keyboard::~Keyboard()
-{
-}
 
 bool Keyboard::IsKeyPressed(wchar_t _Key)
 {
-    return (GetAsyncKeyState(_Key) & 0x8000) != 0;
-}
-
-bool Keyboard::IsKeyPressed(wchar_t _Key)
-{
-	return (GetAsyncKeyState(_Key) & 0x8000) != 0;
-}
-
-bool Keyboard::IsKeyPressed(wchar_t _Key)
-{
-	return (GetAsyncKeyState(_Key) & 0x8000) != 0;
+	return false;
+    //return (GetAsyncKeyState(_Key) & 0x8000) != 0;
 }
 
 
@@ -64,7 +47,7 @@ void Keyboard::DeviceInit()
 
 			std::cout << "Keyboard keys initalized" << std::endl;
 			KeysInit = true;
-		} };
+	} };
 
 	std::thread FunctionKeysInit{ [&]() {
 
@@ -88,6 +71,11 @@ void Keyboard::DeviceInit()
 		std::cout << "Numpad keys initalized" << std::endl;
 		NumpadInit = true;
 	} };
+
+	//All the threads are detached and left to execute by themselves.
+	KeysInitThread.detach();
+	FunctionKeysInit.detach();
+	NumpadKeysInit.detach();
 
 }
 

@@ -4,6 +4,7 @@
 #include "RasterizerState.h"
 #include <memory>
 #include <Core/Core/GraphicsDevice.h>
+#include "BaseCamera.h"
 
 class DirectX11RendererComponent : public BaseRendererComponent
 {
@@ -14,8 +15,7 @@ public:
 	virtual void InitalizeComponent() override;
 	virtual bool TerminateComponent() override;
 
-	virtual void Update();
-	virtual void Render();
+
 
 protected:
 
@@ -35,6 +35,11 @@ protected:
 	RasterizerState* WireframeRS;
 
 
+protected:
+
+	BaseCamera*			ViewportCamera;
+
+
 	int AmountOfRasterizerStates;
 
 protected:
@@ -45,5 +50,9 @@ protected:
 protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY primitiveTopology;
+
+	// Inherited via BaseRendererComponent
+	virtual void Update() override;
+	virtual void Render() override;
 };
 

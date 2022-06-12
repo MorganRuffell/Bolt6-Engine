@@ -7,6 +7,7 @@ using namespace DirectX;
 
 class BaseCamera
 {
+public:
 	BaseCamera();
 	~BaseCamera();
 

@@ -1,5 +1,10 @@
 #include "Mouse.h"
 
+std::pair<MouseInput, wchar_t> Mouse::GeneratePair(MouseInput, int)
+{
+	return std::pair<MouseInput, wchar_t>();
+}
+
 bool Mouse::IsKeyPressed(MouseInput _input)
 {
 	if (UseAsync)

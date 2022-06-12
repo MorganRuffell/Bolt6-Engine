@@ -11,29 +11,27 @@
 #include <thread>
 
 
-namespace
+enum MouseInput
 {
-	enum MouseInput
-	{
-		MB_Left,
-		MB_Right,
-		MB_Middle
-	};
+	MB_Left,
+	MB_Right,
+	MB_Middle
+};
 
-	enum MouseSensitivitySettings
-	{
-		Soft,
-		Firm,
-		Hard,
-	};
+enum MouseSensitivitySettings
+{
+	Soft,
+	Firm,
+	Hard,
+};
 
-	typedef std::function<void(WPARAM, int, int)>					InputDelegate;
+typedef std::function<void(WPARAM, int, int)>					InputDelegate;
 
-	typedef std::vector<std::function<void (WPARAM, int, int) >>	ButtonUpDelegates;
-	typedef std::vector<std::function<void (WPARAM, int, int) >>	ButtonDownDelegates;
-	typedef std::vector<std::function<void (WPARAM, int, int) >>	MosueMoveDelegates;
-	typedef std::vector<std::function<void (float, int, int)  >>	MouseWheelInputDelegates;
-}
+typedef std::vector<std::function<void(WPARAM, int, int) >>	ButtonUpDelegates;
+typedef std::vector<std::function<void(WPARAM, int, int) >>	ButtonDownDelegates;
+typedef std::vector<std::function<void(WPARAM, int, int) >>	MosueMoveDelegates;
+typedef std::vector<std::function<void(float, int, int)  >>	MouseWheelInputDelegates;
+
 
 class Mouse : public InputDeviceBase
 {
@@ -61,13 +59,13 @@ public:
 	{
 		assert(window != nullptr);
 
-		std::thread InitalizeMouseThread{[&] () {
+		std::thread InitalizeMouseThread{ [&]() {
 			MouseKeysInputMap.insert(GeneratePair(MB_Left, VK_LBUTTON));
 			MouseKeysInputMap.insert(GeneratePair(MB_Right, VK_RBUTTON));
 			SetAsyncStatus(UseAsync);
 			m_SensitivitySettings = MouseSensitivitySettings::Firm;
 			std::cout << "Mouse Object Initalized" << std::endl;
-		}};
+		} };
 
 		this->window = _window;
 
@@ -85,7 +83,7 @@ public:
 			SetAsyncStatus(UseAsync);
 			m_SensitivitySettings = Setting;
 			std::cout << "Mouse Object Initalized" << std::endl;
-		}};
+		} };
 
 		this->window = _window;
 
@@ -100,8 +98,7 @@ public:
 
 public:
 
-	template<typename T, typename V>
-	std::pair< MouseInput, wchar_t> GeneratePair(T,V);
+	std::pair< MouseInput, wchar_t> GeneratePair(MouseInput, int);
 
 public:
 
@@ -117,7 +114,7 @@ public:
 
 public:
 
-	virtual bool IsKeyPressed(_In_ MouseInput _input);
+	bool IsKeyPressed(_In_ MouseInput _input);
 
 public:
 
@@ -134,14 +131,8 @@ public:
 	void BindOnButtonDownCallback(InputDelegate callback);
 
 protected:
-	
+
 	virtual void DeviceInit() override;
 	virtual void DeviceUpdate() override;
 	virtual void DeviceTerminate() override;
 };
-
-template<typename T, typename V>
-inline std::pair<MouseInput, wchar_t> Mouse::GeneratePair(T, V)
-{
-	return std::pair<MouseInput, wchar_t>(T,V);
-}

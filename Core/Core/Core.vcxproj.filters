@@ -106,6 +106,12 @@
     <Filter Include="sources\Graphics\Engine Components\Input\InputDevice">
       <UniqueIdentifier>{e38c769f-78ec-42cb-b0ca-06164fc2c2fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Geometry\World">
+      <UniqueIdentifier>{085ce8bb-6562-42a4-9c41-8fa9e7f7c2fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Graphics\Engine Components\Import Component">
+      <UniqueIdentifier>{59ac0d0d-61de-4bbe-ab6f-08f71833dcb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -202,6 +208,22 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>sources\Geometry\World</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicMesh.cpp">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldBase.cpp">
+      <Filter>sources\Geometry\World</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="FBXComponent.cpp">
+      <Filter>sources\Graphics\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\New folder\Skeleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -360,6 +382,24 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>sources\Graphics\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>sources\Geometry\World</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicMesh.h">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldBase.h">
+      <Filter>sources\Geometry\World</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportComponent.h">
+      <Filter>sources\Graphics\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXComponent.h">
+      <Filter>sources\Graphics\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Matrix4x4.h">
+      <Filter>sources\Mathematics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

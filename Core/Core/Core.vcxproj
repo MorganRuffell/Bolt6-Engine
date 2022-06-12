@@ -102,6 +102,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -136,6 +137,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -160,14 +162,18 @@
     <ClCompile Include="BaseCamera.cpp" />
     <ClCompile Include="BaseRendererComponent.cpp" />
     <ClCompile Include="DirectX11RendererComponent.cpp" />
+    <ClCompile Include="DynamicMesh.cpp" />
     <ClCompile Include="EngineComponent.cpp" />
     <ClCompile Include="Engine\Graphics\BaseShader.cpp" />
     <ClCompile Include="Engine\Graphics\PixelShader.cpp" />
     <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
     <ClCompile Include="Engine\TestEngine.cpp" />
+    <ClCompile Include="FBXComponent.cpp" />
+    <ClCompile Include="FBX\New folder\Skeleton.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="GraphicsDeviceBase.cpp" />
+    <ClCompile Include="ImportComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputDeviceBase.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -179,6 +185,8 @@
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Application.rc" />
@@ -203,6 +211,7 @@
     <ClInclude Include="BaseRasterizerState.h" />
     <ClInclude Include="BaseRendererComponent.h" />
     <ClInclude Include="DirectX11RendererComponent.h" />
+    <ClInclude Include="DynamicMesh.h" />
     <ClInclude Include="EngineComponent.h" />
     <ClInclude Include="Engine\Graphics\Accelerator.h" />
     <ClInclude Include="Engine\Graphics\BaseGraphicsProgram.h" />
@@ -214,16 +223,19 @@
     <ClInclude Include="Engine\Singleton.h" />
     <ClInclude Include="Engine\TestEngine.h" />
     <ClInclude Include="Engine\TestEngineBase.h" />
+    <ClInclude Include="FBXComponent.h" />
     <ClInclude Include="FBX\New folder\Bone.h" />
     <ClInclude Include="FBX\New folder\Joint.h" />
     <ClInclude Include="FBX\New folder\Skeleton.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="GraphicsDeviceBase.h" />
+    <ClInclude Include="ImportComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputDeviceBase.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Mathematics\Matrix4x4.h" />
     <ClInclude Include="Mathematics\Scalar.h" />
     <ClInclude Include="Mathematics\Vector3.h" />
     <ClInclude Include="Mathematics\Vector4.h" />
@@ -236,6 +248,8 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WorldBase.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis" />

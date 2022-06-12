@@ -55,3 +55,11 @@ void DirectX11RendererComponent::Render()
 {
 }
 
+void DirectX11RendererComponent::Update()
+{
+}
+
+void DirectX11RendererComponent::Render()
+{
+}
+
