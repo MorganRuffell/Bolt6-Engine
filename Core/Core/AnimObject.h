@@ -2,6 +2,7 @@
 
 #include "Object.h"
 
+
 enum AnimObjectType
 {
 	Hierarchy,

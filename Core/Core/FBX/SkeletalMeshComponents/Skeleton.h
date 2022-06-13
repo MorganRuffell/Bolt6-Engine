@@ -12,16 +12,28 @@ struct Skeleton : public AnimObject
 	Skeleton(XMFLOAT4X4 Position);
 
 
+	int GetSocketIndex(_In_ std::string& JointName, _In_ std::vector<Socket>& Sockets)
+	{
+		return 0;
+	}
+
+
 public:
 
-	std::vector<Socket*> mJoints;
+	//std::vector<Socket*> mJoints;
 
 	std::vector<Bone2*> mBones;
+
+	Bone2* GetRootBone()
+	{
+		assert(RootBone != nullptr);
+
+		return RootBone;
+	}
 
 
 private:
 
 	Bone2*				RootBone;
-
 	XMFLOAT4X4			SkeletonRoot;
 };

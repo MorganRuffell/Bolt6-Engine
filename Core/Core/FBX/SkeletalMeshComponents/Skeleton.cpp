@@ -28,3 +28,8 @@ Skeleton::Skeleton(XMFLOAT4X4 Position)
 	SkeletonRoot = RootBone->BoneTransform;
 }
 
+int Skeleton::GetSocketIndex(std::string& JointName, std::vector<Socket>& Sockets)
+{
+	return 0;
+}
+

@@ -29,7 +29,15 @@ enum BoneType
 
 class Bone2
 {
+
 public:
+
+	//Constructor to be used ONLY for fbx import process
+	Bone2()
+	{
+
+	}
+
 	//Constructor for creating a new bone relative to it's parent
 	Bone2(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone2* Parent)
 	{
@@ -99,6 +107,22 @@ public:
 		}
 	}
 
+	Bone2(const char* Name, XMFLOAT4X4 Position, BoneType Type)
+	{
+		if (Type == BoneType::Parent)
+		{
+			SetName(Name);
+			BoneTransform = Position;
+			TranslationMode = Parental;
+			TypeOfBone = BoneType::Parent;
+			NumberOfChildren = 0;
+			m_ParentBone = nullptr;
+		}
+		else
+		{
+			throw new std::exception("Wrong constructor used for bone, this must be used for parent bones only.");
+		}
+	}
 
 public:
 
@@ -140,6 +164,11 @@ public:
 	}
 
 	void SetName(std::string& _name)
+	{
+		Name = _name;
+	}
+
+	void SetName(const char* _name)
 	{
 		Name = _name;
 	}
