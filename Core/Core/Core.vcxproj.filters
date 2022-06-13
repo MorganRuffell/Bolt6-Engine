@@ -37,9 +37,6 @@
     <Filter Include="External\imgui">
       <UniqueIdentifier>{d23c47ec-76a7-49cd-bf70-e0c260be0acd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="External\OpenFBX">
-      <UniqueIdentifier>{91de01c3-d931-4d23-9e80-1b0c55353a78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sources\Graphics\Device">
       <UniqueIdentifier>{7c24c08f-ed35-443b-a004-ff979179db19}</UniqueIdentifier>
     </Filter>
@@ -124,6 +121,9 @@
     <Filter Include="sources\Engine\Core">
       <UniqueIdentifier>{b0c13cc9-cc64-4a44-9a11-a09d1b965d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\FBXSDk">
+      <UniqueIdentifier>{d956dadf-1cff-4a0f-ace8-75477acfc527}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -153,12 +153,6 @@
     </ClCompile>
     <ClCompile Include="BaseCamera.cpp">
       <Filter>sources\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\External\OpenFBX\miniz.c">
-      <Filter>External\OpenFBX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\External\OpenFBX\ofbx.cpp">
-      <Filter>External\OpenFBX</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsDevice.cpp">
       <Filter>sources\Graphics\Device</Filter>
@@ -195,9 +189,6 @@
     </ClCompile>
     <ClCompile Include="WorldBase.cpp">
       <Filter>sources\Geometry\World</Filter>
-    </ClCompile>
-    <ClCompile Include="FBX\New folder\Skeleton.cpp">
-      <Filter>sources\Animation\Skeleton</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManagerComponent.cpp">
       <Filter>sources\Engine\Engine Components</Filter>
@@ -243,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="WorldComponent.cpp">
       <Filter>sources\Engine\Engine Components\World Component</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\SkeletalMeshComponents\Skeleton.cpp">
+      <Filter>sources\Animation\Skeleton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -297,21 +291,6 @@
     </ClInclude>
     <ClInclude Include="BaseCamera.h">
       <Filter>sources\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="FBX\New folder\Joint.h">
-      <Filter>sources\Animation\Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\External\OpenFBX\miniz.h">
-      <Filter>External\OpenFBX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\External\OpenFBX\ofbx.h">
-      <Filter>External\OpenFBX</Filter>
-    </ClInclude>
-    <ClInclude Include="FBX\New folder\Bone.h">
-      <Filter>sources\Animation\Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="FBX\New folder\Skeleton.h">
-      <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsDevice.h">
       <Filter>sources\Graphics\Device</Filter>
@@ -435,6 +414,15 @@
     </ClInclude>
     <ClInclude Include="WorldComponent.h">
       <Filter>sources\Engine\Engine Components\World Component</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\SkeletalMeshComponents\Bone.h">
+      <Filter>sources\Animation\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\SkeletalMeshComponents\Joint.h">
+      <Filter>sources\Animation\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\SkeletalMeshComponents\Skeleton.h">
+      <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

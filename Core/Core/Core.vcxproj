@@ -75,6 +75,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <ExecutablePath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\External\FBXSDK;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
@@ -83,6 +85,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <ExecutablePath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\External\FBXSDK;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,13 +105,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\FBXSDK\include\;C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\External\FBXSDK\include\fbxsdk;C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)External\FBXSDK\lib\;$(DXSDK_DIR)/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -135,7 +139,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\FBXSDK\include\;C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\External\FBXSDK\include\fbxsdk;C:\Users\Morgan\Desktop\Imguismaple\imgui\imgui\Bolt6DX11Test\Core\Core;..\..;..\..\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -143,8 +147,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)External\FBXSDK\lib\;$(DXSDK_DIR)/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -157,8 +161,6 @@
     <ClCompile Include="..\..\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="..\..\backends\imgui_tables.cpp" />
     <ClCompile Include="..\..\backends\imgui_widgets.cpp" />
-    <ClCompile Include="..\..\External\OpenFBX\miniz.c" />
-    <ClCompile Include="..\..\External\OpenFBX\ofbx.cpp" />
     <ClCompile Include="BaseCamera.cpp" />
     <ClCompile Include="BaseRendererComponent.cpp" />
     <ClCompile Include="DirectX11RendererComponent.cpp" />
@@ -169,7 +171,7 @@
     <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
     <ClCompile Include="Engine\TestEngine.cpp" />
     <ClCompile Include="FBXComponent.cpp" />
-    <ClCompile Include="FBX\New folder\Skeleton.cpp" />
+    <ClCompile Include="FBX\SkeletalMeshComponents\Skeleton.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="GraphicsDeviceBase.cpp" />
@@ -207,8 +209,6 @@
     <ClInclude Include="..\..\backends\imstb_rectpack.h" />
     <ClInclude Include="..\..\backends\imstb_textedit.h" />
     <ClInclude Include="..\..\backends\imstb_truetype.h" />
-    <ClInclude Include="..\..\External\OpenFBX\miniz.h" />
-    <ClInclude Include="..\..\External\OpenFBX\ofbx.h" />
     <ClInclude Include="AnimObject.h" />
     <ClInclude Include="BaseCamera.h" />
     <ClInclude Include="BaseRasterizerState.h" />
@@ -228,9 +228,9 @@
     <ClInclude Include="Engine\TestEngine.h" />
     <ClInclude Include="Engine\TestEngineBase.h" />
     <ClInclude Include="FBXComponent.h" />
-    <ClInclude Include="FBX\New folder\Bone.h" />
-    <ClInclude Include="FBX\New folder\Joint.h" />
-    <ClInclude Include="FBX\New folder\Skeleton.h" />
+    <ClInclude Include="FBX\SkeletalMeshComponents\Bone.h" />
+    <ClInclude Include="FBX\SkeletalMeshComponents\Joint.h" />
+    <ClInclude Include="FBX\SkeletalMeshComponents\Skeleton.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="GraphicsDeviceBase.h" />

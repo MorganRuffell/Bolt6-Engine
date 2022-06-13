@@ -1,4 +1,9 @@
 #pragma once
+
+/*
+	Morgan Ruffell, 2021
+*/
+
 #include <d3d11.h>
 #include <string>
 #include <Core/Core/Object.h>

@@ -117,8 +117,12 @@ protected:
 	Texture*				DiffuseTexture;
 	Texture*				NormalTexture;
 
+public:
+
 	PixelShader*			m_MaterialPixelShader;
 	VertexShader*			m_MaterialVertexShader;
+
+public:
 
 	std::string				m_Name;
 

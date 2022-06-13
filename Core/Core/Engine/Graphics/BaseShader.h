@@ -1,6 +1,7 @@
 #pragma once
 #include <d3d11.h>
 #include <string>
+#include <DirectXMath.h>
 #include "BaseGraphicsProgram.h"
 
 class BaseShader : public BaseGraphicsProgram
@@ -28,6 +29,11 @@ public:
 	virtual bool SetSamplerState(std::string& name, ID3D11SamplerState* samplerState) = 0;
 	virtual void SetShaderAndCBs() = 0;
 
+	bool SetMatrix4x4(std::string name, const DirectX::XMFLOAT4X4 data)
+	{
+		//registers are 16 bytes aligned
+		return this->SetData(name, &data, sizeof(float) * 16);
+	}
 
 public:
 

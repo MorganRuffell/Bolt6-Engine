@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mesh/BaseMesh.h"
-#include <Core/Core/FBX/New folder/Skeleton.h>
+#include <Core/Core/FBX/SkeletalMeshComponents/Skeleton.h>
 #include <Core/Core/Engine/Animation/AnimationStructures.h>
 
 class DynamicMesh : public BaseMesh

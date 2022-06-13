@@ -44,9 +44,11 @@ public:
 	}
 
 
-protected:
+public:
 
 	std::vector<Material*> MeshMaterials;
+
+protected:
 
 	int				IndexCount;
 	int*			Indicies;

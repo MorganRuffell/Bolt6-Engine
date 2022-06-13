@@ -5,6 +5,7 @@
 #include <memory>
 #include <Core/Core/GraphicsDevice.h>
 #include "BaseCamera.h"
+#include <mutex>
 
 class DirectX11RendererComponent : public BaseRendererComponent
 {
@@ -58,8 +59,6 @@ protected:
 
 	D3D11_PRIMITIVE_TOPOLOGY primitiveTopology;
 
-
-	
 
 	// Inherited via BaseRendererComponent
 	virtual void Render(GraphicsDevice* accel) override;
