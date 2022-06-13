@@ -1,6 +1,8 @@
 #include "FBXComponent.h"
+#include <Core/Core/Vertex.h>
 
 using namespace fbxsdk;
+
 
 void FBXComponent::InitalizeComponent()
 {
@@ -82,6 +84,12 @@ void FBXComponent::GetFBXScene(FbxString name, FbxString Filepath)
 
 
 
+}
+
+void FBXComponent::InitalizeImportSettings()
+{
+    ImportSettings.ReplaceTriangulatedGeometry = true;
+    ImportSettings.ReplaceTriangulatedGeometry = false;
 }
 
 void FBXComponent::InitalizeImporters(const char* Filename)
@@ -199,22 +207,86 @@ void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
     }
 }
 
-StaticMesh* FBXComponent::GetStaticMesh(::FbxNode* Node, Accelerator* _accel)
+//Static Meshes DO NOT contain any animation data.
+StaticMesh* FBXComponent::GetStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
 {
+    assert(fbxManager != nullptr);
+    assert(_accel != nullptr);
 
+    fbxsdk::FbxString Name = Node->GetName();
 
+    fbxsdk::FbxGeometryConverter converter(fbxManager);
 
+    converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
 
-    return nullptr;
+    if (!DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eMesh)
+    {
+        return nullptr;
+    }
+
+    std::vector<Vertex2> Vertexes;
+    std::vector<int> Indicies;
+
+    fbxsdk::FbxMesh* Mesh = (fbxsdk::FbxMesh*)Node->GetNodeAttribute();
+    FbxVector4* ControlPoints = Mesh->GetControlPoints();
+    int VertexCount = Mesh->GetControlPointsCount();
+
+    for (unsigned int i = 0; i < VertexCount; i++)
+    {
+        Vertex2 v;
+
+        v.Position.x = ControlPoints[i].mData[0];
+        v.Position.y = ControlPoints[i].mData[1];
+        v.Position.z = ControlPoints[i].mData[2];
+        v.Position.w = 1; //Recall from matrix maths that everything in column four must be 1
+
+        v.Normal = XMFLOAT3(0, 0, 0);
+        Vertexes.push_back(v);
+    }
+
+    int PolygonCount = Mesh->GetPolygonCount();
+    int PolygonSize = Mesh->GetPolygonGroup(0);
+    int indexCount = PolygonCount * PolygonSize;
+
+    for (int i = 0; i < Mesh->GetPolygonCount(); i++)
+    {
+        for (int j = 0; j < Mesh->GetPolygonSize(i); j++)
+        {
+            int Individual_Indicie;
+
+            Individual_Indicie = Mesh->GetPolygonVertex(i, j);
+            Indicies.push_back(Individual_Indicie);
+
+            FbxVector4 norm(0, 0, 0, 0);
+
+            Mesh->GetPolygonVertexNormal(i, j, norm);
+
+            Vertexes[Individual_Indicie].Normal.x += (float)norm.mData[0];		// Vertex Normals
+            Vertexes[Individual_Indicie].Normal.y += (float)norm.mData[1];
+            Vertexes[Individual_Indicie].Normal.z += (float)norm.mData[2];
+
+            FbxVector2 PolygonUVCoordinates(0, 0);
+            
+            const char* uvSet = "FILENAME DELETE WHEN LOADING TEXTURES TO MATERIALS";
+            bool UVFlag = true;
+
+            Mesh->GetPolygonVertexUV(i,j,uvSet, PolygonUVCoordinates,UVFlag);
+        }
+    }
+
+    StaticMesh* SM = new StaticMesh(&Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel);
+
+    SM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
+
+    return SM;
 }
 
+//Dynamic Meshes DO Contain animation data, if you try to load one and not the other this will not work
 DynamicMesh* FBXComponent::GetDynamicMesh(::FbxNode* Node, Accelerator* _accel)
 {
-    return nullptr;
-}
 
-Skeleton* FBXComponent::GetSkeleton(::FbxNode* Node, Accelerator* _accel)
-{
+
+
     return nullptr;
 }
 

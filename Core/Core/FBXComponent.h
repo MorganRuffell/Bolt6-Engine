@@ -33,12 +33,31 @@
 
 using namespace fbxsdk;
 
+struct FBXImportSettings
+{
+	/*
+	* FBXs triangulation algorithim so that the quads in maya
+	* can be rendered has a legacy version that does not support
+	* Quads/tris with reversed normals
+	*/
+	bool UseLegacyTriangulation = false;
+
+	/*
+	* Replace older geometryu
+	*/
+	bool ReplaceTriangulatedGeometry = true;
+
+};
+
+
 class FBXComponent : public ImportComponent
 {
 public:
 	FBXComponent()
 	{
 		SetTag(EngineObjTag::Engine);
+
+		InitalizeImportSettings();
 
 		InitalizeFBXObjects();
 
@@ -63,7 +82,7 @@ protected:
 	void GetFBXScene(fbxsdk::FbxString name, fbxsdk::FbxString Filepath);
 
 protected:
-
+	void InitalizeImportSettings();
 	void InitalizeImporters(const char* Filename);
 
 	fbxsdk::FbxNodeAttribute::EType DetermineTypeOfNode(fbxsdk::FbxNode* Node);
@@ -78,7 +97,7 @@ protected:
 
 	//These two function similar to Unreal, Dynamic Meshes have a skeleton.
 	DynamicMesh* GetDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
-	Skeleton* GetSkeleton(_Inout_ ::FbxNode* Node, _In_  Accelerator* _accel);
+	
 
 protected:
 
@@ -89,6 +108,7 @@ protected:
 
 	FbxImporter* GetImporter();
 
+	FBXImportSettings ImportSettings;
 protected:
 
 

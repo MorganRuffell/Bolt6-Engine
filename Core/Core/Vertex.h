@@ -6,18 +6,21 @@ using namespace DirectX;
 
 class Vertex
 {
-	XMFLOAT3 Position;		//0-byte offset
+public:
+	XMFLOAT4 Position;		//0-byte offset
 };
 
-struct Vertex1 : public Vertex
+class Vertex1 : public Vertex
 {
+public:
 	DirectX::XMFLOAT3 Normal;
 	DirectX::XMFLOAT2 UV;
 	DirectX::XMFLOAT3 Tangent;
 };
 
-class Vertex2
+class Vertex2 : public Vertex1
 {
+public:
 	XMFLOAT2 Tex0;			//24-byte offset
 	XMFLOAT2 Tex1;			//32-byte offset
 };

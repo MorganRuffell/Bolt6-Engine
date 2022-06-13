@@ -51,11 +51,18 @@ public:
 protected:
 
 	int				IndexCount;
-	int*			Indicies;
+	int				m_Indicies;
+
+	int				TrisCount;
+	int				EdgesCount;
 
 protected:
 
 	ID3D11Buffer* VertexBuffer;
 	ID3D11Buffer* IndexBuffer;
+
+	D3D11_BUFFER_DESC VertexBufferDesc;
+	D3D11_BUFFER_DESC IndexBufferDesc;
+
 
 };
