@@ -82,6 +82,48 @@
     <Filter Include="sources\Asset">
       <UniqueIdentifier>{2c70c442-7e0e-41b1-b6ec-1083959ffd3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Engine\Engine Components">
+      <UniqueIdentifier>{1b05fe0b-c80e-4ec4-825c-30692f196300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Renderer">
+      <UniqueIdentifier>{9b090eca-88a5-41bd-b566-9c3aac6299a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Renderer\RasterizerStates">
+      <UniqueIdentifier>{19b2522d-a0e5-46ef-a469-d7955a1f008c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Renderer\Renderer Components">
+      <UniqueIdentifier>{2a0e5dfc-c717-4113-bd0f-401c4972832f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Renderer\SamplerStates">
+      <UniqueIdentifier>{f560ff2e-0224-4656-8ae1-3b4c31650322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Graphics">
+      <UniqueIdentifier>{08917bb4-2b63-4712-9a9d-e2dc76edfdbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\UI">
+      <UniqueIdentifier>{f09a1b19-98a9-4081-9994-fc3d14bfcef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Core">
+      <UniqueIdentifier>{83e1ba93-6ba2-4a81-82f0-12346cae6505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Input">
+      <UniqueIdentifier>{38b578df-72aa-472d-a67c-e517cdb300d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Input\InputDevice">
+      <UniqueIdentifier>{2d50fb24-1349-420c-ae81-278e06dfdd63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\Import Component">
+      <UniqueIdentifier>{54e9a265-bd86-4bda-a934-ebc5d5b05baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\World Component">
+      <UniqueIdentifier>{a688e173-78a1-4836-8bbb-7616d6f3bf93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Engine Components\World Component\Sub Components">
+      <UniqueIdentifier>{b5501296-235a-44a5-8857-e89a3ccb88d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Engine\Core">
+      <UniqueIdentifier>{b0c13cc9-cc64-4a44-9a11-a09d1b965d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -156,6 +198,51 @@
     </ClCompile>
     <ClCompile Include="FBX\New folder\Skeleton.cpp">
       <Filter>sources\Animation\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManagerComponent.cpp">
+      <Filter>sources\Engine\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterizerState.cpp">
+      <Filter>sources\Engine\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseRendererComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11RendererComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp">
+      <Filter>sources\Engine\Engine Components\Renderer\SamplerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComponent.cpp">
+      <Filter>sources\Engine\Engine Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDeviceBase.cpp">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="FBXComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportComponent.cpp">
+      <Filter>sources\Engine\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldComponent.cpp">
+      <Filter>sources\Engine\Engine Components\World Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +387,54 @@
     </ClInclude>
     <ClInclude Include="Engine\Animation\AnimationStructures.h">
       <Filter>sources\Animation\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagerComponent.h">
+      <Filter>sources\Engine\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRasterizerState.h">
+      <Filter>sources\Engine\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterizerState.h">
+      <Filter>sources\Engine\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRendererComponent.h">
+      <Filter>sources\Engine\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11RendererComponent.h">
+      <Filter>sources\Engine\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerState.h">
+      <Filter>sources\Engine\Engine Components\Renderer\SamplerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>sources\Engine\Engine Components\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComponent.h">
+      <Filter>sources\Engine\Engine Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineComponent.h">
+      <Filter>sources\Engine\Engine Components\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>sources\Engine\Engine Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDeviceBase.h">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>sources\Engine\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXComponent.h">
+      <Filter>sources\Engine\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportComponent.h">
+      <Filter>sources\Engine\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldComponent.h">
+      <Filter>sources\Engine\Engine Components\World Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
