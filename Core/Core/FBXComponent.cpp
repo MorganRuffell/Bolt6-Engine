@@ -1,8 +1,12 @@
+
 #include "FBXComponent.h"
 #include <Core/Core/Vertex.h>
 
 using namespace fbxsdk;
 
+
+//#define USE_EXTERNAL_FBX_PLUGINS
+#define USE_REDUDANT_LOADING
 
 void FBXComponent::InitalizeComponent()
 {
@@ -97,21 +101,35 @@ void FBXComponent::InitalizeImporters(const char* Filename)
     assert(fbxManager != nullptr);
     
     FbxImporter* PrimaryImporter = FbxImporter::Create(fbxManager, Filename);
+
+#ifdef USE_REDUDANT_LOADING
+
     FbxImporter* SecondaryImporter = FbxImporter::Create(fbxManager, Filename);
     FbxImporter* TertiaryImporter = FbxImporter::Create(fbxManager, Filename);
 
+#endif // USE_REDUDANT_LOADING
+
     PrimaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
+
+#ifdef USE_REDUDANT_LOADING
+
     SecondaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
     TertiaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
 
-    fbxsdk::FbxStatus PStatus = PrimaryImporter->GetStatus();
     fbxsdk::FbxStatus SStatus = SecondaryImporter->GetStatus();
     fbxsdk::FbxStatus TStatus = TertiaryImporter->GetStatus();
+
+#endif
+
+    fbxsdk::FbxStatus PStatus = PrimaryImporter->GetStatus();
+    
 
     if (PStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
     {
         std::cout << "Fbx Primary Import Status is Successful" << std::endl;
     }
+
+#ifdef USE_REDUDANT_LOADING
 
     if (SStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
     {
@@ -123,9 +141,17 @@ void FBXComponent::InitalizeImporters(const char* Filename)
         std::cout << "Fbx Primary Import Status is Successful" << std::endl;
     }
 
+#endif
+
     Importers.insert({ PStatus, PrimaryImporter });
+
+#ifdef USE_REDUDANT_LOADING
+
     Importers.insert({ SStatus, SecondaryImporter });
     Importers.insert({ TStatus, TertiaryImporter });
+
+#endif
+
 }
 
 

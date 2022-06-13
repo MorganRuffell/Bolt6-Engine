@@ -21,7 +21,6 @@
 #include <Core/Core/World.h>
 
 
-//#define USE_EXTERNAL_FBX_PLUGINS
 
 /*
 	FBX Component acts as an intermediary between 
@@ -109,7 +108,6 @@ protected:
 	FbxImporter* GetImporter();
 
 	FBXImportSettings ImportSettings;
-protected:
 
 
 protected:
