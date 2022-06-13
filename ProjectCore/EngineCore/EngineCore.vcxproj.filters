@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Engine Components">
+      <UniqueIdentifier>{49688907-6846-40db-9299-d120d439877d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Renderer">
+      <UniqueIdentifier>{f99189cd-737e-4128-9bc4-f0dafc7e6b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Renderer\RasterizerStates">
+      <UniqueIdentifier>{97cd52bb-520c-4ad8-a921-f2032f12e4b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Renderer\Renderer Components">
+      <UniqueIdentifier>{062a7830-0e73-4bfb-aa43-06d955ebaf3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Renderer\SamplerStates">
+      <UniqueIdentifier>{6c8f7a60-55db-4d5c-b762-810fd2f0fd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Graphics">
+      <UniqueIdentifier>{5464daa0-6807-45e8-9d8a-8996cc28b7f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\UI">
+      <UniqueIdentifier>{254fad7e-f2d5-40e5-b093-1033bc5df36c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Core">
+      <UniqueIdentifier>{59a65277-7377-49db-9e7c-c7267f49a735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Input">
+      <UniqueIdentifier>{58eabc2c-d5d9-45cc-8807-302f30442657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Input\InputDevice">
+      <UniqueIdentifier>{a7929b5c-9a84-43e1-aca2-b6b1939cb575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\Import Component">
+      <UniqueIdentifier>{0e0c0b98-3036-417c-9f39-12321e8d53b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\World Component">
+      <UniqueIdentifier>{a7e31308-9c13-478a-98a6-82b3bd511b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components\World Component\Sub Components">
+      <UniqueIdentifier>{f267592e-8c33-41a0-b48d-2018aadb956d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\ResourceManagerComponent.h">
+      <Filter>Source Files\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\BaseRasterizerState.h">
+      <Filter>Source Files\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\RasterizerState.h">
+      <Filter>Source Files\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\BaseRendererComponent.h">
+      <Filter>Source Files\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\DirectX11RendererComponent.h">
+      <Filter>Source Files\Engine Components\Renderer\Renderer Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\SamplerState.h">
+      <Filter>Source Files\Engine Components\Renderer\SamplerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\GraphicsComponent.h">
+      <Filter>Source Files\Engine Components\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\UIComponent.h">
+      <Filter>Source Files\Engine Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\EngineComponent.h">
+      <Filter>Source Files\Engine Components\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\InputComponent.h">
+      <Filter>Source Files\Engine Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\InputDeviceBase.h">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\Keyboard.h">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\Mouse.h">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\FBXComponent.h">
+      <Filter>Source Files\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\ImportComponent.h">
+      <Filter>Source Files\Engine Components\Import Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Core\Core\WorldComponent.h">
+      <Filter>Source Files\Engine Components\World Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\ResourceManagerComponent.cpp">
+      <Filter>Source Files\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\RasterizerState.cpp">
+      <Filter>Source Files\Engine Components\Renderer\RasterizerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\BaseRendererComponent.cpp">
+      <Filter>Source Files\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\DirectX11RendererComponent.cpp">
+      <Filter>Source Files\Engine Components\Renderer\Renderer Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\SamplerState.cpp">
+      <Filter>Source Files\Engine Components\Renderer\SamplerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\GraphicsComponent.cpp">
+      <Filter>Source Files\Engine Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\UIComponent.cpp">
+      <Filter>Source Files\Engine Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\EngineComponent.cpp">
+      <Filter>Source Files\Engine Components\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\InputComponent.cpp">
+      <Filter>Source Files\Engine Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\InputDeviceBase.cpp">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\Keyboard.cpp">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\Mouse.cpp">
+      <Filter>Source Files\Engine Components\Input\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\FBXComponent.cpp">
+      <Filter>Source Files\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\ImportComponent.cpp">
+      <Filter>Source Files\Engine Components\Import Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Core\Core\WorldComponent.cpp">
+      <Filter>Source Files\Engine Components\World Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

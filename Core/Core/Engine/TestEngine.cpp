@@ -66,7 +66,7 @@ void TestEngine::Render()
     Accelerator->GetDeviceContext()->ClearRenderTargetView(m_GraphicsDevice->GetMainRenderTargetView(), clear_color_with_alpha);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-    m_RendererComponent->Render(m_GraphicsDevice);
+    m_RendererComponent->Render(m_GraphicsDevice,1,0);
 }
 
 void TestEngine::Terminate()

@@ -5,6 +5,7 @@
 #include <Core/Core/StaticMesh.h>
 #include <Core/Core/DynamicMesh.h>
 #include <Core/Core/BaseCamera.h>
+#include <memory>
 
 
 /*
@@ -27,7 +28,7 @@ protected:
 
 protected:
 
-	BaseCamera* ViewportCamera;
+	std::unique_ptr<BaseCamera> ViewportCamera;
 
 protected:
 

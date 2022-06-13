@@ -8,5 +8,8 @@ class StaticMesh : public BaseMesh
 	{
 		SetTag(EngineObjTag::NonEngine);
 	}
+
+
+
 };
 

@@ -2,8 +2,6 @@
 
 #pragma once
 
-
-
 #include "WorldBase.h"
 
 using namespace DirectX;
@@ -34,7 +32,7 @@ public:
 	{
 		if (ViewportCamera)
 		{
-			delete(ViewportCamera);
+			ViewportCamera.release();
 		}
 
 		if (StaticMeshes.size() > 0)
@@ -48,38 +46,6 @@ public:
 		}
 	}
 
-public:
-
-
-
-
-public:
-
-	BaseCamera* GetViewportCamera()
-	{
-		if (ViewportCamera != nullptr)
-		{
-			return ViewportCamera;
-		}
-		else
-		{
-			ViewportCamera = new BaseCamera();
-		}
-	}
-
-	void SetViewportCamera(BaseCamera* Camera)
-	{
-		assert(Camera != nullptr);
-
-		if (ViewportCamera != nullptr)
-		{
-			// Need to solve this, eventually, should probably use smart pointers for the viewport camera
-		}
-		else
-		{
-			ViewportCamera = Camera;
-		}
-	}
 
 public:
 
@@ -114,6 +80,89 @@ public:
 		}
 	}
 
+public:
+
+	std::vector<StaticMesh*> GetStaticMeshes()
+	{
+		std::vector<StaticMesh*> Result;
+
+		for (auto& Element : StaticMeshes)
+		{
+			Result.push_back(Element.second);
+		}
+
+		return Result;
+	}
+
+
+	std::vector<DynamicMesh*> GetDynamicMeshes()
+	{
+		std::vector<DynamicMesh*> Result;
+
+		for (auto& Element : DynamicMeshes)
+		{
+			Result.push_back(Element.second);
+		}
+
+		return Result;
+	}
+
+
+public:
+
+	BaseCamera* GetViewportCamera()
+	{
+		if (ViewportCamera != nullptr)
+		{
+			return ViewportCamera.get();
+		}
+		else
+		{
+			ViewportCamera = std::make_unique<BaseCamera>();
+		}
+	}
+
+	void SetViewportCamera(BaseCamera* Camera)
+	{
+		assert(Camera != nullptr);
+
+		auto NewCamera = ConstructNewViewportCamera(Camera);
+		ViewportCamera.swap(NewCamera);
+	}
+
+
+protected:
+
+	std::unique_ptr<BaseCamera> ConstructNewViewportCamera(BaseCamera* Camera)
+	{
+		assert(Camera != nullptr);
+
+		CameraData Data;
+
+		//Test this, worried about shallow vs deep copies
+		Data.position = Camera->GetPosition();
+		Data.direction = Camera->direction;
+		Data.rotation = Camera->rotation;
+
+		Data.viewMatrix = Camera->GetViewMatrix();
+		Data.projectionMatrix = Camera->GetProjectionMatrix();
+
+		delete(Camera);
+
+		std::unique_ptr<BaseCamera> NewCamera = std::make_unique<BaseCamera>();
+
+		NewCamera->direction = Data.direction;
+		NewCamera->position = Data.position;
+		NewCamera->rotation = Data.rotation;
+
+		NewCamera->viewMatrix = Data.viewMatrix;
+		NewCamera->projectionMatrix = Data.projectionMatrix;
+
+
+		return NewCamera;
+	}
+
+public:
 
 
 	// Inherited via WorldBase

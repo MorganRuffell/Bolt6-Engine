@@ -6,6 +6,18 @@
 
 using namespace DirectX;
 
+//This is used because all viewport cameras are unique_ptrs
+//simply transfers data across
+struct CameraData
+{
+	XMFLOAT3 position;
+	XMFLOAT3 direction;
+	XMFLOAT3 rotation;
+
+	XMFLOAT4X4 viewMatrix;
+	XMFLOAT4X4 projectionMatrix;
+};
+
 class BaseCamera : public Object
 {
 public:
@@ -23,7 +35,7 @@ public:
 	XMFLOAT4X4 viewMatrix;
 	XMFLOAT4X4 projectionMatrix;
 
-private:
+public:
 
 	XMFLOAT3 position;
 	XMFLOAT3 direction;

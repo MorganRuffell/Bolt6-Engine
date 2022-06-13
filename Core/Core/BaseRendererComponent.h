@@ -15,8 +15,9 @@ protected:
 protected:
 
 	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) = 0;
+
+	//Overloads for render taking in an accel
 	virtual void Render(GraphicsDevice* accel) = 0;
-
-
+	virtual void Render(GraphicsDevice* accel, int VSyncOpt1, int VSyncOpt2) = 0;
 };
 

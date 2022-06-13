@@ -17,12 +17,14 @@ public:
 
 	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) override;
 
-	void Render(GraphicsDevice* accel);
+	void Render(GraphicsDevice* accel, int VSyncOpt1, int VSyncOpt2) override;
 
 protected:
 
 	void InitalizeRasterizerStates(Accelerator* Accel);
 	void DestroyRasterizerStates();
+
+	bool InitalizeCamera();
 
 
 protected:
@@ -30,6 +32,9 @@ protected:
 	void BeginFrame(Accelerator* Accel);
 	void EndFrame(Accelerator* Accel);
 
+
+	void DrawIndividualStaticMesh(StaticMesh* Mesh, Accelerator* Accel);
+	void DrawIndividualDynamicMesh(DynamicMesh* Mesh, Accelerator* Accel);
 
 protected:
 
@@ -39,7 +44,7 @@ protected:
 
 protected:
 
-	BaseCamera*			ViewportCamera;
+	std::unique_ptr<BaseCamera>			ViewportCamera;
 
 
 	int AmountOfRasterizerStates;
@@ -55,5 +60,9 @@ protected:
 
 
 	
+
+	// Inherited via BaseRendererComponent
+	virtual void Render(GraphicsDevice* accel) override;
+
 };
 

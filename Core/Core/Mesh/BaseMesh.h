@@ -38,10 +38,18 @@ public:
 	}
 
 
+	int GetIndexCount()
+	{
+		return IndexCount;
+	}
+
 
 protected:
 
 	std::vector<Material*> MeshMaterials;
+
+	int				IndexCount;
+	int*			Indicies;
 
 protected:
 
