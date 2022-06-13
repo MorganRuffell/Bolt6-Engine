@@ -308,12 +308,142 @@ StaticMesh* FBXComponent::GetStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _acc
 }
 
 //Dynamic Meshes DO Contain animation data, if you try to load one and not the other this will not work
-DynamicMesh* FBXComponent::GetDynamicMesh(::FbxNode* Node, Accelerator* _accel)
+DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
 {
+    assert(fbxManager != nullptr);
+    assert(_accel != nullptr);
+
+    fbxsdk::FbxString Name = Node->GetName();
+    fbxsdk::FbxGeometryConverter converter(fbxManager);
+
+    converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
+
+    if (!DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eMesh)
+    {
+        return nullptr;
+    }
+
+    std::vector<Vertex3> Vertexes;
+    std::vector<int> Indicies;
+
+    fbxsdk::FbxMesh* Mesh = (fbxsdk::FbxMesh*)Node->GetNodeAttribute();
+    FbxVector4* ControlPoints = Mesh->GetControlPoints();
+    int VertexCount = Mesh->GetControlPointsCount();
+
+    for (unsigned int i = 0; i < VertexCount; i++)
+    {
+        Vertex3 v;
+
+        v.Position.x = ControlPoints[i].mData[0];
+        v.Position.y = ControlPoints[i].mData[1];
+        v.Position.z = ControlPoints[i].mData[2];
+        v.Position.w = 1; //Recall from matrix maths that everything in column four must be 1
+
+        v.Normal = XMFLOAT3(0, 0, 0);
+        Vertexes.push_back(v);
+    }
+
+    int PolygonCount = Mesh->GetPolygonCount();
+    int PolygonSize = Mesh->GetPolygonGroup(0);
+    int indexCount = PolygonCount * PolygonSize;
+
+    for (int i = 0; i < Mesh->GetPolygonCount(); i++)
+    {
+        for (int j = 0; j < Mesh->GetPolygonSize(i); j++)
+        {
+            int Individual_Indicie;
+
+            Individual_Indicie = Mesh->GetPolygonVertex(i, j);
+            Indicies.push_back(Individual_Indicie);
+
+            FbxVector4 norm(0, 0, 0, 0);
+
+            Mesh->GetPolygonVertexNormal(i, j, norm);
+
+            Vertexes[Individual_Indicie].Normal.x += (float)norm.mData[0];		// Vertex Normals
+            Vertexes[Individual_Indicie].Normal.y += (float)norm.mData[1];
+            Vertexes[Individual_Indicie].Normal.z += (float)norm.mData[2];
+
+            FbxVector2 PolygonUVCoordinates(0, 0);
+
+            const char* uvSet = "FILENAME DELETE WHEN LOADING TEXTURES TO MATERIALS";
+            bool UVFlag = true;
+
+            Mesh->GetPolygonVertexUV(i, j, uvSet, PolygonUVCoordinates, UVFlag);
+        }
+    }
+
+
+    //This is deliberately a nullptr, it's loaded in through the load skeleton joints.
+    Skeleton* DynamicMeshSkeleton;
+
+    LoadSkeletonJoints(Node, DynamicMeshSkeleton);
+
+    assert(!DynamicMeshSkeleton);
+
+
+
+    int NumberOfDeformers = Mesh->GetDeformerCount();
+    
+    if (NumberOfDeformers == 0) { return nullptr; }
+
+    for (int deformerIndex = 0; deformerIndex < NumberOfDeformers; deformerIndex++)
+    {
+        fbxsdk::FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eSkin));
+        int NumberOfSkinClusters = skin->GetClusterCount();
+
+        for (int indexOfSkinCluster = 0; indexOfSkinCluster < NumberOfSkinClusters; ++NumberOfSkinClusters)
+        {
+            fbxsdk::FbxCluster* CurrentCluster = skin->GetCluster(indexOfSkinCluster);
+            fbxsdk::FbxCluster::ELinkMode JointLinkMode = CurrentCluster->GetLinkMode();
+
+            std::string CurrentJointName = CurrentCluster->GetLink()->GetName();
+
+            int CurrentJointIndex = FindBoneIndex(CurrentJointName, DynamicMeshSkeleton->mBones);
+
+            FbxAMatrix              transformMatrix;
+            FbxAMatrix              transformLinkMatrix;
+            FbxAMatrix              globalBindposeInverseMatrix;
+
+            CurrentCluster->GetTransformMatrix(transformMatrix);
+            CurrentCluster->GetTransformLinkMatrix(transformLinkMatrix);
+            globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
+            int Count = CurrentCluster->GetControlPointIndicesCount();
+
+            // https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
+
+            switch (JointLinkMode)
+            {
+            case fbxsdk::FbxCluster::eNormalize:
+
+                
+                
+                break;
+            case fbxsdk::FbxCluster::eAdditive:
+                break;
+            case fbxsdk::FbxCluster::eTotalOne:
+                break;
+            default:
+                break;
+            }
+
+        }
+
+
+
+
+        FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
+
+    }
 
 
 
     return nullptr;
+}
+
+int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection)
+{
+    return 0;
 }
 
 void FBXComponent::GetMatrixesFromMesh(::FbxNode* Node, Accelerator* _accel, std::vector<Socket>&)

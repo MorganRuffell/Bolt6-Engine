@@ -25,14 +25,9 @@ public:
 	XMFLOAT2 Tex1;			//32-byte offset
 };
 
-class Vertex3
+class Vertex3 : public Vertex2
 {
-	DirectX::XMFLOAT4 Position{ 0,0,0,0 };	    // The position of the vertex
-	DirectX::XMFLOAT3 Normal{ 0,0,0 };
-
+public:
 	DirectX::XMFLOAT4 Boneids{ 0,0,0,0 };
 	DirectX::XMFLOAT4 Weights{ 0,0,0,0 };
-
-	DirectX::XMFLOAT2 UV{ 0,0 };
-	DirectX::XMFLOAT3 Tangent{ 0,0 ,0 };
 };

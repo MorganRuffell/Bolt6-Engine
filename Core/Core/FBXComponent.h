@@ -98,6 +98,8 @@ protected:
 	DynamicMesh* GetDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
 	
 
+	int FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection);
+
 protected:
 
 	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Socket>&);
