@@ -72,7 +72,6 @@ public:
 	fbxsdk::FbxManager* fbxManager;
 	fbxsdk::FbxIOSettings* fbxInputOutputSettings;
 
-
 protected:
 
 	void InitalizeFBXObjects();
@@ -111,7 +110,6 @@ protected:
 
 	FBXImportSettings ImportSettings;
 
-
 protected:
 
 	FbxScene* scene;
@@ -126,4 +124,6 @@ protected:
 	virtual void InitalizeComponent();
 	virtual bool TerminateComponent();
 };
+
+
 

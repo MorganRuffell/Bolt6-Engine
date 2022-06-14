@@ -27,14 +27,10 @@ namespace EngineObjTag
 class Object
 {
 public:
-	Object()
-	{
-
-	}
+	Object() { }
 
 	~Object()
 	{
-
 	}
 
 	std::string GetName()
@@ -64,3 +60,5 @@ protected:
 	std::string						ObjectName;
 	EngineObjTag::ObjectTag			Tag;
 };
+
+

@@ -12,10 +12,7 @@ struct Skeleton : public AnimObject
 	Skeleton(XMFLOAT4X4 Position);
 
 
-	int GetSocketIndex(_In_ std::string& JointName, _In_ std::vector<Socket>& Sockets)
-	{
-		return 0;
-	}
+	int GetSocketIndex(_In_ std::string& JointName, _In_ std::vector<Socket>& Sockets);
 
 
 public:

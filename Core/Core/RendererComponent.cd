@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BaseRendererComponent">
+    <Position X="7.75" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAA=</HashCode>
+      <FileName>BaseRendererComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DirectX11RendererComponent">
+    <Position X="4.25" Y="1.25" Width="2.75" />
+    <AssociationLine Name="StandardRS" Type="RasterizerState">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.05" Y="0.767" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="WireframeRS" Type="RasterizerState">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.062" Y="0.276" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AASAEpAAAAAAAEUAQAEAIAAMAAAAAAADABAAAAAAAAA=</HashCode>
+      <FileName>DirectX11RendererComponent.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ViewportCamera" />
+      <Field Name="StandardRS" />
+      <Field Name="WireframeRS" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EngineComponent">
+    <Position X="11.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAIAQAQAAAAAAAAABEBAAAAAA=</HashCode>
+      <FileName>EngineComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseCamera">
+    <Position X="8.25" Y="10.25" Width="3.5" />
+    <Members>
+      <Field Name="position" Hidden="true" />
+      <Field Name="projectionMatrix" Hidden="true" />
+      <Method Name="RotateX" Hidden="true" />
+      <Method Name="RotateY" Hidden="true" />
+      <Field Name="rotation" Hidden="true" />
+      <Field Name="rotationX" Hidden="true" />
+      <Field Name="rotationY" Hidden="true" />
+      <Method Name="SetPosition" Hidden="true" />
+      <Method Name="SetProjectionMatrix" Hidden="true" />
+      <Method Name="SetRotation" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Object" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="8.209" />
+        <Point X="14.625" Y="8.209" />
+        <Point X="14.625" Y="10.812" />
+        <Point X="11.75" Y="10.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAGAAAAKAAIAAAAACAIgAAACAAAwiAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseCamera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GraphicsDevice">
+    <Position X="8" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAUAAwAAAAAAAAAAADAAAAAAAAAAACEANAAgAA=</HashCode>
+      <FileName>GraphicsDevice.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="MainRenderTargetView" />
+      <Field Name="MainDepthStencilView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GraphicsDeviceBase">
+    <Position X="11.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEAAgAAAAAAAAAAAAAAAACgAAAAACCAAAAAAA=</HashCode>
+      <FileName>GraphicsDeviceBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Object">
+    <Position X="15" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAgAAAgAAAAIAAAAAIAAAAAAAAAQAAABAA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Accelerator">
+    <Position X="11.75" Y="7.75" Width="1.5" />
+    <InheritanceLine Type="Object" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="7.391" />
+        <Point X="14.625" Y="7.391" />
+        <Point X="14.625" Y="8.349" />
+        <Point X="13.25" Y="8.349" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwAAAAGAAgAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Graphics\Accelerator.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Device" />
+      <Field Name="DeviceContext" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Microsoft::WRL::ComPtr&lt;T&gt;" Collapsed="true">
+    <Position X="5.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\winrt\wrl\client.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft::WRL::ComPtr&lt;T&gt;" Collapsed="true">
+    <Position X="5.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\winrt\wrl\client.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="std::unique_ptr&lt;_Ty, _Dx&gt;" Collapsed="true">
+    <Position X="2" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAEAAAAAAgEAEAAQgAAAAAAAAAAAQAgAAAAAIg=</HashCode>
+      <FileName>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\memory</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RasterizerState" Collapsed="true">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAA=</HashCode>
+      <FileName>RasterizerState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CameraData">
+    <Position X="12" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIAAAAACAIgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseCamera.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ID3D11RenderTargetView" Collapsed="true">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\d3d11.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ID3D11DepthStencilView" Collapsed="true">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\d3d11.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

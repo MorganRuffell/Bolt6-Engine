@@ -19,7 +19,7 @@ struct AnimationClip
 
 struct AnimationComposition
 {
-	std::vector<std::string*> ClipNames;
+	std::vector<std::string> ClipNames;
 	std::vector<AnimationClip*> Clips;
 };
 

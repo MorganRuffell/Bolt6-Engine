@@ -432,7 +432,7 @@ DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _a
 
 
 
-        FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
+        //FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
 
     }
 

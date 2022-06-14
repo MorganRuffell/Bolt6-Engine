@@ -262,10 +262,12 @@
     <None Include="..\..\misc\debuggers\imgui.natvis" />
     <None Include="Engine\Graphics\EngineDiagram.cd" />
     <None Include="Engine\Graphics\MaterialsTexturesClassDiagram.cd" />
+    <None Include="Import.cd" />
     <None Include="packages.config" />
+    <None Include="RendererComponent.cd" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="FBX\New folder\BasePS.hlsl">
+    <FxCompile Include="Shaders\PSBase.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -273,7 +275,7 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
     </FxCompile>
-    <FxCompile Include="FBX\New folder\BaseVS.hlsl">
+    <FxCompile Include="Shaders\VSBase.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

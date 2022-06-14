@@ -436,12 +436,18 @@
     <None Include="Engine\Graphics\MaterialsTexturesClassDiagram.cd">
       <Filter>sources\Graphics\Materials</Filter>
     </None>
+    <None Include="Import.cd">
+      <Filter>sources\Engine\Engine Components\Import Component</Filter>
+    </None>
+    <None Include="RendererComponent.cd">
+      <Filter>sources\Engine\Engine Components\Renderer</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="FBX\New folder\BasePS.hlsl">
+    <FxCompile Include="Shaders\PSBase.hlsl">
       <Filter>Shaders\Pixel</Filter>
     </FxCompile>
-    <FxCompile Include="FBX\New folder\BaseVS.hlsl">
+    <FxCompile Include="Shaders\VSBase.hlsl">
       <Filter>Shaders\Vertex</Filter>
     </FxCompile>
   </ItemGroup>

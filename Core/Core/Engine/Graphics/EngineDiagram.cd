@@ -4,12 +4,11 @@
     <Position X="8.25" Y="4.75" Width="3" />
     <InheritanceLine Type="Object" FixedToPoint="true">
       <Path>
-        <Point X="27.5" Y="8.438" />
-        <Point X="27.125" Y="8.438" />
-        <Point X="27.125" Y="5.188" />
-        <Point X="19.708" Y="5.187" Type="JumpStart" />
-        <Point X="19.542" Y="5.188" Type="JumpEnd" />
-        <Point X="11.25" Y="5.188" />
+        <Point X="28.75" Y="8" />
+        <Point X="28.75" Y="5.375" />
+        <Point X="19.708" Y="5.375" Type="JumpStart" />
+        <Point X="19.542" Y="5.375" Type="JumpEnd" />
+        <Point X="11.25" Y="5.375" />
       </Path>
     </InheritanceLine>
     <AssociationLine Name="m_GraphicsDevice" Type="GraphicsDevice" FixedFromPoint="true" FixedToPoint="true">
@@ -41,7 +40,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAQAJEgAAAQkQAAAQAAAAAACACAAAAMACBQGAAAACAA=</HashCode>
+      <HashCode>AAQAJEgAQAQkQAAAQAAAAAACACAAAAIACBQGAAAACAA=</HashCode>
       <FileName>Engine\TestEngine.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -133,7 +132,7 @@
       <Method Name="InitalizeRasterizerStates" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AASAEoAAAAAAAEUAQAEAIAAMAAAAAAADABAAAAAAAAA=</HashCode>
+      <HashCode>AASAEpAAAAAAAEUAQAEAIAAMAAAAAAADABAAAAAAAAA=</HashCode>
       <FileName>DirectX11RendererComponent.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -155,7 +154,7 @@
         <Point X="21.099" Y="9.625" />
         <Point X="21.099" Y="11.25" />
         <Point X="19.414" Y="11.25" Type="JumpStart" />
-        <Point X="19.247" Y="11.25" Type="JumpEnd" />
+        <Point X="19.248" Y="11.25" Type="JumpEnd" />
         <Point X="19" Y="11.25" />
       </Path>
     </InheritanceLine>
@@ -192,14 +191,14 @@
     <AssociationLine Name="m_Keyboard" Type="Keyboard" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="13.841" Y="17.502" />
-        <Point X="13.841" Y="18.938" />
-        <Point X="16.75" Y="18.938" />
+        <Point X="13.841" Y="17.688" />
+        <Point X="19.5" Y="17.688" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="m_Mouse" Type="Mouse" FixedFromPoint="true">
       <Path>
         <Point X="15.75" Y="16.875" />
-        <Point X="19.75" Y="16.875" />
+        <Point X="23" Y="16.875" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -212,12 +211,13 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Keyboard">
-    <Position X="16.75" Y="18.5" Width="2.75" />
+    <Position X="19.5" Y="17.25" Width="2.75" />
     <InheritanceLine Type="InputDeviceBase" FixedToPoint="true">
       <Path>
-        <Point X="28.625" Y="17.867" />
-        <Point X="28.625" Y="22.25" />
-        <Point X="19.5" Y="22.25" />
+        <Point X="27.5" Y="17.402" />
+        <Point X="27.125" Y="17.402" />
+        <Point X="27.125" Y="21" />
+        <Point X="22.25" Y="21" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -226,11 +226,11 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Mouse">
-    <Position X="19.75" Y="15.5" Width="3" />
+    <Position X="23" Y="13.75" Width="3" />
     <InheritanceLine Type="InputDeviceBase" FixedFromPoint="true">
       <Path>
         <Point X="27.5" Y="16.875" />
-        <Point X="22.75" Y="16.875" />
+        <Point X="26" Y="16.875" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>

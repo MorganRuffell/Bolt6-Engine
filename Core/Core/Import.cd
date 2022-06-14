@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImportComponent">
+    <Position X="6" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEACAAAAAIAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ImportComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EngineComponent">
+    <Position X="9.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAIAQAQAAAAAAAAABEBAAAAAA=</HashCode>
+      <FileName>EngineComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Object">
+    <Position X="13.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAgAAAgAAAAIAAAAAIAAAAAAAAAQAAABAA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FBXComponent">
+    <Position X="1" Y="2" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AEEAABAgECA8AEAgEAAFIIQEAEEAIAAiEAAAQAAAAAA=</HashCode>
+      <FileName>FBXComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourceManagerComponent">
+    <Position X="3.25" Y="9.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAIAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>ResourceManagerComponent.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_FBXImportComponent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestEngine">
+    <Position X="13.25" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAJEgAQAQkQAAAQAAAAAACACAAAAIACBQGAAAACAA=</HashCode>
+      <FileName>Engine\TestEngine.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_WorldComponent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WorldComponent">
+    <Position X="9.5" Y="9.75" Width="2.25" />
+    <InheritanceLine Type="EngineComponent" FixedToPoint="true">
+      <Path>
+        <Point X="10.5" Y="5.088" />
+        <Point X="10.5" Y="9.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAABAAQEAAAAAAIAAAEAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorldComponent.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_ResourceManagerComponent" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="FBXImportSettings">
+    <Position X="1" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>FBXComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ImportComponentState::ImportState">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQIAAAEAAIAABAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ImportComponent.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
