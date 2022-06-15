@@ -1,5 +1,5 @@
 # Bolt6ProgrammingTest
-This is the programming test that the Bolt6.ai CTO set me on the 09th June 2022. 
+This is the programming test that the Bolt6.ai set me on the 09th June 2022. 
 The task is to get a skeletal animation running, on something similar to an IK Bone system inside of a windows application.
 
 I was originally going to do this in DirectX12, I struggled to setup OpenGL as I'm more used to microsofts graphics technology
