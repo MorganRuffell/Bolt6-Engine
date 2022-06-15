@@ -9,5 +9,7 @@ I had one week to do this, this is the results of that week.
 
 Part of the task was to build this whole project from scratch, I started just with the header files from ImGui, Autodesks FBX SDK and DirectX11.
 
-### External Libraries
-
+### External
+- https://www.autodesk.com/developer-network/platform-technologies/fbx-sdk-2020-2-1 Autodesk FBX SDK, I'm using an older one from 2016 in this solution 
+- DirectX11 - Microsoft Corporation 
+- C++20
