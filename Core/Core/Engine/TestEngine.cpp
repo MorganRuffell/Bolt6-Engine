@@ -21,6 +21,13 @@ bool TestEngine::Init(HWND window)
 
     std::cout << "Renderer Component Creation Succeeded!" << std::endl;
 
+    World* Stage = new World();
+
+    m_WorldComponent = new WorldComponent(Stage, m_GraphicsDevice->m_Accelerator.get());
+
+    std::cout << "World Component Creation Succeeded!" << std::endl;
+
+
     InitalizeScene();
 
     m_UIComponent = new UIComponent(m_GraphicsDevice->m_Accelerator, window);
@@ -86,11 +93,7 @@ void TestEngine::InitalizeScene()
 {
     //Heap allocate our new world -- This will contain all of our scene components
 
-    World* Stage = new World();
-
-    m_WorldComponent = new WorldComponent(Stage);
-    std::cout << "World Component Creation Succeeded!" << std::endl;
-
+ 
 
 
 }

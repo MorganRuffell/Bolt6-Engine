@@ -12,6 +12,53 @@ class BaseMesh : public Object
 
 public:
 
+	void CreateMaterial(Accelerator* _Accel, std::string& Name)
+	{
+		TESamplerState* SamplerState = new TESamplerState(_Accel);
+		Material* _Matty = new Material(SamplerState, Name, _Accel);
+		MeshMaterials.push_back(_Matty);
+
+	}
+
+	void CreateMaterial(Accelerator* _Accel)
+	{
+		TESamplerState* SamplerState = new TESamplerState(_Accel);
+
+		std::string Name = "Unammed Material";
+
+		Material* _Matty = new Material(SamplerState, Name, _Accel);
+
+		MeshMaterials.push_back(_Matty);
+	}
+
+public:
+
+	void CreateMaterial(Accelerator* _Accel, std::string& Name, TextureContext DiffuseContext, TextureContext NormalContext)
+	{
+		Texture* DiffuseText = new Texture(DiffuseContext, Name,_Accel);
+		Texture* NormalText = new Texture(NormalContext, Name, _Accel);
+
+		TESamplerState* SamplerState = new TESamplerState(_Accel);
+		Material* _Matty = new Material(SamplerState, Name, _Accel);
+
+		MeshMaterials.push_back(_Matty);
+	}
+
+	void CreateMaterial(Accelerator* _Accel, TextureContext DiffuseContext, TextureContext NormalContext)
+	{
+		TESamplerState* SamplerState = new TESamplerState(_Accel);
+
+		std::string Name = "Unammed Material";
+
+		Texture* DiffuseText = new Texture(DiffuseContext, Name, _Accel);
+		Texture* NormalText = new Texture(NormalContext, Name, _Accel);
+
+		Material* _Matty = new Material(SamplerState, Name, _Accel);
+		MeshMaterials.push_back(_Matty);
+	}
+
+public:
+
 	ID3D11Buffer* GetVertexBuffer()
 	{
 		return VertexBuffer;
@@ -42,6 +89,7 @@ public:
 	{
 		return IndexCount;
 	}
+
 
 
 public:

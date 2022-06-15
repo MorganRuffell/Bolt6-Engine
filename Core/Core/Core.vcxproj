@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="..\..\backends\imgui_tables.cpp" />
     <ClCompile Include="..\..\backends\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\External\Microsoft\WICTextureLoader.cpp" />
     <ClCompile Include="BaseCamera.cpp" />
     <ClCompile Include="BaseRendererComponent.cpp" />
     <ClCompile Include="DirectX11RendererComponent.cpp" />
@@ -187,7 +188,6 @@
     <ClCompile Include="ResourceManagerComponent.cpp" />
     <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TimerComponent.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldBase.cpp" />
@@ -210,6 +210,7 @@
     <ClInclude Include="..\..\backends\imstb_rectpack.h" />
     <ClInclude Include="..\..\backends\imstb_textedit.h" />
     <ClInclude Include="..\..\backends\imstb_truetype.h" />
+    <ClInclude Include="..\..\External\Microsoft\WICTextureLoader.h" />
     <ClInclude Include="AnimObject.h" />
     <ClInclude Include="BaseCamera.h" />
     <ClInclude Include="BaseRasterizerState.h" />
@@ -253,7 +254,6 @@
     <ClInclude Include="ResourceManagerComponent.h" />
     <ClInclude Include="SamplerState.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TimerComponent.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />

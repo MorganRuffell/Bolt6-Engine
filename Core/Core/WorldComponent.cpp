@@ -2,7 +2,6 @@
 
 void WorldComponent::InitalizeComponent()
 {
-    m_ResourceManagerComponent = new ResourceManagerComponent();
 
 }
 

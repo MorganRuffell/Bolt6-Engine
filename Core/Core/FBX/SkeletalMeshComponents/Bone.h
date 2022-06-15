@@ -366,6 +366,18 @@ public:
 
 public:
 
+	XMFLOAT4X4 GetBoneTransform()
+	{
+		return BoneTransform;
+	}
+
+	void SetboneTransform(XMFLOAT4X4 Trans)
+	{
+		BoneTransform = Trans;
+	}
+
+public:
+
 	DirectX::XMFLOAT4X4		BoneTransform = {};
 	DirectX::XMFLOAT4X4		InvBoneTransform = {};
 

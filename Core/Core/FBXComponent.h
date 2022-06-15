@@ -60,13 +60,16 @@ public:
 		InitalizeImportSettings();
 
 		InitalizeFBXObjects();
-
 	}
 
 	~FBXComponent()
 	{
 
 	}
+
+public:
+
+	void InitalizeImporters(const char* Filename);
 
 public:
 
@@ -85,11 +88,10 @@ protected:
 	void InitalizeFBXObjects();
 	void TerminateFBXObjects();
 
-	void GetFBXScene(fbxsdk::FbxString name, fbxsdk::FbxString Filepath);
+	//void GetFBXScene(fbxsdk::FbxString name, fbxsdk::FbxString Filepath);
 
-protected:
+public:
 	void InitalizeImportSettings();
-	void InitalizeImporters(const char* Filename);
 
 	fbxsdk::FbxNodeAttribute::EType DetermineTypeOfNode(fbxsdk::FbxNode* Node);
 
@@ -109,17 +111,19 @@ protected:
 
 protected:
 
-	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Constraint>&);
+	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);
 
-	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Constraint>& Collection);
+	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Bone2*> Collection);
 	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(fbxsdk::FbxAMatrix Matrix);
 
 	FbxImporter* GetImporter();
 
 	FBXImportSettings ImportSettings;
 
-protected:
+	void GetAnimatedMatrix(float DeltaTime, Skeleton* _skl);
 
+protected:
+	double ImporterTime;
 	FbxScene* scene;
 	std::map<fbxsdk::FbxStatus,FbxImporter*> Importers;
 

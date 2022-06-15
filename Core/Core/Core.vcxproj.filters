@@ -127,6 +127,9 @@
     <Filter Include="sources\Engine\Engine Components\Core\Timer">
       <UniqueIdentifier>{1edbb33d-7f17-4e7c-ba15-8aa8a211a119}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\Microsoft">
+      <UniqueIdentifier>{3a4d4225-eb35-459a-8725-6a314724ca33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -241,7 +244,9 @@
     <ClCompile Include="Mesh\StaticMesh.cpp">
       <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClCompile>
-    <ClCompile Include="TimerComponent.cpp" />
+    <ClCompile Include="..\..\External\Microsoft\WICTextureLoader.cpp">
+      <Filter>External\Microsoft</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -428,7 +433,9 @@
     <ClInclude Include="Mesh\StaticMesh.h">
       <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClInclude>
-    <ClInclude Include="TimerComponent.h" />
+    <ClInclude Include="..\..\External\Microsoft\WICTextureLoader.h">
+      <Filter>External\Microsoft</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis">

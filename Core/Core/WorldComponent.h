@@ -16,10 +16,12 @@ class WorldComponent : public EngineComponent
 {
 public:
 
-	WorldComponent(World* m_World)
+	WorldComponent(World* m_World, Accelerator* _accel)
 	{
 		m_CurrentWorld = m_World;
-		InitalizeComponent();
+
+		m_ResourceManagerComponent = new ResourceManagerComponent(_accel);
+
 	}
 
 public:

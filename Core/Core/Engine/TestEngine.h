@@ -1,9 +1,10 @@
 #pragma once
+
+#include "Singleton.h"
 #include "TestEngineBase.h"
 #include <Core/Core/UIComponent.h>
 #include "Core/Core/Engine/Graphics/Accelerator.h"
 #include <Core/Core/GraphicsComponent.h>
-#include "Singleton.h"
 #include <Core/Core/DirectX11RendererComponent.h>
 #include <Core/Core/InputComponent.h>
 #include <Core/Core/Object.h>

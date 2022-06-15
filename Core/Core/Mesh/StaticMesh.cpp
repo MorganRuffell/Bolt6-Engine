@@ -1,8 +1,60 @@
 #include "StaticMesh.h"
 
-StaticMesh::StaticMesh(Vertex2* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* Accel)
+StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel)
 {
 	SetTag(EngineObjTag::NonEngine);
+	SetName("Unnamed Static Mesh");
+
+	m_Indicies = vertexCount / 2;
+	IndexCount = indexCount;
+
+	TrisCount = vertexCount / 3;
+
+
+	VertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	VertexBufferDesc.ByteWidth = sizeof(Vertexes) * vertexCount;
+	VertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	VertexBufferDesc.CPUAccessFlags = 0;
+	VertexBufferDesc.MiscFlags = 0;
+	VertexBufferDesc.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA initialVertexData = {};
+	initialVertexData.pSysMem = Vertexes;
+
+	HRESULT res = Accel->GetDevice()->CreateBuffer(&VertexBufferDesc, &initialVertexData, &VertexBuffer);
+
+	if (!SUCCEEDED(res))
+	{
+		std::cout << "Vertex Buffer Creation failed!" << std::endl;
+		return;
+	}
+
+	IndexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	IndexBufferDesc.ByteWidth = sizeof(int) * indexCount;
+	IndexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	IndexBufferDesc.CPUAccessFlags = 0;
+	IndexBufferDesc.MiscFlags = 0;
+	IndexBufferDesc.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA initalIndexData = {};
+	initalIndexData.pSysMem = &Indicies; //??
+
+	res = Accel->GetDevice()->CreateBuffer(&IndexBufferDesc, &initalIndexData, &IndexBuffer);
+
+	if (!SUCCEEDED(res))
+	{
+		std::cout << "Index Buffer Creation failed!" << std::endl;
+		return;
+	}
+
+	
+
+}
+
+StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel, std::string& Name)
+{
+	SetTag(EngineObjTag::NonEngine);
+	SetName(Name);
 
 	m_Indicies = vertexCount / 2;
 	IndexCount = indexCount;
@@ -48,7 +100,7 @@ StaticMesh::StaticMesh(Vertex2* Vertexes, int vertexCount, int* Indicies, int in
 
 }
 
-void StaticMesh::CalculateTangents(Vertex2* vertices, int vertexCount, int* indices, int indexCount)
+void StaticMesh::CalculateTangents(Vertex1* vertices, int vertexCount, int* indices, int indexCount)
 {
 	XMFLOAT3* tan1 = new XMFLOAT3[vertexCount * 2];
 	XMFLOAT3* tan2 = tan1 + vertexCount;

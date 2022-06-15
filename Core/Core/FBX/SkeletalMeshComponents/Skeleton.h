@@ -28,6 +28,7 @@ public:
 		return RootBone;
 	}
 
+	FbxTime				Time;
 
 private:
 

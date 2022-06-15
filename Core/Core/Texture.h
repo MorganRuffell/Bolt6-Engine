@@ -7,6 +7,7 @@
 #include <d3d11.h>
 #include <string>
 #include <Core/Core/Object.h>
+#include "External/Microsoft/WICTextureLoader.h"
 #include <iostream>
 #include <assert.h>
 #include "Core/Core/Engine/Graphics/Accelerator.h"
@@ -30,25 +31,19 @@ struct Resolution
 	float DimensionY;
 };
 
+//Similar to descriptor structs, this functions in a similar way for our textures.
+struct TextureContext
+{
+	LPCWSTR				TextureFilename;
+	Resolution			Resolution;
+	TextureType			Type;
+	bool				AllowOverwriting;
+};
 
 class Texture : public Object
 {
 public:
-
-	Texture(float _DimensionX, float _DimensionY, TextureType _Type, ID3D11ShaderResourceView* _ResourceView, std::string& _Name )
-	{
-		SetTag(EngineObjTag::NonEngine);
-
-		ResolutionX = _DimensionX;
-		ResolutionY = _DimensionY;
-		Type = _Type;
-		ResourceView = _ResourceView;
-		Name = _Name;
-		std::cout << "Texture initalization succeeded!" << std::endl;
-
-	}
-	
-	Texture(float _DimensionX, float _DimensionY, TextureType _Type, std::string& _Name, Accelerator* _Accel)
+	Texture(float _DimensionX, float _DimensionY, TextureType _Type, std::string& _Name, Accelerator* _Accel, LPCWSTR File)
 	{
 		assert(_Accel != nullptr);
 
@@ -59,10 +54,18 @@ public:
 		Type = _Type;
 		ResourceView = CreateSRV(_Accel, _DimensionX, _DimensionY);
 		Name = _Name;
+
+		ID3D11Resource* Resource;
+
+		CreateWICTextureFromFile(_Accel->GetDevice(), _Accel->GetDeviceContext(), File, &Resource, &ResourceView, 4096);
+
+		m_TextureData = reinterpret_cast<ID3D11Texture2D*>(Resource);
+
+
 		std::cout << "Texture initalization succeeded!" << std::endl;
 	}
 
-	Texture(Resolution Res, TextureType _Type, std::string& _Name, Accelerator* _Accel)
+	Texture(Resolution Res, TextureType _Type, std::string& _Name, Accelerator* _Accel, LPCWSTR File)
 	{
 		assert(_Accel != nullptr);
 		assert(Res.DimensionX != 0 && Res.DimensionY != 0);
@@ -72,23 +75,38 @@ public:
 		ResolutionX = Res.DimensionX;
 		ResolutionY = Res.DimensionY;
 		Type = _Type;
-		ResourceView = CreateSRV(_Accel,Res);
+		ResourceView = CreateSRV(_Accel, Res);
 		Name = _Name;
+
+		ID3D11Resource* Resource;
+
+		CreateWICTextureFromFile(_Accel->GetDevice(), _Accel->GetDeviceContext(), File, &Resource, &ResourceView, 4096);
+
+		m_TextureData = reinterpret_cast<ID3D11Texture2D*>(Resource);
+
+		std::cout << "Texture initalization succeeded!" << std::endl;
 
 	}
 
-	Texture(Resolution Res, TextureType _Type, ID3D11ShaderResourceView* _ResourceView, std::string& _Name)
+	Texture(TextureContext context, std::string& _Name, Accelerator* _Accel)
 	{
+		assert(_Accel != nullptr);
+
 		SetTag(EngineObjTag::NonEngine);
 
-		ResolutionX = Res.DimensionX;
-		ResolutionY = Res.DimensionY;
-		Type = _Type;
-		ResourceView = _ResourceView;
+		ResolutionX = context.Resolution.DimensionX;
+		ResolutionY = context.Resolution.DimensionY;
+		Type = context.Type;
+		ResourceView = CreateSRV(_Accel, context.Resolution);
 		Name = _Name;
+
+		ID3D11Resource* Resource;
+		CreateWICTextureFromFile(_Accel->GetDevice(), _Accel->GetDeviceContext(), context.TextureFilename, &Resource, &ResourceView, 4096);
+		m_TextureData = reinterpret_cast<ID3D11Texture2D*>(Resource);
 
 		std::cout << "Texture initalization succeeded!" << std::endl;
 	}
+
 
 public:
 
@@ -104,12 +122,14 @@ public:
 		textureDesc.ArraySize = 1;
 		textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		textureDesc.SampleDesc.Count = 1;
+		textureDesc.SampleDesc.Quality = 0;
 		textureDesc.Usage = D3D11_USAGE_DEFAULT;
 		textureDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 		textureDesc.CPUAccessFlags = 0;
 		textureDesc.MiscFlags = 0;
 
 		HRESULT TextureRes = Device->GetDevice()->CreateTexture2D(&textureDesc, nullptr, &m_TextureData);
+
 
 		if (SUCCEEDED(TextureRes))
 		{
@@ -151,6 +171,7 @@ public:
 		textureDesc.CPUAccessFlags = 0;
 		textureDesc.MiscFlags = 0;
 
+		//Fix this as we are using the resource directly and not texture 2D
 		HRESULT TextureRes = Device->GetDevice()->CreateTexture2D(&textureDesc, nullptr, &m_TextureData);
 
 		if (SUCCEEDED(TextureRes))
@@ -185,7 +206,7 @@ public:
 	}
 
 
-	ID3D11Texture2D* GetResource()
+	ID3D11Resource* GetResource()
 	{
 		return m_TextureData;
 	}

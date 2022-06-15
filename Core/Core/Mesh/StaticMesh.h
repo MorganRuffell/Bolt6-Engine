@@ -3,17 +3,20 @@
 #include "BaseMesh.h"
 #include <Core/Core/Vertex.h>
 
+/*
+*	The static mesh is a mesh that does not have any animations,
+*	I've dug quite deep into the backing data behind rendering to allow for growth in scope
+*	And to improve the scope of use cases.
+*/
 
 class StaticMesh : public BaseMesh
 {
 public:
 
-	StaticMesh(Vertex2* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* Accel);
+	StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel);
+	StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel, std::string& Name);
 
-	void CalculateTangents(Vertex2* vertices, int vertexCount, int* indices, int indexCount);
-
-
-
+	void CalculateTangents(Vertex1* vertices, int vertexCount, int* indices, int indexCount);
 
 private:
 
