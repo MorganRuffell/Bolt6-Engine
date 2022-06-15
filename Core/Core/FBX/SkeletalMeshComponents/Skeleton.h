@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "Joint.h"
+#include "Constraint.h"
 #include "Core/Core/AnimObject.h"
 #include <Core/Core/FBX/SkeletalMeshComponents/Bone.h>
 
@@ -12,12 +12,12 @@ struct Skeleton : public AnimObject
 	Skeleton(XMFLOAT4X4 Position);
 
 
-	int GetSocketIndex(_In_ std::string& JointName, _In_ std::vector<Socket>& Sockets);
+	int GetSocketIndex(_In_ std::string& JointName, _In_ std::vector<Constraint>& Sockets);
 
 
 public:
 
-	//std::vector<Socket*> mJoints;
+	//std::vector<Constraint*> mJoints;
 
 	std::vector<Bone2*> mBones;
 

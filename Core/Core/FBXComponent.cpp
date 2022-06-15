@@ -234,7 +234,7 @@ void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
 }
 
 //Static Meshes DO NOT contain any animation data.
-StaticMesh* FBXComponent::GetStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
+StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
 {
     assert(fbxManager != nullptr);
     assert(_accel != nullptr);
@@ -308,7 +308,7 @@ StaticMesh* FBXComponent::GetStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _acc
 }
 
 //Dynamic Meshes DO Contain animation data, if you try to load one and not the other this will not work
-DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
+DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
 {
     assert(fbxManager != nullptr);
     assert(_accel != nullptr);
@@ -382,7 +382,6 @@ DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _a
     assert(!DynamicMeshSkeleton);
 
 
-
     int NumberOfDeformers = Mesh->GetDeformerCount();
     
     if (NumberOfDeformers == 0) { return nullptr; }
@@ -392,42 +391,125 @@ DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _a
         fbxsdk::FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eSkin));
         int NumberOfSkinClusters = skin->GetClusterCount();
 
+        //Enumerate all of the skin clusters inside of the mesh, skin clusters act as a subset of a geometry control points -- Similar to a geometry shader
         for (int indexOfSkinCluster = 0; indexOfSkinCluster < NumberOfSkinClusters; ++NumberOfSkinClusters)
         {
+            //Get the current cluster and it's link mode.
             fbxsdk::FbxCluster* CurrentCluster = skin->GetCluster(indexOfSkinCluster);
             fbxsdk::FbxCluster::ELinkMode JointLinkMode = CurrentCluster->GetLinkMode();
 
             std::string CurrentJointName = CurrentCluster->GetLink()->GetName();
+            
+            int CurrentBoneIndex = FindBoneIndex(CurrentJointName, DynamicMeshSkeleton->mBones);
 
-            int CurrentJointIndex = FindBoneIndex(CurrentJointName, DynamicMeshSkeleton->mBones);
-
-            FbxAMatrix              transformMatrix;
-            FbxAMatrix              transformLinkMatrix;
-            FbxAMatrix              globalBindposeInverseMatrix;
+            //Three matrixes, one for the transform of the cluster (the cluster of control points)
+            fbxsdk::FbxAMatrix              transformMatrix;
+            fbxsdk::FbxAMatrix              transformLinkMatrix;
+            fbxsdk::FbxAMatrix              globalBindposeInverseMatrix;
 
             CurrentCluster->GetTransformMatrix(transformMatrix);
             CurrentCluster->GetTransformLinkMatrix(transformLinkMatrix);
             globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
-            int Count = CurrentCluster->GetControlPointIndicesCount();
 
-            // https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
+            //A control point is a synoynm for a vertex
+            int ControlPointIndCount = CurrentCluster->GetControlPointIndicesCount();
 
-            switch (JointLinkMode)
+            globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
+            transformLinkMatrix = transformLinkMatrix.Transpose();
+
+            //Get the inverse of each bone transform.
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->InvBoneTransform = XMFLOAT4X4((float)globalBindposeInverseMatrix.GetRow(0)[0],
+                (float)globalBindposeInverseMatrix.GetRow(0)[1], (float)globalBindposeInverseMatrix.GetRow(0)[2],
+                (float)globalBindposeInverseMatrix.GetRow(0)[3], (float)globalBindposeInverseMatrix.GetRow(1)[0],
+                (float)globalBindposeInverseMatrix.GetRow(1)[1], (float)globalBindposeInverseMatrix.GetRow(1)[2],
+                (float)globalBindposeInverseMatrix.GetRow(1)[3], (float)globalBindposeInverseMatrix.GetRow(2)[0],
+                (float)globalBindposeInverseMatrix.GetRow(2)[1], (float)globalBindposeInverseMatrix.GetRow(2)[2],
+                (float)globalBindposeInverseMatrix.GetRow(2)[3],
+                (float)globalBindposeInverseMatrix.GetRow(3)[0], (float)globalBindposeInverseMatrix.GetRow(3)[1],
+                (float)globalBindposeInverseMatrix.GetRow(3)[2], (float)globalBindposeInverseMatrix.GetRow(3)[3]);
+
+            //Set the FBX Node on the Bone itself
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
+
+            //Set the transform of the Bone as an XMFloat4x4 Matrix
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->BoneTransform = XMFLOAT4X4((float) transformLinkMatrix.GetRow(0)[0], 
+                (float)transformLinkMatrix.GetRow(0)[1], (float)transformLinkMatrix.GetRow(0)[2],
+                (float)transformLinkMatrix.GetRow(0)[3], (float)transformLinkMatrix.GetRow(1)[0],
+                (float)transformLinkMatrix.GetRow(1)[1], (float)transformLinkMatrix.GetRow(1)[2],
+                (float)transformLinkMatrix.GetRow(1)[3], (float)transformLinkMatrix.GetRow(2)[0],
+                (float)transformLinkMatrix.GetRow(2)[1], (float)transformLinkMatrix.GetRow(2)[2],
+                (float)transformLinkMatrix.GetRow(2)[3], (float)transformLinkMatrix.GetRow(3)[0],
+                (float)transformLinkMatrix.GetRow(3)[1], (float)transformLinkMatrix.GetRow(3)[2],
+                (float)transformLinkMatrix.GetRow(3)[3]); //
+
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxTransform(&transformLinkMatrix);
+            DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetBoneIndex(CurrentBoneIndex);
+
+            //For all of the control points inside each cluster, set thier weighting by getting the indicies.
+            for (int i = 0; i < CurrentCluster->GetControlPointIndicesCount(); ++i)
             {
-            case fbxsdk::FbxCluster::eNormalize:
+                //indexes and Ids of each vertex
+                int index = CurrentCluster->GetControlPointIndices()[i];
+                int vertexid = Indicies[CurrentCluster->GetControlPointIndices()[i]];
 
-                
-                
-                break;
-            case fbxsdk::FbxCluster::eAdditive:
-                break;
-            case fbxsdk::FbxCluster::eTotalOne:
-                break;
-            default:
-                break;
+                if (Vertexes[index].Boneids.x == -1 && Vertexes[index].Weights.x == -1)
+                {
+                    Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
+                    Vertexes[index].Weights.x = (float)CurrentCluster->GetControlPointWeights()[i];
+                }
+                else if (Vertexes[index].Boneids.y == -1 && Vertexes[index].Weights.y == -1)
+                {
+                    Vertexes[index].Boneids.y = (float)CurrentBoneIndex;
+                    Vertexes[index].Weights.y = (float)CurrentCluster->GetControlPointWeights()[i];
+                }
+                else if (Vertexes[index].Boneids.z == -1 && Vertexes[index].Weights.z == -1)
+                {
+                    Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
+                    Vertexes[index].Weights.z = (float)CurrentCluster->GetControlPointWeights()[i];
+                }
+             
+                else
+                {
+                    float currentWeight = (float)CurrentCluster->GetControlPointWeights()[i];
+
+                    if (Vertexes[index].Weights.x < Vertexes[index].Weights.y)
+                    {
+                        if (Vertexes[index].Weights.x < Vertexes[index].Weights.z)
+                        {
+                            if (Vertexes[index].Weights.x < Vertexes[index].Weights.w)
+                            {
+                                Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
+                                Vertexes[index].Weights.x = (float)currentWeight;
+                            }
+                            else
+                            {
+                                Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
+                                Vertexes[index].Weights.w = (float)currentWeight;
+                            }
+                        }
+                        else if (Vertexes[index].Weights.w < Vertexes[index].Weights.z)
+                        {
+                            Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
+                            Vertexes[index].Weights.w = (float)currentWeight;
+                        }
+                        else
+                        {
+                            Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
+                            Vertexes[index].Weights.z = (float)currentWeight;
+                        }
+                    }
+
+                }
+
+
             }
 
         }
+
+
+
+            // https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
 
 
 
@@ -436,9 +518,8 @@ DynamicMesh* FBXComponent::GetDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _a
 
     }
 
+    return new DynamicMesh(DynamicMeshSkeleton);
 
-
-    return nullptr;
 }
 
 int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection)
@@ -446,11 +527,11 @@ int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& Bo
     return 0;
 }
 
-void FBXComponent::GetMatrixesFromMesh(::FbxNode* Node, Accelerator* _accel, std::vector<Socket>&)
+void FBXComponent::GetMatrixesFromMesh(::FbxNode* Node, Accelerator* _accel, std::vector<Constraint>&)
 {
 }
 
-XMFLOAT4X4 FBXComponent::GetJointGlobalTransform(int, std::vector<Socket>& Collection)
+XMFLOAT4X4 FBXComponent::GetJointGlobalTransform(int, std::vector<Constraint>& Collection)
 {
     return XMFLOAT4X4();
 }

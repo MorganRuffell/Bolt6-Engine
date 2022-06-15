@@ -2,8 +2,8 @@
 
 #include <map>
 #include <string>
-#include <Core/Core/StaticMesh.h>
-#include <Core/Core/DynamicMesh.h>
+#include <Core/Core/Mesh/StaticMesh.h>
+#include <Core/Core/Mesh/DynamicMesh.h>
 #include <Core/Core/BaseCamera.h>
 #include <memory>
 

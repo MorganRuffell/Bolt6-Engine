@@ -11,7 +11,7 @@ Skeleton::Skeleton(Bone2* _RootBone)
 	}
 
 	RootBone = _RootBone;
-
+	RootBone->SetBoneIndex(0);
 	
 	SkeletonRoot = RootBone->BoneTransform;
 }
@@ -28,7 +28,7 @@ Skeleton::Skeleton(XMFLOAT4X4 Position)
 	SkeletonRoot = RootBone->BoneTransform;
 }
 
-int Skeleton::GetSocketIndex(std::string& JointName, std::vector<Socket>& Sockets)
+int Skeleton::GetSocketIndex(std::string& JointName, std::vector<Constraint>& Sockets)
 {
 	return 0;
 }

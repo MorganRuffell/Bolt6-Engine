@@ -8,6 +8,7 @@
 #include "ImportComponent.h"
 #include <fbxsdk.h>
 #include <array>
+#include "Engine/Graphics/Accelerator.h"
 
 #include "Core/Core/Engine/Animation/AnimationStructures.h"
 
@@ -16,7 +17,7 @@
 
 #include "Core/Core/FBX/SkeletalMeshComponents/Bone.h"
 #include "Core/Core/FBX/SkeletalMeshComponents/Skeleton.h"
-#include "Core/Core/FBX/SkeletalMeshComponents/Joint.h"
+#include "Core/Core/FBX/SkeletalMeshComponents/Constraint.h"
 
 #include <Core/Core/World.h>
 
@@ -74,6 +75,13 @@ public:
 
 protected:
 
+
+
+
+
+
+protected:
+
 	void InitalizeFBXObjects();
 	void TerminateFBXObjects();
 
@@ -89,22 +97,22 @@ protected:
 
 	bool LoadFBXScene(_In_ const char* Filename, FbxScene* Scene, World* world);
 	void LoadSkeletonJoints(_In_ ::FbxNode*, _Inout_ Skeleton* s_kl);
-	StaticMesh* GetStaticMesh(_Inout_::FbxNode* Node, _In_  Accelerator* _accel);
+	StaticMesh* CreateStaticMesh(_Inout_::FbxNode* Node, _In_  Accelerator* _accel);
 
 protected:
 
 	//These two function similar to Unreal, Dynamic Meshes have a skeleton.
-	DynamicMesh* GetDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
+	DynamicMesh* CreateDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
 	
 
 	int FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection);
 
 protected:
 
-	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Socket>&);
+	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Constraint>&);
 
-	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Socket>& Collection);
-	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(FbxAMatrix Matrix);
+	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Constraint>& Collection);
+	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(fbxsdk::FbxAMatrix Matrix);
 
 	FbxImporter* GetImporter();
 

@@ -164,7 +164,6 @@
     <ClCompile Include="BaseCamera.cpp" />
     <ClCompile Include="BaseRendererComponent.cpp" />
     <ClCompile Include="DirectX11RendererComponent.cpp" />
-    <ClCompile Include="DynamicMesh.cpp" />
     <ClCompile Include="EngineComponent.cpp" />
     <ClCompile Include="Engine\Graphics\BaseShader.cpp" />
     <ClCompile Include="Engine\Graphics\PixelShader.cpp" />
@@ -181,11 +180,12 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh\DynamicMesh.cpp" />
+    <ClCompile Include="Mesh\StaticMesh.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RasterizerState.cpp" />
     <ClCompile Include="ResourceManagerComponent.cpp" />
     <ClCompile Include="SamplerState.cpp" />
-    <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="World.cpp" />
@@ -214,7 +214,6 @@
     <ClInclude Include="BaseRasterizerState.h" />
     <ClInclude Include="BaseRendererComponent.h" />
     <ClInclude Include="DirectX11RendererComponent.h" />
-    <ClInclude Include="DynamicMesh.h" />
     <ClInclude Include="EngineComponent.h" />
     <ClInclude Include="Engine\Animation\AnimationStructures.h" />
     <ClInclude Include="Engine\Graphics\Accelerator.h" />
@@ -229,7 +228,7 @@
     <ClInclude Include="Engine\TestEngineBase.h" />
     <ClInclude Include="FBXComponent.h" />
     <ClInclude Include="FBX\SkeletalMeshComponents\Bone.h" />
-    <ClInclude Include="FBX\SkeletalMeshComponents\Joint.h" />
+    <ClInclude Include="FBX\SkeletalMeshComponents\Constraint.h" />
     <ClInclude Include="FBX\SkeletalMeshComponents\Skeleton.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsDevice.h" />
@@ -244,13 +243,14 @@
     <ClInclude Include="Mathematics\Vector3.h" />
     <ClInclude Include="Mathematics\Vector4.h" />
     <ClInclude Include="Mesh\BaseMesh.h" />
+    <ClInclude Include="Mesh\DynamicMesh.h" />
+    <ClInclude Include="Mesh\StaticMesh.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="RasterizerState.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManagerComponent.h" />
     <ClInclude Include="SamplerState.h" />
-    <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Vertex.h" />

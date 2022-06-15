@@ -6,8 +6,9 @@
 
 using namespace Microsoft::WRL;
 
-//Accelerators are your internal graphics card, or
+//Accelerators are your discrete graphics card, or
 //literally anything else. I'm using it's 'Proper name' because it sounds cooler
+//I came up with this idea from accelerated mass paralellism.
 
 class Accelerator : public Object
 {

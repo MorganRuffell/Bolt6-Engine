@@ -7,10 +7,10 @@
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Debug\BasePS.cso</FullPath>
+      <FullPath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Debug\PSBase.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Debug\BaseVS.cso</FullPath>
+      <FullPath>C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Debug\VSBase.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

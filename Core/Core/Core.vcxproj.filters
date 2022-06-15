@@ -178,14 +178,8 @@
     <ClCompile Include="Engine\Graphics\PixelShader.cpp">
       <Filter>sources\Graphics\Shaders\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>sources\Geometry\SpecializedMeshes</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>sources\Geometry\World</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicMesh.cpp">
-      <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClCompile>
     <ClCompile Include="WorldBase.cpp">
       <Filter>sources\Geometry\World</Filter>
@@ -237,6 +231,12 @@
     </ClCompile>
     <ClCompile Include="FBX\SkeletalMeshComponents\Skeleton.cpp">
       <Filter>sources\Animation\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\DynamicMesh.cpp">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\StaticMesh.cpp">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,14 +343,8 @@
     <ClInclude Include="Engine\Singleton.h">
       <Filter>sources\Design Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="StaticMesh.h">
-      <Filter>sources\Geometry\SpecializedMeshes</Filter>
-    </ClInclude>
     <ClInclude Include="World.h">
       <Filter>sources\Geometry\World</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicMesh.h">
-      <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClInclude>
     <ClInclude Include="WorldBase.h">
       <Filter>sources\Geometry\World</Filter>
@@ -418,11 +412,17 @@
     <ClInclude Include="FBX\SkeletalMeshComponents\Bone.h">
       <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
-    <ClInclude Include="FBX\SkeletalMeshComponents\Joint.h">
+    <ClInclude Include="FBX\SkeletalMeshComponents\Constraint.h">
       <Filter>sources\Animation\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="FBX\SkeletalMeshComponents\Skeleton.h">
       <Filter>sources\Animation\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\DynamicMesh.h">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\StaticMesh.h">
+      <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

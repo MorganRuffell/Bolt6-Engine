@@ -4,11 +4,16 @@
 
 #include "Core/Core/AnimObject.h"
 
-struct Socket : public AnimObject
+
+/*
+*	Constraints are assigned to bones, they are paired together in the skeleton.
+*/
+
+struct Constraint : public AnimObject
 {
 public:
 
-	Socket()
+	Constraint()
 	{
 		SetType(Joint);
 		SetTag(EngineObjTag::NonEngine);
@@ -16,7 +21,7 @@ public:
 		mBoneIndex = -1;
 	}
 
-	~Socket()
+	~Constraint()
 	{
 
 	}

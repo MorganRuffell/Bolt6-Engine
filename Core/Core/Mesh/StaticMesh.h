@@ -1,14 +1,21 @@
 #pragma once
 
 #include "Mesh/BaseMesh.h"
+#include <Core/Core/Vertex.h>
+
 
 class StaticMesh : public BaseMesh
 {
-	StaticMesh()
-	{
-		SetTag(EngineObjTag::NonEngine);
-	}
+public:
 
+	StaticMesh(Vertex2* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* Accel);
+
+	void CalculateTangents(Vertex2* vertices, int vertexCount, int* indices, int indexCount);
+
+
+
+
+private:
 
 
 };

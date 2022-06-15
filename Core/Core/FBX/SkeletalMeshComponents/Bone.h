@@ -1,10 +1,12 @@
 #pragma once
 
 #include <DirectXMath.h>
+#include <fbxsdk.h>
 #include <string>
 #include <map>
 
 using namespace DirectX;
+using namespace fbxsdk;
 
 /* Inspired by Epic's Unreal Engine, constrain the translation
    to the skeleton or to the animation */
@@ -32,14 +34,9 @@ class Bone2
 
 public:
 
-	//Constructor to be used ONLY for fbx import process
-	Bone2()
-	{
-
-	}
-
 	//Constructor for creating a new bone relative to it's parent
-	Bone2(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone2* Parent)
+	Bone2(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone2* Parent) :
+		mFBXNode(nullptr)
 	{
 		SetName(Name);
 
@@ -63,7 +60,8 @@ public:
 	}
 
 	//Constructor for creating a new bone relative to it's parent, name is ommited
-	Bone2(XMFLOAT4X4 OffsetPosition, Bone2* Parent)
+	Bone2(XMFLOAT4X4 OffsetPosition, Bone2* Parent) :
+		mFBXNode(nullptr)
 	{
 		std::string Name = m_ParentBone->GetName() + "_" + std::to_string(m_ParentBone->NumberOfChildren + 1);
 
@@ -116,6 +114,8 @@ public:
 			TranslationMode = Parental;
 			TypeOfBone = BoneType::Parent;
 			NumberOfChildren = 0;
+			SetBoneIndex(0);
+
 			m_ParentBone = nullptr;
 		}
 		else
@@ -276,6 +276,7 @@ public:
 
 public:
 
+	//This kills all of the children :(
 	bool RemoveAllChildren()
 	{
 		NumberOfChildren = 0;
@@ -297,15 +298,98 @@ public:
 
 public:
 
+
+	bool SetFbxNode(FbxNode* Node)
+	{
+		assert(Node != nullptr);
+
+		if (mFBXNode == nullptr)
+		{
+			mFBXNode = Node;
+			return true;
+		}
+		else
+		{
+			//Not sure about my popinter syntaxx here, might have to dereference it first
+			mFBXNode = Node;
+			return true;
+		}
+
+		return false;
+
+	}
+
+	FbxNode* GetFbxNode()
+	{
+		return mFBXNode;
+	}
+
+public:
+
+	FbxAMatrix* GetFbxMatrix()
+	{
+		return mFbxTransform;
+	}
+
+	bool SetFbxTransform(FbxAMatrix* Transform)
+	{
+		assert(Transform != nullptr);
+
+		if (mFbxTransform == nullptr)
+		{
+			mFbxTransform = Transform;
+			return true;
+		}
+		else
+		{
+			//Not sure about my popinter syntaxx here, might have to dereference it first
+			mFbxTransform = Transform;
+			return true;
+		}
+
+		return false;
+
+	}
+
+
+public:
+
+	int GetBoneIndex()
+	{
+		return m_BoneIndex;
+	}
+
+	void SetBoneIndex(int index)
+	{
+		m_BoneIndex = index;
+	}
+
+public:
+
 	DirectX::XMFLOAT4X4		BoneTransform = {};
 	DirectX::XMFLOAT4X4		InvBoneTransform = {};
 
-private:
+	//We need both the inverse bindpose and relative bindpose
+	DirectX::XMFLOAT4X4		mRelativeBindposeInverse = {};
+	DirectX::XMFLOAT4X4		mRelativeBindpose = {};
+
+protected:
+
+	//Maybe make a bespoke pointer for this if you fancy it :D
+	FbxNode*				mFBXNode;
+	FbxAMatrix*				mFbxTransform = {};
+
+protected:
 
 	BoneTranslationMode		TranslationMode;
 	BoneType				TypeOfBone;
 
-private:
+protected:
+	
+	//The index of the bone is represented
+	int						m_BoneIndex;
+
+protected:
 
 	Bone2* m_ParentBone;
 
