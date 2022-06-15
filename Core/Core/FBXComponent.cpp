@@ -52,7 +52,7 @@ void FBXComponent::GetAnimatedMatrix(float DeltaTime, Skeleton* _skl)
 
 void FBXComponent::InitalizeFBXObjects()
 {
-	fbxManager = FbxManager::Create();
+	fbxManager = fbxsdk::FbxManager::Create();
 
 	if (!fbxManager)
 	{
@@ -60,7 +60,7 @@ void FBXComponent::InitalizeFBXObjects()
 		return;
 	}
 
-	fbxInputOutputSettings = FbxIOSettings::Create(fbxManager, IOSROOT);
+	fbxInputOutputSettings = fbxsdk::FbxIOSettings::Create(fbxManager, IOSROOT);
 	fbxManager->SetIOSettings(fbxInputOutputSettings);
 
 	//Until I know what these are, just lock them away..
@@ -75,6 +75,7 @@ void FBXComponent::InitalizeFBXObjects()
 
 	assert(fbxInputOutputSettings != nullptr);
 
+	//Remember to target the test scene manually
 	scene = FbxScene::Create(fbxManager, "FbxSceneAlpha");
 	fbxManager->SetIOSettings(fbxInputOutputSettings);
 
@@ -166,9 +167,6 @@ void FBXComponent::InitalizeImporters(const char* Filename)
 
 }
 
-
-
-
 bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* world)
 {
 	int lFileMajor, lFileMinor, lFileRevision;
@@ -176,7 +174,7 @@ bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* wo
 
 	bool Result;
 
-	FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
+	fbxsdk::FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
 
 	InitalizeImporters(Filename);
 
@@ -245,6 +243,11 @@ void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
 	}
 }
 
+StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
+{
+	return nullptr;
+}
+
 //Static Meshes DO NOT contain any animation data.
 StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel, std::string& MeshName)
 {
@@ -262,11 +265,11 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 	}
 
 	std::vector<Vertex1> Vertexes;
-	std::vector<int> Indicies;
+	std::vector<UINT> Indicies;
 
 	fbxsdk::FbxMesh* Mesh = (fbxsdk::FbxMesh*)Node->GetNodeAttribute();
 	FbxVector4* ControlPoints = Mesh->GetControlPoints();
-	int VertexCount = Mesh->GetControlPointsCount();
+	UINT VertexCount = Mesh->GetControlPointsCount();
 
 	for (unsigned int i = 0; i < VertexCount; i++)
 	{
@@ -282,7 +285,7 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 
 	int PolygonCount = Mesh->GetPolygonCount();
 	int PolygonSize = Mesh->GetPolygonGroup(0);
-	int indexCount = PolygonCount * PolygonSize;
+	UINT indexCount = PolygonCount * PolygonSize;
 
 	for (int i = 0; i < Mesh->GetPolygonCount(); i++)
 	{
@@ -309,6 +312,7 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 			Mesh->GetPolygonVertexUV(i, j, uvSet, PolygonUVCoordinates, UVFlag);
 		}
 	}
+
 
 	StaticMesh* SM = new StaticMesh(&Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel, MeshName);
 

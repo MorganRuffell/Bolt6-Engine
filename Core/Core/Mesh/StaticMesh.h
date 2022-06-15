@@ -16,7 +16,7 @@ public:
 	StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel);
 	StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel, std::string& Name);
 
-	void CalculateTangents(Vertex1* vertices, int vertexCount, int* indices, int indexCount);
+	void CalculateTangents(Vertex1* vertices, UINT vertexCount, UINT* indices, UINT indexCount);
 
 private:
 

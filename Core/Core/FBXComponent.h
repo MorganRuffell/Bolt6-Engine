@@ -95,23 +95,26 @@ public:
 
 	fbxsdk::FbxNodeAttribute::EType DetermineTypeOfNode(fbxsdk::FbxNode* Node);
 
-protected:
+public:
 
-	bool LoadFBXScene(_In_ const char* Filename, FbxScene* Scene, World* world);
-	void LoadSkeletonJoints(_In_ ::FbxNode*, _Inout_ Skeleton* s_kl);
-	StaticMesh* CreateStaticMesh(_Inout_::FbxNode* Node, _In_  Accelerator* _accel);
+	bool LoadFBXScene(_In_ const char* Filename, fbxsdk::FbxScene* Scene, World* world);
+	void LoadSkeletonJoints(_In_ fbxsdk::FbxNode*, _Inout_ Skeleton* s_kl);
+	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel);
+	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel, std::string& MeshName);
 
-protected:
+
+public:
 
 	//These two function similar to Unreal, Dynamic Meshes have a skeleton.
 	DynamicMesh* CreateDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
-	
+
+protected:
 
 	int FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection);
 
 protected:
 
-	void GetMatrixesFromMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);
+	void GetMatrixesFromMesh(_Inout_ fbxsdk::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);
 
 	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Bone2*> Collection);
 	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(fbxsdk::FbxAMatrix Matrix);
@@ -121,6 +124,14 @@ protected:
 	FBXImportSettings ImportSettings;
 
 	void GetAnimatedMatrix(float DeltaTime, Skeleton* _skl);
+
+public:
+
+	FbxScene* GetMostRecentScene()
+	{
+		return scene;
+	}
+
 
 protected:
 	double ImporterTime;

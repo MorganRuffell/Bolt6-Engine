@@ -100,7 +100,7 @@ StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT
 
 }
 
-void StaticMesh::CalculateTangents(Vertex1* vertices, int vertexCount, int* indices, int indexCount)
+void StaticMesh::CalculateTangents(Vertex1* vertices, UINT vertexCount, UINT* indices, UINT indexCount)
 {
 	XMFLOAT3* tan1 = new XMFLOAT3[vertexCount * 2];
 	XMFLOAT3* tan2 = tan1 + vertexCount;
