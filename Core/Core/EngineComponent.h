@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "Object.h"
+#include <Core/Core/Object.h>
+
 enum ComponentState
 {
 	Initialized,

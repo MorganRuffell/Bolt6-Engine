@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mesh/BaseMesh.h"
+#include "BaseMesh.h"
 #include <Core/Core/Vertex.h>
 
 

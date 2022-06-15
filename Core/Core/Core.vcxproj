@@ -187,6 +187,7 @@
     <ClCompile Include="ResourceManagerComponent.cpp" />
     <ClCompile Include="SamplerState.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TimerComponent.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldBase.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="ResourceManagerComponent.h" />
     <ClInclude Include="SamplerState.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TimerComponent.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />

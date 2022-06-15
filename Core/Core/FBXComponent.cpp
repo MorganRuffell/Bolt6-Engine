@@ -197,7 +197,7 @@ FbxNodeAttribute::EType FBXComponent::DetermineTypeOfNode(fbxsdk::FbxNode* Node)
 //Recursive method that gets all of the bones and loads them into a skeleton on a dynamic mesh
 void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
 {
-    if (DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eSkeleton)
+    if (DetermineTypeOfNode(Node) == fbxsdk::FbxNodeAttribute::EType::eSkeleton)
     {
         if (s_kl == nullptr)
         {
@@ -205,9 +205,9 @@ void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
             fbxsdk::FbxAMatrix GlobalMatrix;
 
             fbxsdk::FbxString Name = Node->GetName();
-            fbxsdk::FbxVector4 Translation = Node->GetGeometricTranslation(FbxNode::eSourcePivot);
-            fbxsdk::FbxVector4 Rotation = Node->GetGeometricRotation(FbxNode::eSourcePivot);
-            fbxsdk::FbxVector4 Scale = Node->GetGeometricScaling(FbxNode::eSourcePivot);
+            fbxsdk::FbxVector4 Translation = Node->GetGeometricTranslation(fbxsdk::FbxNode::eSourcePivot);
+            fbxsdk::FbxVector4 Rotation = Node->GetGeometricRotation(fbxsdk::FbxNode::eSourcePivot);
+            fbxsdk::FbxVector4 Scale = Node->GetGeometricScaling(fbxsdk::FbxNode::eSourcePivot);
 
             GlobalMatrix = Node->EvaluateGlobalTransform();
 
@@ -240,7 +240,6 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
     assert(_accel != nullptr);
 
     fbxsdk::FbxString Name = Node->GetName();
-
     fbxsdk::FbxGeometryConverter converter(fbxManager);
 
     converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
@@ -318,7 +317,7 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 
     converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
 
-    if (!DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eMesh)
+    if (!DetermineTypeOfNode(Node) == fbxsdk::FbxNodeAttribute::EType::eMesh)
     {
         return nullptr;
     }
@@ -518,8 +517,10 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 
     }
 
-    return new DynamicMesh(DynamicMeshSkeleton);
+    DynamicMesh* DM = new DynamicMesh(DynamicMeshSkeleton, &Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel);
+    DM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
 
+    return DM;
 }
 
 int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection)
@@ -527,7 +528,7 @@ int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& Bo
     return 0;
 }
 
-void FBXComponent::GetMatrixesFromMesh(::FbxNode* Node, Accelerator* _accel, std::vector<Constraint>&)
+void FBXComponent::GetMatrixesFromMesh(fbxsdk::FbxNode* Node, Accelerator* _accel, std::vector<Constraint>&)
 {
 }
 

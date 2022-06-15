@@ -124,6 +124,9 @@
     <Filter Include="External\FBXSDk">
       <UniqueIdentifier>{d956dadf-1cff-4a0f-ace8-75477acfc527}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sources\Engine\Engine Components\Core\Timer">
+      <UniqueIdentifier>{1edbb33d-7f17-4e7c-ba15-8aa8a211a119}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -238,6 +241,7 @@
     <ClCompile Include="Mesh\StaticMesh.cpp">
       <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClCompile>
+    <ClCompile Include="TimerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">
@@ -424,6 +428,7 @@
     <ClInclude Include="Mesh\StaticMesh.h">
       <Filter>sources\Geometry\SpecializedMeshes</Filter>
     </ClInclude>
+    <ClInclude Include="TimerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\misc\debuggers\imgui.natvis">
