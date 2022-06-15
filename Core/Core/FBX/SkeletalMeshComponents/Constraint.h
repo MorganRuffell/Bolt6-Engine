@@ -16,7 +16,7 @@ public:
 	Constraint()
 	{
 		SetType(Joint);
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 		mBoneIndex = -1;
 	}

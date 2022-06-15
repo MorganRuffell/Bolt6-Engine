@@ -2,7 +2,7 @@
 
 StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel)
 {
-	SetTag(EngineObjTag::NonEngine);
+	SetTag(EngineObjTag::Asset);
 	SetName("Unnamed Static Mesh");
 
 	m_Indicies = vertexCount / 2;
@@ -53,7 +53,7 @@ StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT
 
 StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT indexCount, Accelerator* Accel, std::string& Name)
 {
-	SetTag(EngineObjTag::NonEngine);
+	SetTag(EngineObjTag::Asset);
 	SetName(Name);
 
 	m_Indicies = vertexCount / 2;

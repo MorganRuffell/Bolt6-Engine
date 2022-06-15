@@ -69,7 +69,7 @@ public:
 
 public:
 
-	void InitalizeImporters(const char* Filename);
+	void InitalizeImporters(LPCWSTR Filename);
 
 public:
 
@@ -97,7 +97,7 @@ public:
 
 public:
 
-	bool LoadFBXScene(_In_ const char* Filename, fbxsdk::FbxScene* Scene, World* world);
+	bool LoadFBXScene(_In_ LPCWSTR Filename, fbxsdk::FbxScene* Scene, World* world);
 	void LoadSkeletonJoints(_In_ fbxsdk::FbxNode*, _Inout_ Skeleton* s_kl);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel, std::string& MeshName);
@@ -137,6 +137,8 @@ protected:
 	double ImporterTime;
 	FbxScene* scene;
 	std::map<fbxsdk::FbxStatus,FbxImporter*> Importers;
+
+	FbxImporter* PrimaryImporter;
 
 protected:
 

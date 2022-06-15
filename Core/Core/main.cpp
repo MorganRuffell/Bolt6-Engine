@@ -19,6 +19,8 @@ int main(int, char**)
     std::cout << "Candidate: Mr Morgan Ruffell" << std::endl;
     std::cout << "Task Set By: Mr Luke Dodd" << std::endl << std::endl;
 
+    CoInitialize(NULL);
+
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
     WNDCLASSEX GraphicsWindow = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Bolt6 Programming Test - DX11"), NULL };

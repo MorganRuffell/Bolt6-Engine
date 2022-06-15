@@ -1,27 +1,24 @@
 // Morgan Ruffell, 2022
-// Resource Manager, C++20
+// Generic Engine Resource Manager, C++20
+
+// Autodesk FBX SDK - Autodesk Incorporated 2022
 
 
 #pragma once
 
 /*
-*   Generic FBX resource manager
+*   Generic Engine Resource Manager
+*   Designed to be added as a unique/raw pointer to an engine.
 * 
+*   Quick, and relatively painless. Only works with Autodesk Filmbox files,
+*   Will expand to work with .objs and any other requests later on.
 * 
-* 
+*   Woo.
 */
-
 
 #include "EngineComponent.h"
 #include <Core/Core/FBXComponent.h>
 #include <iostream>
-
-/*
-    By far the most important class in my solution, 
-    this class manages the FBX component, and has a reference to the world component
-
-    It also creates everything in memory ready for the rendering component!
-*/
 
 namespace InitData
 {
@@ -44,9 +41,9 @@ namespace InitData
 
 struct MeshData
 {
-    const char* Filelocation;
-    const char* DiffuseTexture;
-    const char* NormalTexture;
+    LPCWSTR Filelocation;
+    LPCWSTR DiffuseTexture;
+    LPCWSTR NormalTexture;
     std::string MeshName;
 
     InitData::MeshTypeToInitalize MeshType;
@@ -58,13 +55,13 @@ class ResourceManagerComponent : public EngineComponent
 {
 
     ResourceManagerComponent() = delete;
-    
-
+   
 public:
+
     ResourceManagerComponent(Accelerator* _accel, World* world)
     {
-        InitalizeComponent();
-        
+        assert(world != nullptr);
+
         if (_accel)
         {
             m_Accelerator = _accel;
@@ -73,6 +70,11 @@ public:
         {
             std::cout << "The Accelerator cannot be null" << std::endl;
         }
+
+        m_World = world;
+
+        InitalizeComponent();
+
     }
 
     static ResourceManagerComponent* Instance;

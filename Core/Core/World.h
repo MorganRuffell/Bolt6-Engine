@@ -25,7 +25,7 @@ public:
 
 	World()
 	{
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 	}
 
 	~World()
@@ -46,6 +46,40 @@ public:
 		}
 	}
 
+public:
+
+	//Add to the hashmap, with a collision check to change the key if an occurance exists.
+	bool AddStaticMesh(std::string& Name, StaticMesh* SM)
+	{
+		if (StaticMeshes.contains(Name))
+		{
+			auto Duplicate = Name + "_" + std::to_string(StaticMeshes.count(Name));
+			StaticMeshes.insert({ Duplicate, SM });
+			return true;
+		}
+		else
+		{
+			StaticMeshes.insert({ Name, SM });
+			return true;
+		}
+
+	}
+
+	bool AddDynamicMesh(std::string& Name, DynamicMesh* DM)
+	{
+		if (StaticMeshes.contains(Name))
+		{
+			auto Duplicate = Name + "_" + std::to_string(DynamicMeshes.count(Name));
+			DynamicMeshes.insert({ Duplicate, DM });
+			return true;
+		}
+		else
+		{
+			DynamicMeshes.insert({ Name, DM });
+			return true;
+		}
+
+	}
 
 public:
 

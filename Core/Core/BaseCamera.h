@@ -23,7 +23,7 @@ class BaseCamera : public Object
 public:
 	BaseCamera()
 	{
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 	}
 	~BaseCamera()
 	{

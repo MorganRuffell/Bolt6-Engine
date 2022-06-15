@@ -3,7 +3,7 @@
 Skeleton::Skeleton(Bone2* _RootBone)
 {
 	SetType(Hierarchy);
-	SetTag(EngineObjTag::NonEngine);
+	SetTag(EngineObjTag::Asset);
 
 	if (_RootBone == nullptr)
 	{
@@ -20,7 +20,7 @@ Skeleton::Skeleton(Bone2* _RootBone)
 Skeleton::Skeleton(XMFLOAT4X4 Position)
 {
 	SetType(Hierarchy);
-	SetTag(EngineObjTag::NonEngine);
+	SetTag(EngineObjTag::Asset);
 
 	std::string Name = "Root";
 

@@ -36,7 +36,7 @@ public:
 		this->Sampler = _SamplerState;
 
 		SetName(Name);
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 	}
 
@@ -50,7 +50,7 @@ public:
 		this->Sampler = _SamplerState;
 
 		SetName(Name);
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 	}
 
@@ -70,7 +70,24 @@ public:
 		NormalTexture = NormalTex;
 
 		SetName(Name);
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
+	}
+
+	Material(std::string& Name, Accelerator* Accel, TextureContext Diffuse)
+	{
+		this->m_MaterialVertexShader = new VertexShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		this->m_MaterialPixelShader = new PixelShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		this->Sampler = new TESamplerState(Accel);
+
+		std::string DiffuseTextureName = "T_" + Name + "_BaseColour";
+		std::string NormalTextureName = "T_" + Name + "_Normal";
+
+		Texture* DiffuseTex = new Texture(Diffuse, DiffuseTextureName, Accel);
+
+		DiffuseTexture = DiffuseTex;
+
+		SetName(Name);
+		SetTag(EngineObjTag::Asset);
 	}
 
 public:

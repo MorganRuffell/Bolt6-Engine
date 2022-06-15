@@ -20,7 +20,7 @@ public:
 	{
 		m_CurrentWorld = m_World;
 
-		m_ResourceManagerComponent = new ResourceManagerComponent(_accel);
+		m_ResourceManagerComponent = new ResourceManagerComponent(_accel, GetCurrentWorld());
 
 	}
 

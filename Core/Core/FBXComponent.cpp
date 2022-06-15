@@ -18,11 +18,7 @@ bool FBXComponent::TerminateComponent()
 }
 
 //
-FbxImporter* FBXComponent::GetImporter()
-{
-	auto SuccessfulImporter = fbxsdk::FbxStatus(fbxsdk::FbxStatus::eSuccess);
-	return Importers.at(SuccessfulImporter);
-}
+
 
 void FBXComponent::GetAnimatedMatrix(float DeltaTime, Skeleton* _skl)
 {
@@ -109,30 +105,17 @@ void FBXComponent::InitalizeImportSettings()
 	ImportSettings.ReplaceTriangulatedGeometry = false;
 }
 
-void FBXComponent::InitalizeImporters(const char* Filename)
+void FBXComponent::InitalizeImporters(LPCWSTR Filename)
 {
 	assert(fbxManager != nullptr);
 
-	FbxImporter* PrimaryImporter = FbxImporter::Create(fbxManager, Filename);
+	auto test = (char*) Filename;
 
-#ifdef USE_REDUDANT_LOADING
+	FbxImporter* PrimaryImporter = FbxImporter::Create(fbxManager, (char*)test);
 
-	FbxImporter* SecondaryImporter = FbxImporter::Create(fbxManager, Filename);
-	FbxImporter* TertiaryImporter = FbxImporter::Create(fbxManager, Filename);
-
-#endif // USE_REDUDANT_LOADING
-
-	PrimaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
-
-#ifdef USE_REDUDANT_LOADING
-
-	SecondaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
-	TertiaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
-
-	fbxsdk::FbxStatus SStatus = SecondaryImporter->GetStatus();
-	fbxsdk::FbxStatus TStatus = TertiaryImporter->GetStatus();
-
-#endif
+	//We are importing a binary fbx file, we need to be importing an ascii format -- I knew there
+	//was two types, but this is a bit dumb but ok
+	PrimaryImporter->Initialize((char*)test, -1, fbxManager->GetIOSettings());
 
 	fbxsdk::FbxStatus PStatus = PrimaryImporter->GetStatus();
 
@@ -140,34 +123,17 @@ void FBXComponent::InitalizeImporters(const char* Filename)
 	if (PStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
 	{
 		std::cout << "Fbx Primary Import Status is Successful" << std::endl;
+		Importers.insert({ PStatus, PrimaryImporter });
+
 	}
-
-#ifdef USE_REDUDANT_LOADING
-
-	if (SStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
+	else
 	{
-		std::cout << "Fbx Primary Import Status is Successful" << std::endl;
+		std::cout << "Fbx Primary Import Status is failed" << std::endl;
+
 	}
-
-	if (TStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
-	{
-		std::cout << "Fbx Primary Import Status is Successful" << std::endl;
-	}
-
-#endif
-
-	Importers.insert({ PStatus, PrimaryImporter });
-
-#ifdef USE_REDUDANT_LOADING
-
-	Importers.insert({ SStatus, SecondaryImporter });
-	Importers.insert({ TStatus, TertiaryImporter });
-
-#endif
-
 }
 
-bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* world)
+bool FBXComponent::LoadFBXScene(LPCWSTR Filename, FbxScene* Scene, World* world)
 {
 	int lFileMajor, lFileMinor, lFileRevision;
 	int lSDKMajor, lSDKMinor, lSDKRevision;
@@ -180,7 +146,7 @@ bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* wo
 
 	std::cout << "FBX file format for this is FBX SDK" << lSDKMajor << "." << lSDKMinor << std::endl;
 
-	auto Importer = GetImporter();
+	auto Importer = PrimaryImporter;
 
 	if (Importer->IsFBX())
 	{

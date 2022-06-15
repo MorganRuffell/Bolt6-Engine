@@ -47,7 +47,7 @@ public:
 	{
 		assert(_Accel != nullptr);
 
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 		ResolutionX = _DimensionX;
 		ResolutionY = _DimensionY;
@@ -70,7 +70,7 @@ public:
 		assert(_Accel != nullptr);
 		assert(Res.DimensionX != 0 && Res.DimensionY != 0);
 
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 		ResolutionX = Res.DimensionX;
 		ResolutionY = Res.DimensionY;
@@ -92,7 +92,7 @@ public:
 	{
 		assert(_Accel != nullptr);
 
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 
 		ResolutionX = context.Resolution.DimensionX;
 		ResolutionY = context.Resolution.DimensionY;

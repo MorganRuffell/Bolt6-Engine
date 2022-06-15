@@ -12,7 +12,7 @@ public:
 
 	DynamicMesh(Skeleton* _skl, AnimationSequence* _Seq, Vertex3* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* _Accel)
 	{
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 		m_skeleton = _skl;
 		m_Animation = _Seq;
 
@@ -63,7 +63,7 @@ public:
 
 	DynamicMesh(Skeleton* _skl, Vertex3* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* _Accel)
 	{
-		SetTag(EngineObjTag::NonEngine);
+		SetTag(EngineObjTag::Asset);
 		m_skeleton = _skl;
 
 		m_Indicies = vertexCount / 2;

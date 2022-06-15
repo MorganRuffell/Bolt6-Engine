@@ -7,19 +7,19 @@ void ResourceManagerComponent::InitalizeComponent()
 
     std::cout << "FBX Import Component Initalized Successfully" << std::endl;
 
-    MeshData Animation = {};
-    Animation.Filelocation = "";
-    Animation.DiffuseTexture = "";
-    Animation.NormalTexture = "";
+    //MeshData Animation = {};
+    //Animation.Filelocation = L"\Scene\StaticMesh.fbx";
+    //Animation.DiffuseTexture = L"\Scene\StageDiffuse.png";
+    //Animation.NormalTexture = L"\Scene\StageNormal.png";
 
     MeshData Static = {};
-    Animation.Filelocation = "";
-    Animation.DiffuseTexture = "";
-    Animation.NormalTexture = "";
+    Static.Filelocation = L"\Scene\StaticMesh.fbx";
+    Static.DiffuseTexture = L"\Scene\StageDiffuse.png";
+    Static.NormalTexture = L"\Scene\StageNormal.png";
 
     LoadTestResources();
-    LoadDynamicMeshResource(Animation);
     LoadStaticMeshResource(Static);
+    //LoadDynamicMeshResource(Animation);
 
 
     std::cout << "Resource Manager Component Initalized Successfully" << std::endl;
@@ -50,6 +50,8 @@ void ResourceManagerComponent::LoadDynamicMeshResource(MeshData MeshData)
     DiffuseContext.TextureFilename = (LPCWSTR) MeshData.NormalTexture;
 
     Anim->CreateMaterial(m_Accelerator, MeshData.MeshName, DiffuseContext, NormalContext);
+ 
+    m_World->AddDynamicMesh(MeshData.MeshName, Anim);
 }
 
 void ResourceManagerComponent::LoadStaticMeshResource(MeshData MeshData)
@@ -76,6 +78,8 @@ void ResourceManagerComponent::LoadStaticMeshResource(MeshData MeshData)
     DiffuseContext.TextureFilename = (LPCWSTR)MeshData.NormalTexture;
 
     SM->CreateMaterial(m_Accelerator, MeshData.MeshName, DiffuseContext, NormalContext);
+
+    m_World->AddStaticMesh(MeshData.MeshName, SM);
 }
 
 
@@ -103,17 +107,16 @@ void ResourceManagerComponent::LoadTestResources()
     DiffuseContext.Resolution.DimensionX = 2048;
     DiffuseContext.Resolution.DimensionY = 2048;
     DiffuseContext.Type = Diffuse;
-    DiffuseContext.TextureFilename = L"/LocationOFTexture";
+    DiffuseContext.TextureFilename = L"\Scene\StageDiffuse.png";
 
-    TextureContext NormalContext = {};
+    /*TextureContext NormalContext = {};
     DiffuseContext.AllowOverwriting = true;
     DiffuseContext.Resolution.DimensionX = 2048;
     DiffuseContext.Resolution.DimensionY = 2048;
     DiffuseContext.Type = Normal;
-    DiffuseContext.TextureFilename = L"/LocationOFTexture";
+    DiffuseContext.TextureFilename = L"..\Bolt6ProgrammingTest\Scene\StageNormal.png";*/
 
-    Stage->CreateMaterial(m_Accelerator, SMeshName, DiffuseContext, NormalContext);
-
+    Stage->CreateMaterial(m_Accelerator, SMeshName, DiffuseContext);
 }
 
 

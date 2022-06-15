@@ -19,7 +19,7 @@ namespace EngineObjTag
 	enum ObjectTag
 	{
 		Engine,
-		NonEngine,
+		Asset,
 	};
 }
 
