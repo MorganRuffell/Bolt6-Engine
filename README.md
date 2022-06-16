@@ -11,5 +11,5 @@ Part of the task was to build this whole project from scratch, I started just wi
 
 ### External
 - https://www.autodesk.com/developer-network/platform-technologies/fbx-sdk-2020-2-1 Autodesk FBX SDK, I'm using an older one from 2016 in this solution 
-- DirectX11 - Microsoft Corporation 
+- DirectX11.3 - Microsoft Corporation 
 - C++20
