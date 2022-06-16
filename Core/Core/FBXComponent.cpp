@@ -372,7 +372,7 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 
 	StaticMesh* SM = new StaticMesh(&Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel, MeshName);
 
-	SM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
+	//SM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
 
 	return SM;
 }

@@ -96,6 +96,7 @@ protected:
     virtual void LoadStaticMeshResource(MeshData MeshData);
     virtual void LoadTestResources();
 
+    void LoadStaticNodes(FbxNode* node);
     
 protected:
 

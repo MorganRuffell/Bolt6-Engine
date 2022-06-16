@@ -60,8 +60,9 @@ void ResourceManagerComponent::LoadStaticMeshResource(MeshData MeshData)
     assert(m_Accelerator != nullptr);
 
     m_FBXImportComponent->LoadFBXScene(MeshData.Filelocation, m_FBXImportComponent->GetMostRecentScene(), m_World);
+    LoadStaticNodes(m_FBXImportComponent->GetMostRecentScene()->GetRootNode());
 
-    StaticMesh* SM = m_FBXImportComponent->CreateStaticMesh(m_FBXImportComponent->GetMostRecentScene()->GetRootNode(), m_Accelerator, MeshData.MeshName);
+    StaticMesh* SM = m_FBXImportComponent->CreateStaticMesh(m_FBXImportComponent->GetMostRecentScene()->GetRootNode()->GetChild(0), m_Accelerator, MeshData.MeshName);
 
     TextureContext DiffuseContext = {};
     DiffuseContext.AllowOverwriting = true;
@@ -118,6 +119,17 @@ void ResourceManagerComponent::LoadTestResources()
     DiffuseContext.TextureFilename = L"..\Bolt6ProgrammingTest\Scene\StageNormal.png";*/
 
     Stage->CreateMaterial(m_Accelerator, SMeshName, DiffuseContext);
+}
+
+void ResourceManagerComponent::LoadStaticNodes(FbxNode* node)
+{
+    FbxString nodeName = node->GetName();
+    int childCount = node->GetChildCount();
+
+    for (int i = 0; i < childCount; i++)
+    {
+        LoadStaticNodes(node->GetChild(i));
+    }
 }
 
 
