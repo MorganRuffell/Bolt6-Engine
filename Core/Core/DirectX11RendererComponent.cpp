@@ -26,7 +26,8 @@ void DirectX11RendererComponent::InitalizeComponent()
 	//As we are only using vertex and pixel (fragment) shaders - we are using TRIANGLELIST, in other versions
 	//of DirectX we can use patches when working with Hull and Domain shaders
 
-	m_Accel->GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	primitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	m_Accel->GetDeviceContext()->IASetPrimitiveTopology(primitiveTopology);
 }
 
 bool DirectX11RendererComponent::TerminateComponent()
@@ -160,6 +161,7 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 
 	UpdateDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate),world->GetViewportCamera(), accel, world);
 	DrawIndividualDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate),m_Accel);
+
 }
 
 void DirectX11RendererComponent::UpdatePixelShaders(std::vector<PixelShader*>& StaticMeshPixelShaders, std::vector<Material*>& StaticMeshMaterials, BaseCamera* Camera, std::vector<PixelShader*>& DynamicMeshPixelShaders, std::vector<Material*>& DynamicMeshMaterials)
@@ -209,6 +211,44 @@ void DirectX11RendererComponent::UpdateVertexShaders(std::vector<VertexShader*>&
 		element->SetMatrix4x4("projection", Camera->GetProjectionMatrix());
 		element->SetShaderAndCBs();
 	}
+}
+
+void DirectX11RendererComponent::UpdateStaticMesh(StaticMesh* Mesh, BaseCamera* Camera, Accelerator* Accel, World* world)
+{
+	std::vector<Material*>			Materials;
+	std::vector<PixelShader*>		PixelShaders;
+	std::vector<VertexShader*>		VertexShaders;
+
+	//Appen all of the materials to these arrays ready for rendering.
+	for (int i = 0; i < Mesh->MeshMaterials.size(); i++)
+	{
+		Materials.push_back(Mesh->GetMaterialatIndex(i));
+	}
+
+	for (auto& element : Materials)
+	{
+		PixelShaders.push_back(element->m_MaterialPixelShader);
+		VertexShaders.push_back(element->m_MaterialVertexShader);
+	}
+
+	for (auto& Shader : VertexShaders)
+	{
+		Shader->SetMatrix4x4("world", world->GetWorldMatrix());
+		Shader->SetMatrix4x4("view", world->GetViewportCamera()->GetViewMatrix());
+		Shader->SetMatrix4x4("projection", world->GetViewportCamera()->GetProjectionMatrix());
+	}
+
+	UpdateShaders(VertexShaders, PixelShaders);
+
+	auto VertexBuffer = Mesh->GetVertexBuffer();
+	UINT stride = sizeof(Vertex3); //stride is the size of each vertex
+	UINT offset = 0; //Offset in buffers, we've tightly packed these buffers
+
+	auto AcceleratorContext = Accel->GetDeviceContext();
+
+	AcceleratorContext->IASetVertexBuffers(0, 1, &VertexBuffer, &stride, &offset);
+	AcceleratorContext->IASetIndexBuffer(Mesh->GetIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+	AcceleratorContext->DrawIndexed(Mesh->GetIndexCount(), 0, 0);
 }
 
 void DirectX11RendererComponent::UpdateDynamicMesh(DynamicMesh* Mesh, BaseCamera* Camera, Accelerator* Accel, World* world)

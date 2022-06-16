@@ -4,6 +4,7 @@
 #include <fbxsdk.h>
 #include <string>
 #include <map>
+#include <vector>
 
 using namespace DirectX;
 using namespace fbxsdk;

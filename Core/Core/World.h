@@ -106,14 +106,6 @@ public:
 		}
 	}
 
-	DynamicMesh* GetDynamicMesh(int Index)
-	{
-		if (DynamicMeshes.size() > Index)
-		{
-			return DynamicMeshes.at(Index);
-		}
-	}
-
 	BaseCamera* GetCamera(std::string& Name)
 	{
 		if (Cameras.contains(Name))

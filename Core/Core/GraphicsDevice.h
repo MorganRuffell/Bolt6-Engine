@@ -63,8 +63,14 @@ public:
 	ID3D11RenderTargetView*	MainRenderTargetView;
 	ID3D11DepthStencilView* MainDepthStencilView;
 
+protected:
+
+	void CheckForMSAASupport();
+
 
 private:
+
+	IDXGIFactory*					Factory;
 
 	ComPtr<ID3D11Texture2D>			RenderTargetTexture;
 	

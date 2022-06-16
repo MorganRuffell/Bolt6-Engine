@@ -53,7 +53,9 @@ bool TestEngine::Update()
     m_UIComponent->DrawImGui();
     m_UIComponent->RenderImGui();
 
+    auto world = m_WorldComponent->GetCurrentWorld();
 
+    m_RendererComponent->Update(world,m_RendererComponent->GetViewportCamera(), m_GraphicsDevice->m_Accelerator.get());
     return true;
 }
 

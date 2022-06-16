@@ -42,7 +42,6 @@ public:
 
 	bool SetSRV(std::string name, ID3D11ShaderResourceView* srv) override;
 
-	bool SetSamplerState(std::string name, ID3D11SamplerState* samplerState) override;
 
 
 

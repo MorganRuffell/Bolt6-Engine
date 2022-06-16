@@ -19,12 +19,10 @@ public:
 	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) override;
 
 	void UpdatePixelShaders(std::vector<PixelShader*>& StaticMeshPixelShaders, std::vector<Material*>& StaticMeshMaterials, BaseCamera* Camera, std::vector<PixelShader*>& DynamicMeshPixelShaders, std::vector<Material*>& DynamicMeshMaterials);
-
 	void UpdateVertexShaders(std::vector<VertexShader*>& StaticMeshVertexShaders, World* world, BaseCamera* Camera, std::vector<VertexShader*>& DynamicMeshVertexShaders);
 
-
+	void UpdateStaticMesh(StaticMesh* Mesh, BaseCamera* Camera, Accelerator* Accel, World* world);
 	void UpdateDynamicMesh(DynamicMesh* Mesh, BaseCamera* Camera, Accelerator* Accel, World* world);
-
 	void UpdateBoneData(DynamicMesh* Mesh, Skeleton* Skeleton, Bone2  bones[100]);
 
 	void UpdateShaders(std::vector<VertexShader*>& VertexShaders, std::vector<PixelShader*>& PixelShaders);
@@ -38,6 +36,13 @@ protected:
 	void DestroyRasterizerStates();
 
 	bool InitalizeCamera();
+
+public:
+
+	BaseCamera* GetViewportCamera()
+	{
+		return ViewportCamera.get();
+	}
 
 
 protected:
@@ -70,7 +75,7 @@ protected:
 
 protected:
 
-	D3D11_PRIMITIVE_TOPOLOGY primitiveTopology;
+	D3D11_PRIMITIVE_TOPOLOGY		primitiveTopology;
 
 
 	// Inherited via BaseRendererComponent

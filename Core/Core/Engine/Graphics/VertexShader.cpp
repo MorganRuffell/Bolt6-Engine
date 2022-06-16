@@ -36,17 +36,6 @@ bool VertexShader::SetShaderResourceView(std::string name, ID3D11ShaderResourceV
     return true;
 }
 
-bool VertexShader::SetSamplerState(std::string name, ID3D11SamplerState* samplerState)
-{
-	const Sampler* SAMP_DATA = GetSamplerInfo(name);
-	if (SAMP_DATA == 0)
-		return false;
-
-	deviceContext->VSSetSamplers(SAMP_DATA->BindIndex, 1, &samplerState);
-
-    return true;
-}
-
 bool VertexShader::CreateProgram(ID3DBlob* shaderBlob)
 {
 	//Asserting that this is blob does not contain an already existing shader.
