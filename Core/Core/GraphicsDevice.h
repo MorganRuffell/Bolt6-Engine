@@ -49,6 +49,11 @@ public:
 		return MainRenderTargetView;
 	}
 
+	ID3D11DepthStencilView* GetMainDepthStencilView()
+	{
+		return MainDepthStencilView;
+	}
+
 public:
 
 	bool UseVsync;

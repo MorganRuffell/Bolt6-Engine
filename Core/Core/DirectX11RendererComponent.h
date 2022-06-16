@@ -22,6 +22,14 @@ public:
 
 	void UpdateVertexShaders(std::vector<VertexShader*>& StaticMeshVertexShaders, World* world, BaseCamera* Camera, std::vector<VertexShader*>& DynamicMeshVertexShaders);
 
+
+	void UpdateDynamicMesh(DynamicMesh* Mesh, BaseCamera* Camera, Accelerator* Accel, World* world);
+
+	void UpdateBoneData(DynamicMesh* Mesh, Skeleton* Skeleton, Bone2  bones[100]);
+
+	void UpdateShaders(std::vector<VertexShader*>& VertexShaders, std::vector<PixelShader*>& PixelShaders);
+
+
 	void Render(GraphicsDevice* accel, int VSyncOpt1, int VSyncOpt2) override;
 
 protected:
@@ -43,10 +51,11 @@ protected:
 
 protected:
 
-	RasterizerState* StandardRS;
-	RasterizerState* WireframeRS;
+	RasterizerState*	StandardRS;
+	RasterizerState*	WireframeRS;
 
-
+	Accelerator*		m_Accel;
+	GraphicsDevice*		m_GraphicsDevice;
 protected:
 
 	std::unique_ptr<BaseCamera>			ViewportCamera;

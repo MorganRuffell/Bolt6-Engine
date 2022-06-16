@@ -215,7 +215,7 @@ void BaseShader::CopyBufferData(std::string& bufferName)
 		cb->LocalDataBuffer, 0, 0);
 }
 
-bool BaseShader::SetData(std::string& Name, const void* data, int size)
+bool BaseShader::SetData(std::string Name, const void* data, int size)
 {
 	ShaderVariable* var = FindVariable(Name, size);
 	if (var == 0)

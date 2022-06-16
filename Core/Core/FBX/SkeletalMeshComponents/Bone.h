@@ -224,6 +224,8 @@ protected:
 
 public:
 
+
+
 	bool AddChild(Bone2* Child)
 	{
 		assert(Child != nullptr);

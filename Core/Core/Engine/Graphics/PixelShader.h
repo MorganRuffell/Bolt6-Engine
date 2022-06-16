@@ -22,7 +22,7 @@ public:
 	
 public:
 
-	bool SetShaderResourceView(std::string& name, ID3D11ShaderResourceView* srv);
+	bool SetShaderResourceView(std::string name, ID3D11ShaderResourceView* srv);
 	bool SetSamplerState(std::string name, ID3D11SamplerState* SamplerState);
 
 public:

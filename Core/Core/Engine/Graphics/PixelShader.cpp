@@ -47,7 +47,7 @@ void PixelShader::Terminate()
 	}
 }
 
-bool PixelShader::SetShaderResourceView(std::string& name, ID3D11ShaderResourceView* srv)
+bool PixelShader::SetShaderResourceView(std::string name, ID3D11ShaderResourceView* srv)
 {
 	assert(deviceContext != nullptr);
 

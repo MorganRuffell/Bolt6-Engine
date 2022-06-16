@@ -171,6 +171,7 @@
     <ClCompile Include="Engine\Graphics\VertexShader.cpp" />
     <ClCompile Include="Engine\TestEngine.cpp" />
     <ClCompile Include="FBXComponent.cpp" />
+    <ClCompile Include="FBX\SkeletalMeshComponents\Bone.cpp" />
     <ClCompile Include="FBX\SkeletalMeshComponents\Skeleton.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsDevice.cpp" />

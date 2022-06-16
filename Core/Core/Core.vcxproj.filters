@@ -247,6 +247,7 @@
     <ClCompile Include="..\..\External\Microsoft\WICTextureLoader.cpp">
       <Filter>External\Microsoft</Filter>
     </ClCompile>
+    <ClCompile Include="FBX\SkeletalMeshComponents\Bone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Resources\BoltAILogo.png">

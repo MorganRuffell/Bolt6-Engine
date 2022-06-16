@@ -22,7 +22,7 @@ public:
 
 public:
 
-	bool SetData(std::string& Name, const void* data, int size);
+	bool SetData(std::string Name, const void* data, int size);
 
 	//Pure virtuals, this class SHOULD NEVER be instantiated directly
 	virtual bool SetSRV(std::string name, ID3D11ShaderResourceView* srv) = 0;
