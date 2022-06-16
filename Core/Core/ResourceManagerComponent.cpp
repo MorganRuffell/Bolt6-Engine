@@ -77,6 +77,7 @@ void ResourceManagerComponent::LoadStaticMeshResource(MeshData MeshData)
     DiffuseContext.Type = Normal;
     DiffuseContext.TextureFilename = (LPCWSTR)MeshData.NormalTexture;
 
+    //Fix the vertex shader issue, if we don't solve that we're going nowhere.
     SM->CreateMaterial(m_Accelerator, MeshData.MeshName, DiffuseContext, NormalContext);
 
     m_World->AddStaticMesh(MeshData.MeshName, SM);

@@ -34,6 +34,14 @@ class Bone2
 
 public:
 
+	//Default constructor for renderer use only.
+	Bone2()
+	{
+
+	}
+
+public:
+
 	//Constructor for creating a new bone relative to it's parent
 	Bone2(std::string& Name, XMFLOAT4X4 OffsetPosition, Bone2* Parent) :
 		mFBXNode(nullptr)

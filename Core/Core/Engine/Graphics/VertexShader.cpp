@@ -169,7 +169,7 @@ void VertexShader::Terminate()
 {
 }
 
-bool VertexShader::SetSRV(std::string& name, ID3D11ShaderResourceView* srv)
+bool VertexShader::SetSRV(std::string name, ID3D11ShaderResourceView* srv)
 {
 	assert(srv != nullptr);
 
@@ -177,7 +177,7 @@ bool VertexShader::SetSRV(std::string& name, ID3D11ShaderResourceView* srv)
 	return false;
 }
 
-bool VertexShader::SetSamplerState(std::string& name, ID3D11SamplerState* samplerState)
+bool VertexShader::SetSamplerState(std::string name, ID3D11SamplerState* samplerState)
 {
 	assert(deviceContext != nullptr);
 

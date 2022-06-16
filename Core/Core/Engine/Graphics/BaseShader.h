@@ -25,14 +25,24 @@ public:
 	bool SetData(std::string& Name, const void* data, int size);
 
 	//Pure virtuals, this class SHOULD NEVER be instantiated directly
-	virtual bool SetSRV(std::string& name, ID3D11ShaderResourceView* srv) = 0;
-	virtual bool SetSamplerState(std::string& name, ID3D11SamplerState* samplerState) = 0;
+	virtual bool SetSRV(std::string name, ID3D11ShaderResourceView* srv) = 0;
+	virtual bool SetSamplerState(std::string name, ID3D11SamplerState* samplerState) = 0;
 	virtual void SetShaderAndCBs() = 0;
 
 	bool SetMatrix4x4(std::string name, const DirectX::XMFLOAT4X4 data)
 	{
 		//registers are 16 bytes aligned
 		return this->SetData(name, &data, sizeof(float) * 16);
+	}
+
+	bool SetFloat3(std::string name, const float data[3])
+	{
+		return this->SetData(name, (void*)data, sizeof(float) * 3);
+	}
+
+	bool SetFloat3(std::string name, const DirectX::XMFLOAT3 data)
+	{
+		return this->SetData(name, &data, sizeof(float) * 3);
 	}
 
 public:

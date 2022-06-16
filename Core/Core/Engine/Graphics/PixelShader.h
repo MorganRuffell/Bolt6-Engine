@@ -14,19 +14,20 @@ protected:
 
 	ID3D11PixelShader* shader;
 
-protected:
+public:
 
 	bool CreateShader(ID3DBlob* shaderBlob);
 	void SetShaderAndCBs() override;
 	void Terminate();
 	
-protected:
+public:
 
 	bool SetShaderResourceView(std::string& name, ID3D11ShaderResourceView* srv);
-	bool SetSamplerState(std::string& name, ID3D11SamplerState* SamplerState);
+	bool SetSamplerState(std::string name, ID3D11SamplerState* SamplerState);
 
+public:
 	// Inherited via BaseShader
 	virtual bool CreateProgram(ID3DBlob* shaderBlob) override;
 	virtual void SetProgramAndConstantBuffers() override;
-	virtual bool SetSRV(std::string& name, ID3D11ShaderResourceView* srv) override;
+	virtual bool SetSRV(std::string name, ID3D11ShaderResourceView* srv) override;
 };

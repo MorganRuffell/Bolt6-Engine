@@ -217,6 +217,15 @@ public:
 		m_TextureData->Release();
 	}
 
+public:
+
+	ID3D11ShaderResourceView* GetResourceView()
+	{
+		assert(ResourceView != nullptr);
+		return ResourceView;
+	}
+
+
 
 protected:
 

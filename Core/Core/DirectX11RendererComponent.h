@@ -18,6 +18,10 @@ public:
 
 	virtual void Update(World* world, BaseCamera* Camera, Accelerator* accel) override;
 
+	void UpdatePixelShaders(std::vector<PixelShader*>& StaticMeshPixelShaders, std::vector<Material*>& StaticMeshMaterials, BaseCamera* Camera, std::vector<PixelShader*>& DynamicMeshPixelShaders, std::vector<Material*>& DynamicMeshMaterials);
+
+	void UpdateVertexShaders(std::vector<VertexShader*>& StaticMeshVertexShaders, World* world, BaseCamera* Camera, std::vector<VertexShader*>& DynamicMeshVertexShaders);
+
 	void Render(GraphicsDevice* accel, int VSyncOpt1, int VSyncOpt2) override;
 
 protected:

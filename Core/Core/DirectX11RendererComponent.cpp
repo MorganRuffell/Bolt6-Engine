@@ -55,11 +55,12 @@ bool DirectX11RendererComponent::InitalizeCamera()
 	{
 		return false;
 	}
-
 }
 
 void DirectX11RendererComponent::BeginFrame(Accelerator* Accel)
 {
+
+
 
 }
 
@@ -141,11 +142,76 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 		}
 	}
 
+	UpdateVertexShaders(StaticMeshVertexShaders, world, Camera, DynamicMeshVertexShaders);
+	UpdatePixelShaders(StaticMeshPixelShaders, StaticMeshMaterials, Camera, DynamicMeshPixelShaders, DynamicMeshMaterials);
+	
+
+	//No do this for each skeleton, this isn't going to work.
+
+	/*int TotalSkeletonBonesSize = 0;
+	TotalSkeletonBonesSize = (sizeof(XMFLOAT4X4) * 72 * 2);
+	Bone2 SceneSkeletalData[72];
+
+	int TotalWorldBoneCount;
+	for (int i = 0; i < world->GetDynamicMeshes().size(); i++)
+	{
+		TotalWorldBoneCount += world->GetDynamicMeshes().at(i)->GetSkeleton()->mBones.size();
+	}
+
+
+	for (int i = 0; i < TotalWorldBoneCount; i++)
+	{
+		XMMATRIX jointTransformMatrix = XMLoadFloat4x4(&world->GetDynamicMeshes().at(i)->GetSkeleton()->mBones.at(i)->BoneTransform);
+		XMMATRIX invJointTransformMatrix = XMLoadFloat4x4(&world->GetDynamicMeshes().at(i)->GetSkeleton()->mBones.at(i)->mRelativeBindposeInverse);
+
+		XMFLOAT4X4 trans = {};
+		XMStoreFloat4x4(&trans, XMMatrixTranspose(jointTransformMatrix));
+		SceneSkeletalData[i].BoneTransform = trans;
+	}*/
+
+
+
+
+}
+
+void DirectX11RendererComponent::UpdatePixelShaders(std::vector<PixelShader*>& StaticMeshPixelShaders, std::vector<Material*>& StaticMeshMaterials, BaseCamera* Camera, std::vector<PixelShader*>& DynamicMeshPixelShaders, std::vector<Material*>& DynamicMeshMaterials)
+{
+	//This updates the resource views of the textures, as well as the sampler states.
+	for (int i = 0; i < StaticMeshPixelShaders.size(); i++)
+	{
+		StaticMeshPixelShaders[i]->SetSamplerState("Sampler", StaticMeshMaterials[0]->GetSamplerState()->GetSampleState());
+
+		//In future if I want to expand the materials, then they go in here, in case they are null, then it's totally fine
+		StaticMeshPixelShaders[i]->SetSRV("BaseColour", StaticMeshMaterials[0]->GetDiffuseTexture()->GetResourceView());
+		StaticMeshPixelShaders[i]->SetSRV("Normal", StaticMeshMaterials[0]->GetNormalTexture()->GetResourceView());
+
+		StaticMeshPixelShaders[i]->SetFloat3("ViewportCameraPosition", Camera->GetPosition());
+
+		StaticMeshPixelShaders[i]->SetShaderAndCBs();
+	}
+
+	for (int i = 0; i < DynamicMeshPixelShaders.size(); i++)
+	{
+		DynamicMeshPixelShaders[i]->SetSamplerState("Sampler", DynamicMeshMaterials[0]->GetSamplerState()->GetSampleState());
+
+		//In future if I want to expand the materials, then they go in here, in case they are null, then it's totally fine
+		DynamicMeshPixelShaders[i]->SetSRV("BaseColour", DynamicMeshMaterials[0]->GetDiffuseTexture()->GetResourceView());
+		DynamicMeshPixelShaders[i]->SetSRV("Normal", DynamicMeshMaterials[0]->GetNormalTexture()->GetResourceView());
+
+		DynamicMeshPixelShaders[i]->SetFloat3("ViewportCameraPosition", Camera->GetPosition());
+
+		DynamicMeshPixelShaders[i]->SetShaderAndCBs();
+	}
+}
+
+void DirectX11RendererComponent::UpdateVertexShaders(std::vector<VertexShader*>& StaticMeshVertexShaders, World* world, BaseCamera* Camera, std::vector<VertexShader*>& DynamicMeshVertexShaders)
+{
 	for (auto& element : StaticMeshVertexShaders)
 	{
 		element->SetMatrix4x4("world", world->GetWorldMatrix());
 		element->SetMatrix4x4("view", Camera->GetViewMatrix());
 		element->SetMatrix4x4("projection", Camera->GetProjectionMatrix());
+		element->SetShaderAndCBs();
 	}
 
 	for (auto& element : DynamicMeshVertexShaders)
@@ -153,9 +219,8 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 		element->SetMatrix4x4("world", world->GetWorldMatrix());
 		element->SetMatrix4x4("view", Camera->GetViewMatrix());
 		element->SetMatrix4x4("projection", Camera->GetProjectionMatrix());
+		element->SetShaderAndCBs();
 	}
-
-	//Finish import procedure before going further!
 }
 
 //Swaps the swapchain.
