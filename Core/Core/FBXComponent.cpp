@@ -587,10 +587,6 @@ void FBXComponent::GetMatrixesFromMesh(fbxsdk::FbxNode* Node, Accelerator* _acce
 {
 }
 
-XMFLOAT4X4 FBXComponent::GetJointGlobalTransform(int, std::vector<Bone2*> Collection)
-{
-	return XMFLOAT4X4();
-}
 
 XMFLOAT4X4 FBXComponent::FbxAMatrixToXMFloat4x4(FbxAMatrix Matrix)
 {

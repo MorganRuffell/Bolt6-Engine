@@ -78,13 +78,6 @@ public:
 
 protected:
 
-
-
-
-
-
-protected:
-
 	void InitalizeFBXObjects();
 	void TerminateFBXObjects();
 
@@ -116,10 +109,7 @@ protected:
 
 	void GetMatrixesFromMesh(_Inout_ fbxsdk::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);
 
-	XMFLOAT4X4 GetJointGlobalTransform(int, _In_ std::vector<Bone2*> Collection);
 	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(fbxsdk::FbxAMatrix Matrix);
-
-	FbxImporter* GetImporter();
 
 	FBXImportSettings ImportSettings;
 
