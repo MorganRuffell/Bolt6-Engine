@@ -24,29 +24,23 @@
   <Class Name="FBXComponent">
     <Position X="1" Y="2" Width="4" />
     <TypeIdentifier>
-      <HashCode>AEEAABAgECA8AEAgEAAFIIQEAEEAIAAiEAAAQAAAAAA=</HashCode>
+      <HashCode>AAEEABAgACA4AEAgEAAFIIQUAEAAAAAiEAAAQEAAEAA=</HashCode>
       <FileName>FBXComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ResourceManagerComponent">
     <Position X="3.25" Y="9.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAIAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAACEAAAAAAIAAABAAAAEEAQAAQIBAAAAA=</HashCode>
       <FileName>ResourceManagerComponent.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="m_FBXImportComponent" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="TestEngine">
     <Position X="13.25" Y="6.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAQAJEgAQAQkQAAAQAAAAAACACAAAAIACBQGAAAACAA=</HashCode>
+      <HashCode>AAQAJEAAQAQEQAAAQAAAAAACACAAAAIACBQGAAAACAA=</HashCode>
       <FileName>Engine\TestEngine.h</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="m_WorldComponent" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="WorldComponent">
     <Position X="9.5" Y="9.75" Width="2.25" />
@@ -57,12 +51,27 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>EAAAAAAAABAAQEAAAAAAIAAAEAAAIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAABAAQEAAAAAAIAAAEAAAIAIAAAAAAAAAAAA=</HashCode>
       <FileName>WorldComponent.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_ResourceManagerComponent" />
+      <Field Name="m_CurrentWorld" />
+      <Field Name="m_CurrentWorld" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="std::shared_ptr&lt;_Ty&gt;" Collapsed="true">
+    <Position X="13.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAEAAAIAgAAEAEAAICgAQAgAAAAAAA=</HashCode>
+      <FileName>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\memory</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="World" Collapsed="true">
+    <Position X="13.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgACAAEBAAAACAAAACIAEAAAECAAACAAAEoAAAAAI=</HashCode>
+      <FileName>World.h</FileName>
+    </TypeIdentifier>
   </Class>
   <Struct Name="FBXImportSettings">
     <Position X="1" Y="0.5" Width="2.25" />

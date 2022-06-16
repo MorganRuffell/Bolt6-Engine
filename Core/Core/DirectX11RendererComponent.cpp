@@ -68,8 +68,6 @@ bool DirectX11RendererComponent::InitalizeCamera()
 void DirectX11RendererComponent::BeginFrame(Accelerator* Accel)
 {
 
-
-
 }
 
 void DirectX11RendererComponent::EndFrame(Accelerator* Accel)
@@ -156,7 +154,7 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 	UpdateVertexShaders(StaticMeshVertexShaders, world, Camera, DynamicMeshVertexShaders);
 	UpdatePixelShaders(StaticMeshPixelShaders, StaticMeshMaterials, Camera, DynamicMeshPixelShaders, DynamicMeshMaterials);
 	
-	//Will only be one for now
+	//Will only be one for now, we'll get the name from the fbx component, 
 	std::string NameOfdynamicMeshToUpdate = "Name";
 
 	UpdateDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate),world->GetViewportCamera(), accel, world);
@@ -219,7 +217,7 @@ void DirectX11RendererComponent::UpdateStaticMesh(StaticMesh* Mesh, BaseCamera* 
 	std::vector<PixelShader*>		PixelShaders;
 	std::vector<VertexShader*>		VertexShaders;
 
-	//Appen all of the materials to these arrays ready for rendering.
+	//Append all of the materials to these arrays ready for rendering.
 	for (int i = 0; i < Mesh->MeshMaterials.size(); i++)
 	{
 		Materials.push_back(Mesh->GetMaterialatIndex(i));

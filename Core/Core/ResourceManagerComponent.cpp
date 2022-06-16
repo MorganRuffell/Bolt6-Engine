@@ -3,7 +3,7 @@
 
 void ResourceManagerComponent::InitalizeComponent()
 {
-    m_FBXImportComponent = new FBXComponent();
+    m_FBXImportComponent = std::make_unique<FBXComponent>();
 
     std::cout << "FBX Import Component Initalized Successfully" << std::endl;
 
@@ -13,9 +13,9 @@ void ResourceManagerComponent::InitalizeComponent()
     //Animation.NormalTexture = L"\Scene\StageNormal.png";
 
     MeshData Static = {};
-    Static.Filelocation = L"\Scene\StaticMesh.fbx";
-    Static.DiffuseTexture = L"\Scene\StageDiffuse.png";
-    Static.NormalTexture = L"\Scene\StageNormal.png";
+    Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6DX11Test\\Resources\\Teapot.fbx";
+    Static.DiffuseTexture = L"\Scene\\StageDiffuse.png";
+    Static.NormalTexture = L"\Scene\\StageNormal.png";
 
     LoadTestResources();
     LoadStaticMeshResource(Static);

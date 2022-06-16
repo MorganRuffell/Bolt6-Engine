@@ -35,6 +35,7 @@ int main(int, char**)
 
     Engine.Init(hwnd);
     bool Complete = false;
+    bool Paused = false;
 
     std::cout << "Engine Initailzation Complete" << std::endl;
 
@@ -47,9 +48,17 @@ int main(int, char**)
             ::DispatchMessage(&msg);
             if (msg.message == WM_QUIT)
                 Complete = true;
+
+            if (msg.message == WM_ACTIVATE)
+                Paused = true;
         }
         if (Complete)
             break;
+
+        if (Paused);
+        {
+            continue;
+        }
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
@@ -59,6 +68,7 @@ int main(int, char**)
 
 
         Engine.Render();
+   
     }
 
     std::cout << "Engine Shutdown Complete!" << std::endl;
@@ -85,6 +95,8 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
     switch (msg)
     {
+    case WM_ACTIVATE:
+        return 0;
     case WM_SIZE:
         if (Engine.m_GraphicsDevice->m_Accelerator->Device != NULL && wParam != SIZE_MINIMIZED)
         {

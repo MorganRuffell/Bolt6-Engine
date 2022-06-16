@@ -69,7 +69,7 @@ public:
 
 public:
 
-	void InitalizeImporters(LPCWSTR Filename);
+	void InitalizeImporters(const char* Filename);
 
 public:
 
@@ -86,11 +86,11 @@ protected:
 public:
 	void InitalizeImportSettings();
 
-	fbxsdk::FbxNodeAttribute::EType DetermineTypeOfNode(fbxsdk::FbxNode* Node);
+	fbxsdk::FbxNodeAttribute* DetermineTypeOfNode(fbxsdk::FbxNode* Node);
 
 public:
 
-	bool LoadFBXScene(_In_ LPCWSTR Filename, fbxsdk::FbxScene* Scene, World* world);
+	bool LoadFBXScene(_In_ const char* Filename, fbxsdk::FbxScene* Scene, World* world);
 	void LoadSkeletonJoints(_In_ fbxsdk::FbxNode*, _Inout_ Skeleton* s_kl);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel, std::string& MeshName);
@@ -105,6 +105,7 @@ protected:
 
 	int FindBoneIndex(const std::string& name, std::vector<Bone2*>& BoneCollection);
 
+	XMFLOAT4X4 GetJointGlobalTransform(int val, std::vector<Bone2*> Bones, Skeleton* _Skl);
 protected:
 
 	void GetMatrixesFromMesh(_Inout_ fbxsdk::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);

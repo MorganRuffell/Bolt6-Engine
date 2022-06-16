@@ -42,7 +42,7 @@ void FBXComponent::GetAnimatedMatrix(float DeltaTime, Skeleton* _skl)
 
 	for (int i = 0; i < _skl->mBones.size(); i++)
 	{
-		_skl->mBones[i]->SetboneTransform(GetJointGlobalTransform(i, _skl->mBones));
+		_skl->mBones[i]->SetboneTransform(GetJointGlobalTransform(i, _skl->mBones, _skl));
 	}
 }
 
@@ -105,22 +105,45 @@ void FBXComponent::InitalizeImportSettings()
 	ImportSettings.ReplaceTriangulatedGeometry = false;
 }
 
-void FBXComponent::InitalizeImporters(LPCWSTR Filename)
+void FBXComponent::InitalizeImporters(const char* Filename)
 {
 	assert(fbxManager != nullptr);
 
-	auto test = (char*) Filename;
+	int lFileMajor, lFileMinor, lFileRevision;
+	int lSDKMajor, lSDKMinor, lSDKRevision;
 
-	FbxImporter* PrimaryImporter = FbxImporter::Create(fbxManager, (char*)test);
+	bool Result;
 
-	//We are importing a binary fbx file, we need to be importing an ascii format -- I knew there
-	//was two types, but this is a bit dumb but ok
-	PrimaryImporter->Initialize((char*)test, -1, fbxManager->GetIOSettings());
+	fbxsdk::FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
 
-	fbxsdk::FbxStatus PStatus = PrimaryImporter->GetStatus();
+	//fbxsdk::FbxManager::Get
+
+	PrimaryImporter = FbxImporter::Create(fbxManager, Filename);
+
+	const bool lImportStatus = PrimaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
+
+	//Why does this not work! -- It makes no sense.
+	PrimaryImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+
+	if (!lImportStatus)
+	{
+		FbxString error = PrimaryImporter->GetStatus().GetErrorString();
+		FBXSDK_printf("Call to FbxImporter::Initialize() failed.\n");
+		FBXSDK_printf("Error returned: %s\n\n", error.Buffer());
+
+		if (PrimaryImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
+		{
+			FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+		}
+
+		FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", Filename, lFileMajor, lFileMinor, lFileRevision);
+	}
+
+	FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+	FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", Filename, lFileMajor, lFileMinor, lFileRevision);
 
 
-	if (PStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
+	/*if (PStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
 	{
 		std::cout << "Fbx Primary Import Status is Successful" << std::endl;
 		Importers.insert({ PStatus, PrimaryImporter });
@@ -130,10 +153,10 @@ void FBXComponent::InitalizeImporters(LPCWSTR Filename)
 	{
 		std::cout << "Fbx Primary Import Status is failed" << std::endl;
 
-	}
+	}*/
 }
 
-bool FBXComponent::LoadFBXScene(LPCWSTR Filename, FbxScene* Scene, World* world)
+bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* world)
 {
 	int lFileMajor, lFileMinor, lFileRevision;
 	int lSDKMajor, lSDKMinor, lSDKRevision;
@@ -148,32 +171,29 @@ bool FBXComponent::LoadFBXScene(LPCWSTR Filename, FbxScene* Scene, World* world)
 
 	auto Importer = PrimaryImporter;
 
-	if (Importer->IsFBX())
-	{
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_MATERIAL, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_TEXTURE, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_LINK, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_SHAPE, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_GOBO, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_ANIMATION, true);
-		fbxInputOutputSettings->SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
-	}
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_MATERIAL, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_TEXTURE, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_LINK, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_SHAPE, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_GOBO, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_ANIMATION, true);
+	fbxInputOutputSettings->SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
 
-	Result = Importer->Import(Scene);
+	Result = Importer->Import(Scene,false);
 	Importer->ContentUnload();
 
 	return Result;
 }
 
-FbxNodeAttribute::EType FBXComponent::DetermineTypeOfNode(fbxsdk::FbxNode* Node)
+fbxsdk::FbxNodeAttribute* FBXComponent::DetermineTypeOfNode(fbxsdk::FbxNode* Node)
 {
-	return Node->GetNodeAttribute()->GetAttributeType();
+	return Node->GetNodeAttribute();
 }
 
 //Recursive method that gets all of the bones and loads them into a skeleton on a dynamic mesh
 void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
 {
-	if (DetermineTypeOfNode(Node) == fbxsdk::FbxNodeAttribute::EType::eSkeleton)
+	if (DetermineTypeOfNode(Node)->GetAttributeType() == fbxsdk::FbxNodeAttribute::EType::eSkeleton)
 	{
 		if (s_kl == nullptr)
 		{
@@ -219,7 +239,7 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 
 	converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
 
-	if (!DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eMesh)
+	if (!DetermineTypeOfNode(Node)->GetAttributeType() == FbxNodeAttribute::EType::eMesh)
 	{
 		return nullptr;
 	}
@@ -287,13 +307,14 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 {
 	assert(fbxManager != nullptr);
 	assert(_accel != nullptr);
+	assert(Node != nullptr);
 
 	fbxsdk::FbxString Name = Node->GetName();
 	fbxsdk::FbxGeometryConverter converter(fbxManager);
 
 	converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
 
-	if (!DetermineTypeOfNode(Node) == FbxNodeAttribute::EType::eMesh)
+	if (!DetermineTypeOfNode(Node)->GetAttributeType() == FbxNodeAttribute::EType::eMesh)
 	{
 		return nullptr;
 	}
@@ -302,6 +323,7 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 	std::vector<UINT> Indicies;
 
 	fbxsdk::FbxMesh* Mesh = (fbxsdk::FbxMesh*)Node->GetNodeAttribute();
+
 	FbxVector4* ControlPoints = Mesh->GetControlPoints();
 	UINT VertexCount = Mesh->GetControlPointsCount();
 
@@ -582,6 +604,22 @@ int FBXComponent::FindBoneIndex(const std::string& name, std::vector<Bone2*>& Bo
 	}
 	return 0;
 }
+
+XMFLOAT4X4 FBXComponent::GetJointGlobalTransform(int val, std::vector<Bone2*> Bones, Skeleton* _skl)
+{
+	FbxAMatrix jointTransform;
+	FbxNode* boneNode = Bones[val]->GetFbxNode();
+
+	if (boneNode)
+	{
+		jointTransform = boneNode->EvaluateGlobalTransform(_skl->Time);
+	}
+
+
+	XMFLOAT4X4 globalTransform = FbxAMatrixToXMFloat4x4(jointTransform);
+	return XMFLOAT4X4(globalTransform);
+}
+
 
 void FBXComponent::GetMatrixesFromMesh(fbxsdk::FbxNode* Node, Accelerator* _accel, std::vector<Bone2>&)
 {

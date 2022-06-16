@@ -41,7 +41,7 @@ namespace InitData
 
 struct MeshData
 {
-    LPCWSTR Filelocation;
+    const char* Filelocation;
     LPCWSTR DiffuseTexture;
     LPCWSTR NormalTexture;
     std::string MeshName;
@@ -81,7 +81,9 @@ public:
 
 protected:
 
-    FBXComponent*       m_FBXImportComponent;
+    std::unique_ptr<FBXComponent>       m_FBXImportComponent;
+
+    //These are relatively external, these are pointers to pointers
     Accelerator*        m_Accelerator;
     World*              m_World;
 

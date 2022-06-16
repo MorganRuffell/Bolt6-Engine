@@ -2,8 +2,9 @@
 
 #include "Singleton.h"
 #include "TestEngineBase.h"
+
 #include <Core/Core/UIComponent.h>
-#include "Core/Core/Engine/Graphics/Accelerator.h"
+#include <Core/Core/Engine/Graphics/Accelerator.h>
 #include <Core/Core/GraphicsComponent.h>
 #include <Core/Core/DirectX11RendererComponent.h>
 #include <Core/Core/InputComponent.h>
@@ -36,17 +37,17 @@ public:
 
 public:
 
-    GraphicsDevice*         m_GraphicsDevice;
+    std::unique_ptr<GraphicsDevice>         m_GraphicsDevice;
 
 public:
 
-    GraphicsComponent*              m_GraphicsComponent;
-    DirectX11RendererComponent*     m_RendererComponent;
+    std::unique_ptr<GraphicsComponent>              m_GraphicsComponent;
+    std::unique_ptr<DirectX11RendererComponent>     m_RendererComponent;
 
-    WorldComponent*                 m_WorldComponent;
+    std::unique_ptr<WorldComponent>                 m_WorldComponent;
 
-    UIComponent*                    m_UIComponent;
-    InputComponent*                 m_InputComponent;
+    std::unique_ptr<UIComponent>                    m_UIComponent;
+    std::unique_ptr<InputComponent>                 m_InputComponent;
 
 public:
 
@@ -62,9 +63,6 @@ public:
 public:
 
     void InitalizeScene();
-    void DrawScene();
-    void RenderScene();
-
 
 protected:
 

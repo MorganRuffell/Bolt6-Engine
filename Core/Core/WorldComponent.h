@@ -20,8 +20,12 @@ public:
 	{
 		m_CurrentWorld = m_World;
 
-		m_ResourceManagerComponent = new ResourceManagerComponent(_accel, GetCurrentWorld());
+		m_ResourceManagerComponent = std::make_shared<ResourceManagerComponent>(_accel, GetCurrentWorld());
+	}
 
+	~WorldComponent()
+	{
+		m_ResourceManagerComponent.reset();
 	}
 
 public:
@@ -33,11 +37,11 @@ public:
 
 protected:
 
-	ResourceManagerComponent*					m_ResourceManagerComponent;
+	std::shared_ptr<ResourceManagerComponent>					m_ResourceManagerComponent;
 
-	std::unordered_map<std::string, World*>		Worlds;
+	std::unordered_map<std::string, World*>						Worlds;
 
-	World*										m_CurrentWorld;
+	World*														m_CurrentWorld;
 
 	// Inherited via EngineComponent
 	virtual void InitalizeComponent();

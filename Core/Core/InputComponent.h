@@ -11,7 +11,6 @@
 	all input in the engine.
 */
 
-
 class InputComponent : public EngineComponent
 {
 public:
@@ -44,6 +43,7 @@ public:
 		{
 			return m_Mouse;
 		}
+
 		else
 		{
 			return nullptr;

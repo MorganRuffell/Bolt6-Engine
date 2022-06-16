@@ -13,6 +13,7 @@ public:
 
 	DirectX11RendererComponent(GraphicsDevice* Accel);
 
+
 	virtual void InitalizeComponent() override;
 	virtual bool TerminateComponent() override;
 
@@ -45,11 +46,12 @@ public:
 	}
 
 
-protected:
+public:
 
 	void BeginFrame(Accelerator* Accel);
 	void EndFrame(Accelerator* Accel);
 
+protected:
 
 	void DrawIndividualStaticMesh(StaticMesh* Mesh, Accelerator* Accel);
 	void DrawIndividualDynamicMesh(DynamicMesh* Mesh, Accelerator* Accel);
