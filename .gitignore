@@ -45,7 +45,6 @@
 mono_crash.*
 
 # Executables
-*.exe
 *.out
 *.app
 
