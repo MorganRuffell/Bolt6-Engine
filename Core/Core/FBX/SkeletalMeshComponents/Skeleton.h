@@ -8,6 +8,10 @@ using namespace DirectX;
 
 struct Skeleton : public AnimObject
 {
+	Skeleton()
+	{
+
+	}
 	Skeleton(Bone2* _RootBone);
 	Skeleton(XMFLOAT4X4 Position);
 

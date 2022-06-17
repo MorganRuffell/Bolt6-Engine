@@ -10,7 +10,7 @@ class DynamicMesh : public BaseMesh
 {
 public:
 
-	DynamicMesh(Skeleton* _skl, AnimationSequence* _Seq, Vertex3* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* _Accel)
+	DynamicMesh(Skeleton* _skl, AnimationSequence* _Seq, Vertex3* Vertexes, int vertexCount, UINT* Indicies, int indexCount, Accelerator* _Accel)
 	{
 		SetTag(EngineObjTag::Asset);
 		m_skeleton = _skl;
@@ -41,7 +41,7 @@ public:
 		}
 
 		IndexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-		IndexBufferDesc.ByteWidth = sizeof(int) * indexCount;
+		IndexBufferDesc.ByteWidth = sizeof(Indicies) * indexCount;
 		IndexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		IndexBufferDesc.CPUAccessFlags = 0;
 		IndexBufferDesc.MiscFlags = 0;
@@ -61,7 +61,7 @@ public:
 
 	}
 
-	DynamicMesh(Skeleton* _skl, Vertex3* Vertexes, int vertexCount, int* Indicies, int indexCount, Accelerator* _Accel)
+	DynamicMesh(Skeleton* _skl, Vertex3* Vertexes, int vertexCount, UINT* Indicies, int indexCount, Accelerator* _Accel)
 	{
 		SetTag(EngineObjTag::Asset);
 		m_skeleton = _skl;
@@ -94,7 +94,7 @@ public:
 		}
 
 		IndexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-		IndexBufferDesc.ByteWidth = sizeof(int) * indexCount;
+		IndexBufferDesc.ByteWidth = sizeof(Indicies) * indexCount;
 		IndexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		IndexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		IndexBufferDesc.MiscFlags = 0;

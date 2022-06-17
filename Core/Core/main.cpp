@@ -55,10 +55,6 @@ int main(int, char**)
         if (Complete)
             break;
 
-        if (Paused);
-        {
-            continue;
-        }
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();

@@ -91,7 +91,6 @@ public:
 public:
 
 	bool LoadFBXScene(_In_ const char* Filename, fbxsdk::FbxScene* Scene, World* world);
-	void LoadSkeletonJoints(_In_ fbxsdk::FbxNode*, _Inout_ Skeleton* s_kl);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel);
 	StaticMesh* CreateStaticMesh(_Inout_ fbxsdk::FbxNode* Node, _In_  Accelerator* _accel, std::string& MeshName);
 
@@ -99,7 +98,7 @@ public:
 public:
 
 	//These two function similar to Unreal, Dynamic Meshes have a skeleton.
-	DynamicMesh* CreateDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel);
+	DynamicMesh* CreateDynamicMesh(_Inout_ ::FbxNode* Node, _In_ Accelerator* _accel, _Inout_ Skeleton* DynamicMeshSkeleton);
 
 protected:
 
@@ -110,7 +109,10 @@ protected:
 
 	void GetMatrixesFromMesh(_Inout_ fbxsdk::FbxNode* Node, _In_ Accelerator* _accel, _In_ std::vector<Bone2>&);
 
+public:
 	XMFLOAT4X4 FbxAMatrixToXMFloat4x4(fbxsdk::FbxAMatrix Matrix);
+
+protected:
 
 	FBXImportSettings ImportSettings;
 

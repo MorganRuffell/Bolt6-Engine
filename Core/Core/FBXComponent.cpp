@@ -141,19 +141,6 @@ void FBXComponent::InitalizeImporters(const char* Filename)
 
 	FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
 	FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", Filename, lFileMajor, lFileMinor, lFileRevision);
-
-
-	/*if (PStatus == fbxsdk::FbxStatus::EStatusCode::eSuccess)
-	{
-		std::cout << "Fbx Primary Import Status is Successful" << std::endl;
-		Importers.insert({ PStatus, PrimaryImporter });
-
-	}
-	else
-	{
-		std::cout << "Fbx Primary Import Status is failed" << std::endl;
-
-	}*/
 }
 
 bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* world)
@@ -179,7 +166,7 @@ bool FBXComponent::LoadFBXScene(const char* Filename, FbxScene* Scene, World* wo
 	fbxInputOutputSettings->SetBoolProp(IMP_FBX_ANIMATION, true);
 	fbxInputOutputSettings->SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
 
-	Result = Importer->Import(Scene,false);
+	Result = Importer->Import(Scene, false);
 	Importer->ContentUnload();
 
 	return Result;
@@ -190,44 +177,6 @@ fbxsdk::FbxNodeAttribute* FBXComponent::DetermineTypeOfNode(fbxsdk::FbxNode* Nod
 	return Node->GetNodeAttribute();
 }
 
-//Recursive method that gets all of the bones and loads them into a skeleton on a dynamic mesh
-void FBXComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
-{
-	if (DetermineTypeOfNode(Node)->GetAttributeType() == fbxsdk::FbxNodeAttribute::EType::eSkeleton)
-	{
-		if (s_kl == nullptr)
-		{
-			fbxsdk::FbxAMatrix BonePos;
-			fbxsdk::FbxAMatrix GlobalMatrix;
-
-			fbxsdk::FbxString Name = Node->GetName();
-			fbxsdk::FbxVector4 Translation = Node->GetGeometricTranslation(fbxsdk::FbxNode::eSourcePivot);
-			fbxsdk::FbxVector4 Rotation = Node->GetGeometricRotation(fbxsdk::FbxNode::eSourcePivot);
-			fbxsdk::FbxVector4 Scale = Node->GetGeometricScaling(fbxsdk::FbxNode::eSourcePivot);
-
-			GlobalMatrix = Node->EvaluateGlobalTransform();
-
-			BonePos.SetT(Translation);
-			BonePos.SetR(Rotation);
-			BonePos.SetS(Scale);
-
-			fbxsdk::FbxAMatrix FinalMatrix = GlobalMatrix * BonePos;
-
-			const char* stdName = Name;
-
-			Bone2* Bone = new Bone2(stdName, FbxAMatrixToXMFloat4x4(FinalMatrix), Parent);
-			s_kl = new Skeleton(Bone);
-			s_kl->mBones.push_back(Bone);
-		}
-	}
-
-	int childCount = Node->GetChildCount();
-
-	for (int i = 0; i < childCount; i++)
-	{
-		LoadSkeletonJoints(Node->GetChild(i), s_kl);
-	}
-}
 
 StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
 {
@@ -378,31 +327,40 @@ StaticMesh* FBXComponent::CreateStaticMesh(fbxsdk::FbxNode* Node, Accelerator* _
 }
 
 //Dynamic Meshes DO Contain animation data, if you try to load one and not the other this will not work
-DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _accel)
+DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator* _accel, Skeleton* DynamicMeshSkeleton)
 {
 	assert(fbxManager != nullptr);
 	assert(_accel != nullptr);
+	assert(Node != nullptr);
+
 
 	fbxsdk::FbxString Name = Node->GetName();
 	fbxsdk::FbxGeometryConverter converter(fbxManager);
 
+
 	converter.Triangulate(scene, ImportSettings.ReplaceTriangulatedGeometry, ImportSettings.UseLegacyTriangulation);
 
-	if (!DetermineTypeOfNode(Node) == fbxsdk::FbxNodeAttribute::EType::eMesh)
+	if (!DetermineTypeOfNode(Node)->GetAttributeType() == FbxNodeAttribute::EType::eMesh)
 	{
 		return nullptr;
 	}
 
 	std::vector<Vertex3> Vertexes;
-	std::vector<int> Indicies;
+	std::vector<UINT> Indicies;
 
 	fbxsdk::FbxMesh* Mesh = (fbxsdk::FbxMesh*)Node->GetNodeAttribute();
+
 	FbxVector4* ControlPoints = Mesh->GetControlPoints();
-	int VertexCount = Mesh->GetControlPointsCount();
+	UINT VertexCount = Mesh->GetControlPointsCount();
+	Vertex3 v;
 
 	for (unsigned int i = 0; i < VertexCount; i++)
 	{
-		Vertex3 v;
+		if (VertexCount > 300000)
+		{
+			break;
+		}
+
 
 		v.Position.x = ControlPoints[i].mData[0];
 		v.Position.y = ControlPoints[i].mData[1];
@@ -412,9 +370,11 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 		Vertexes.push_back(v);
 	}
 
-	int PolygonCount = Mesh->GetPolygonCount();
-	int PolygonSize = Mesh->GetPolygonGroup(0);
-	int indexCount = PolygonCount * PolygonSize;
+	//At first I thought these were just overflows..
+
+	UINT PolygonCount = Mesh->GetPolygonCount();
+	UINT PolygonSize = Mesh->GetPolygonGroup(0);
+	UINT indexCount = PolygonCount * PolygonSize;
 
 	for (int i = 0; i < Mesh->GetPolygonCount(); i++)
 	{
@@ -442,18 +402,12 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 		}
 	}
 
-
-	//This is deliberately a nullptr, it's loaded in through the load skeleton joints.
-	Skeleton* DynamicMeshSkeleton;
-
-	LoadSkeletonJoints(Node, DynamicMeshSkeleton);
-
-	assert(!DynamicMeshSkeleton);
+	assert(DynamicMeshSkeleton != nullptr);
 
 
 	int NumberOfDeformers = Mesh->GetDeformerCount();
 
-	if (NumberOfDeformers == 0) { return nullptr; }
+	if (NumberOfDeformers == 0) { return new DynamicMesh(DynamicMeshSkeleton, &Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel); }
 
 	for (int deformerIndex = 0; deformerIndex < NumberOfDeformers; deformerIndex++)
 	{
@@ -576,19 +530,13 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 
 		}
 
-
-
 		// https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
 
-
-
-
-	//FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
-
+		//FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
 	}
 
 	DynamicMesh* DM = new DynamicMesh(DynamicMeshSkeleton, &Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel);
-	DM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
+	//DM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);
 
 	return DM;
 }

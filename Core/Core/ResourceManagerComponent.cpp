@@ -7,10 +7,10 @@ void ResourceManagerComponent::InitalizeComponent()
 
     std::cout << "FBX Import Component Initalized Successfully" << std::endl;
 
-    //MeshData Animation = {};
-    //Animation.Filelocation = L"\Scene\StaticMesh.fbx";
-    //Animation.DiffuseTexture = L"\Scene\StageDiffuse.png";
-    //Animation.NormalTexture = L"\Scene\StageNormal.png";
+    MeshData Animation = {};
+    Animation.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\RandoWalk.fbx";
+    Animation.DiffuseTexture = L"\Scene\StageDiffuse.png";
+    Animation.NormalTexture = L"\Scene\StageNormal.png";
 
     MeshData Static = {};
     Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6DX11Test\\Resources\\Teapot.fbx";
@@ -32,7 +32,11 @@ void ResourceManagerComponent::LoadDynamicMeshResource(MeshData MeshData)
 
     m_FBXImportComponent->LoadFBXScene(MeshData.Filelocation, m_FBXImportComponent->GetMostRecentScene(), m_World);
 
-    DynamicMesh* Anim = m_FBXImportComponent->CreateDynamicMesh(m_FBXImportComponent->GetMostRecentScene()->GetRootNode(), m_Accelerator);
+    //This is deliberately a nullptr, it's loaded in through the load skeleton joints.
+    Skeleton* DynamicMeshSkeleton = new Skeleton();
+    LoadSkeletonJoints(m_FBXImportComponent->GetMostRecentScene()->GetRootNode(), DynamicMeshSkeleton);
+
+    DynamicMesh* Anim = m_FBXImportComponent->CreateDynamicMesh(m_FBXImportComponent->GetMostRecentScene()->GetRootNode()->GetChild(0), m_Accelerator,DynamicMeshSkeleton);
     Anim->SetName(MeshData.MeshName);
 
     TextureContext DiffuseContext = {};
@@ -119,6 +123,45 @@ void ResourceManagerComponent::LoadTestResources()
     DiffuseContext.TextureFilename = L"..\Bolt6ProgrammingTest\Scene\StageNormal.png";*/
 
     Stage->CreateMaterial(m_Accelerator, SMeshName, DiffuseContext);
+}
+
+
+//Recursive method that gets all of the bones and loads them into a skeleton on a dynamic mesh
+void ResourceManagerComponent::LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl)
+{
+    if (Node->GetNodeAttribute() && Node->GetNodeAttribute()->GetAttributeType() && Node->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
+    {
+
+        fbxsdk::FbxAMatrix BonePos;
+        fbxsdk::FbxAMatrix GlobalMatrix;
+
+        fbxsdk::FbxString Name = Node->GetName();
+        fbxsdk::FbxVector4 Translation = Node->GetGeometricTranslation(fbxsdk::FbxNode::eSourcePivot);
+        fbxsdk::FbxVector4 Rotation = Node->GetGeometricRotation(fbxsdk::FbxNode::eSourcePivot);
+        fbxsdk::FbxVector4 Scale = Node->GetGeometricScaling(fbxsdk::FbxNode::eSourcePivot);
+
+        GlobalMatrix = Node->EvaluateGlobalTransform();
+
+        BonePos.SetT(Translation);
+        BonePos.SetR(Rotation);
+        BonePos.SetS(Scale);
+
+        fbxsdk::FbxAMatrix FinalMatrix = GlobalMatrix * BonePos;
+
+        const char* stdName = Name;
+
+        
+        Bone2* Bone = new Bone2(stdName, m_FBXImportComponent->FbxAMatrixToXMFloat4x4(FinalMatrix), Parent);
+        s_kl = new Skeleton(Bone);
+        s_kl->mBones.push_back(Bone);
+    }
+
+    int childCount = Node->GetChildCount();
+
+    for (int i = 0; i < childCount; i++)
+    {
+        LoadSkeletonJoints(Node->GetChild(i), s_kl);
+    }
 }
 
 void ResourceManagerComponent::LoadStaticNodes(FbxNode* node)

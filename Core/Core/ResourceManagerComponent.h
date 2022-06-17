@@ -97,7 +97,8 @@ protected:
     virtual void LoadTestResources();
 
     void LoadStaticNodes(FbxNode* node);
-    
+    void LoadSkeletonJoints(fbxsdk::FbxNode* Node, Skeleton* s_kl);
+
 protected:
 
     static ResourceManagerComponent* GetInstance()

@@ -157,8 +157,14 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 	//Will only be one for now, we'll get the name from the fbx component, 
 	std::string NameOfdynamicMeshToUpdate = "Name";
 
-	UpdateDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate),world->GetViewportCamera(), accel, world);
-	DrawIndividualDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate),m_Accel);
+#ifdef RELEASE
+
+	UpdateDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate), world->GetViewportCamera(), accel, world);
+	DrawIndividualDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate), m_Accel);
+
+#endif // RELEASE
+
+	
 
 }
 

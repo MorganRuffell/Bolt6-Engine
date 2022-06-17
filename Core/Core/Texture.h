@@ -144,6 +144,7 @@ public:
 			if (SUCCEEDED(SRV))
 			{
 				std::cout << "Texture initalization succeeded!" << std::endl;
+				return ResourceView;
 			}
 		}
 		else
@@ -172,7 +173,7 @@ public:
 		textureDesc.MiscFlags = 0;
 
 		//Fix this as we are using the resource directly and not texture 2D
-		HRESULT TextureRes = Device->GetDevice()->CreateTexture2D(&textureDesc, nullptr, &m_TextureData);
+		HRESULT TextureRes = Device->GetDevice()->CreateTexture2D(&textureDesc, 0, &m_TextureData);
 
 		if (SUCCEEDED(TextureRes))
 		{
@@ -187,12 +188,11 @@ public:
 			if (SUCCEEDED(SRV))
 			{
 				std::cout << "Texture initalization succeeded!" << std::endl;
+				return ResourceView;
 			}
 		}
-		else
-		{
-			throw new std::exception("Texture Failed to initalize");
-		}
+		
+		return nullptr;
 
 
 	}
