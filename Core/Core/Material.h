@@ -30,10 +30,17 @@ public:
 		assert(_SamplerState != nullptr);
 		assert(_vertexShader != nullptr);
 		assert(_pixelShader != nullptr);
+		this->Sampler = _SamplerState;
+
+		LPCTSTR File = L"Debug\\VSBase.cso";
+		LPCTSTR PFile = L"Debug\\PSBase.cso";
 
 		this->m_MaterialPixelShader = _pixelShader;
+		m_MaterialVertexShader->LoadShaderFile(File);
+
 		this->m_MaterialVertexShader = _vertexShader;
-		this->Sampler = _SamplerState;
+		m_MaterialPixelShader->LoadShaderFile(PFile);
+
 
 		SetName(Name);
 		SetTag(EngineObjTag::Asset);
@@ -45,9 +52,14 @@ public:
 	{
 		assert(_SamplerState != nullptr);
 
-		this->m_MaterialVertexShader = new VertexShader(Accel->Device.Get(), Accel->DeviceContext.Get());
-		this->m_MaterialPixelShader = new PixelShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		LPCTSTR File = L"Debug\\VSBase.cso";
+		LPCTSTR PFile = L"Debug\\PSBase.cso";
 		this->Sampler = _SamplerState;
+
+		this->m_MaterialVertexShader = new VertexShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		m_MaterialVertexShader->LoadShaderFile(File);
+		this->m_MaterialPixelShader = new PixelShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		m_MaterialPixelShader->LoadShaderFile(PFile);
 
 		SetName(Name);
 		SetTag(EngineObjTag::Asset);
@@ -56,9 +68,16 @@ public:
 
 	Material(std::string& Name, Accelerator* Accel, TextureContext Diffuse, TextureContext Normal)
 	{
-		this->m_MaterialVertexShader = new VertexShader(Accel->Device.Get(), Accel->DeviceContext.Get());
-		this->m_MaterialPixelShader = new PixelShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		LPCTSTR File = L"Debug\\VSBase.cso";
+		LPCTSTR PFile = L"Debug\\PSBase.cso"; 
 		this->Sampler = new TESamplerState(Accel);
+
+		this->m_MaterialVertexShader = new VertexShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		m_MaterialVertexShader->LoadShaderFile(File);
+
+		this->m_MaterialPixelShader = new PixelShader(Accel->Device.Get(), Accel->DeviceContext.Get());
+		m_MaterialPixelShader->LoadShaderFile(PFile);
+
 
 		std::string DiffuseTextureName = "T_" + Name + "_BaseColour";
 		std::string NormalTextureName = "T_" + Name + "_Normal";

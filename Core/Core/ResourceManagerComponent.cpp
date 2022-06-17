@@ -41,15 +41,15 @@ void ResourceManagerComponent::LoadDynamicMeshResource(MeshData MeshData)
 
     TextureContext DiffuseContext = {};
     DiffuseContext.AllowOverwriting = true;
-    DiffuseContext.Resolution.DimensionX = 2048;
-    DiffuseContext.Resolution.DimensionY = 2048;
+    DiffuseContext.Resolution.DimensionX = 512;
+    DiffuseContext.Resolution.DimensionY = 512;
     DiffuseContext.Type = Diffuse;
     DiffuseContext.TextureFilename = (LPCWSTR) MeshData.DiffuseTexture;
 
     TextureContext NormalContext = {};
     DiffuseContext.AllowOverwriting = true;
-    DiffuseContext.Resolution.DimensionX = 2048;
-    DiffuseContext.Resolution.DimensionY = 2048;
+    DiffuseContext.Resolution.DimensionX = 512;
+    DiffuseContext.Resolution.DimensionY = 512;
     DiffuseContext.Type = Normal;
     DiffuseContext.TextureFilename = (LPCWSTR) MeshData.NormalTexture;
 
@@ -115,12 +115,12 @@ void ResourceManagerComponent::LoadTestResources()
     DiffuseContext.Type = Diffuse;
     DiffuseContext.TextureFilename = L"\Scene\StageDiffuse.png";
 
-    /*TextureContext NormalContext = {};
+    TextureContext NormalContext = {};
     DiffuseContext.AllowOverwriting = true;
     DiffuseContext.Resolution.DimensionX = 2048;
     DiffuseContext.Resolution.DimensionY = 2048;
     DiffuseContext.Type = Normal;
-    DiffuseContext.TextureFilename = L"..\Bolt6ProgrammingTest\Scene\StageNormal.png";*/
+    DiffuseContext.TextureFilename = L"..\Bolt6ProgrammingTest\Scene\StageNormal.png";
 
     Stage->CreateMaterial(m_Accelerator, SMeshName, DiffuseContext);
 }

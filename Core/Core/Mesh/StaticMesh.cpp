@@ -57,12 +57,12 @@ StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT
 	SetName(Name);
 
 	m_Indicies = vertexCount / 2;
-	IndexCount = indexCount;
+	IndexCount = indexCount / 2;
 
 	TrisCount = vertexCount / 3;
 
 
-	VertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	VertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
 	VertexBufferDesc.ByteWidth = sizeof(Vertexes) * vertexCount;
 	VertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	VertexBufferDesc.CPUAccessFlags = 0;
@@ -80,15 +80,15 @@ StaticMesh::StaticMesh(Vertex1* Vertexes, UINT vertexCount, UINT* Indicies, UINT
 		return;
 	}
 
-	IndexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	IndexBufferDesc.ByteWidth = sizeof(int) * indexCount;
+	IndexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+	IndexBufferDesc.ByteWidth = sizeof(UINT) * indexCount;
 	IndexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	IndexBufferDesc.CPUAccessFlags = 0;
 	IndexBufferDesc.MiscFlags = 0;
 	IndexBufferDesc.StructureByteStride = 0;
 
 	D3D11_SUBRESOURCE_DATA initalIndexData = {};
-	initalIndexData.pSysMem = &Indicies; //??
+	initalIndexData.pSysMem = Indicies; //??
 
 	res = Accel->GetDevice()->CreateBuffer(&IndexBufferDesc, &initalIndexData, &IndexBuffer);
 

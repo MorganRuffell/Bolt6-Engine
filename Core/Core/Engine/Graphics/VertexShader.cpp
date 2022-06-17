@@ -10,6 +10,8 @@ VertexShader::VertexShader(ID3D11Device* device, ID3D11DeviceContext* context)
 	this->m_inputLayout = 0;
 	this->m_VertexShader = 0;
 	this->m_PerInstanceCompatible = false;
+
+	
 }
 
 VertexShader::VertexShader(ID3D11Device* device, ID3D11DeviceContext* context, ID3D11InputLayout* InputLayout, bool PerInstanceCompatible)
@@ -18,10 +20,14 @@ VertexShader::VertexShader(ID3D11Device* device, ID3D11DeviceContext* context, I
 	assert(device != nullptr && context != nullptr);
 	assert(InputLayout);
 
+	LPCTSTR File = L"Debug\\VSBase.cso";
 
-	this->m_inputLayout = InputLayout;
+	this->m_inputLayout = 0;
 	this->m_VertexShader = 0;
 	this->m_PerInstanceCompatible = PerInstanceCompatible;
+
+
+	LoadShaderFile(File);
 }
 
 bool VertexShader::SetShaderResourceView(std::string name, ID3D11ShaderResourceView* srv)
@@ -33,17 +39,11 @@ bool VertexShader::SetShaderResourceView(std::string name, ID3D11ShaderResourceV
 
 	deviceContext->VSSetShaderResources(SrvData->BindIndex, 1, &srv);
 
-    return true;
+	return true;
 }
 
 bool VertexShader::CreateProgram(ID3DBlob* shaderBlob)
 {
-	//Asserting that this is blob does not contain an already existing shader.
-	if (shaderBlob != nullptr)
-	{
-		return false;
-	}
-
 	HRESULT res = device->CreateVertexShader(shaderBlob->GetBufferPointer(), shaderBlob->GetBufferSize(), 0, &m_VertexShader);
 
 	if (res != S_OK)
@@ -134,6 +134,8 @@ bool VertexShader::CreateProgram(ID3DBlob* shaderBlob)
 	}
 	else
 	{
+		std::cout << "Vertex Shader Creation Succeeded!" << std::endl;
+
 		return true;
 	}
 
@@ -187,18 +189,11 @@ void VertexShader::SetShaderAndCBs()
 	assert(m_inputLayout != nullptr);
 	assert(deviceContext != nullptr);
 
-	if (!Valid)
-	{
-		return;
-	}
-	else
-	{
-		deviceContext->IASetInputLayout(m_inputLayout);
-		deviceContext->VSSetShader(m_VertexShader, 0, 0);
+	deviceContext->IASetInputLayout(m_inputLayout);
+	deviceContext->VSSetShader(m_VertexShader, 0, 0);
 
-		for (int i = 0; i < ConstantBufferCount; i++)
-		{
-			deviceContext->VSSetConstantBuffers(ConstantBuffers[i].GetBindIndex(), 1, &ConstantBuffers[i].Resource);
-		}
+	for (int i = 0; i < ConstantBufferCount; i++)
+	{
+		deviceContext->VSSetConstantBuffers(ConstantBuffers[i].GetBindIndex(), 1, &ConstantBuffers[i].Resource);
 	}
 }

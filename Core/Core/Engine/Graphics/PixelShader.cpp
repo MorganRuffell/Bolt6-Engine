@@ -4,7 +4,9 @@
 PixelShader::PixelShader(ID3D11Device* device, ID3D11DeviceContext* context)
 	: BaseShader(device, context)
 {
-	this->shader = 0;
+	LPCTSTR File = L"PSBase.cso";
+
+	LoadShaderFile(File);
 }
 
 PixelShader::~PixelShader()

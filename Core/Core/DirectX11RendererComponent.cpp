@@ -151,17 +151,25 @@ void DirectX11RendererComponent::Update(World* world, BaseCamera* Camera, Accele
 		}
 	}
 
-	UpdateVertexShaders(StaticMeshVertexShaders, world, Camera, DynamicMeshVertexShaders);
-	UpdatePixelShaders(StaticMeshPixelShaders, StaticMeshMaterials, Camera, DynamicMeshPixelShaders, DynamicMeshMaterials);
 	
+	
+	
+
+
+
+#ifdef ElementsToTest
+
 	//Will only be one for now, we'll get the name from the fbx component, 
 	std::string NameOfdynamicMeshToUpdate = "Name";
 
-#ifdef RELEASE
+	UpdateStaticMesh(world->GetStaticMesh(NameOfdynamicMeshToUpdate), world->GetViewportCamera(), accel, world);
+	DrawIndividualStaticMesh(world->GetStaticMesh(NameOfdynamicMeshToUpdate), accel);
 
 	UpdateDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate), world->GetViewportCamera(), accel, world);
 	DrawIndividualDynamicMesh(world->GetDynamicMesh(NameOfdynamicMeshToUpdate), m_Accel);
 
+	UpdateVertexShaders(StaticMeshVertexShaders, world, Camera, DynamicMeshVertexShaders);
+	UpdatePixelShaders(StaticMeshPixelShaders, StaticMeshMaterials, Camera, DynamicMeshPixelShaders, DynamicMeshMaterials);
 #endif // RELEASE
 
 	

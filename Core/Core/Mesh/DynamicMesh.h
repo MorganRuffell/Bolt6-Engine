@@ -10,7 +10,7 @@ class DynamicMesh : public BaseMesh
 {
 public:
 
-	DynamicMesh(Skeleton* _skl, AnimationSequence* _Seq, Vertex3* Vertexes, int vertexCount, UINT* Indicies, int indexCount, Accelerator* _Accel)
+	DynamicMesh(Skeleton* _skl, AnimationSequence* _Seq, Vertex3* Vertexes, UINT vertexCount, UINT* Indicies, int indexCount, Accelerator* _Accel)
 	{
 		SetTag(EngineObjTag::Asset);
 		m_skeleton = _skl;

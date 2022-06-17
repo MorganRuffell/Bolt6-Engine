@@ -27,7 +27,6 @@ BaseShader::~BaseShader()
 bool BaseShader::LoadShaderFile(LPCTSTR ShaderFile)
 {
 	assert(ShaderFile != NULL);
-	assert(GraphicsBlob != NULL);
 
 	HRESULT LoadResult = D3DReadFileToBlob(ShaderFile, &GraphicsBlob);
 	if (LoadResult != S_OK)
