@@ -1,0 +1,6 @@
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\Core.vcxproj.MdMergeInputs.cache
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\Core.vcxproj.cppwinrt_plat.cache
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\Core.vcxproj.cppwinrt_comp.cache
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\PSBase.cso
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\VSBase.cso
+C:\Users\Morgan\Desktop\Bolt6ProgrammingTest\Core\Core\Release\Application.exe

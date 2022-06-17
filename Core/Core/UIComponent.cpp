@@ -241,8 +241,7 @@ void UIComponent::DrawImGui()
 		ImGui::Separator();
 
 		ImGui::TextWrapped("Date Started: 09/06/2022");
-		ImGui::TextWrapped("Date Finished: --");
-		ImGui::TextWrapped("Programming Test: Assessed by CTO of Bolt6.ai");
+		ImGui::TextWrapped("Date Finished: 07/06/2022");
 
 
 		ImGui::Spacing();

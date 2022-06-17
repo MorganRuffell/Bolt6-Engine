@@ -13,7 +13,7 @@ void ResourceManagerComponent::InitalizeComponent()
     Animation.NormalTexture = L"\Scene\StageNormal.png";
 
     MeshData Static = {};
-    Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6DX11Test\\Resources\\Teapot.fbx";
+    Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Resources\\Teapot.fbx";
     Static.DiffuseTexture = L"\Scene\\StageDiffuse.png";
     Static.NormalTexture = L"\Scene\\StageNormal.png";
     Static.MeshName = "3DStudioTeapot";
