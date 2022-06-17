@@ -8,24 +8,24 @@ void ResourceManagerComponent::InitalizeComponent()
     std::cout << "FBX Import Component Initalized Successfully" << std::endl;
 
     MeshData Animation = {};
-    Animation.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\RandoWalk.fbx";
+    Animation.Filelocation = "\\Scene\\RandoWalk.fbx";
     Animation.DiffuseTexture = L"\Scene\StageDiffuse.png";
     Animation.NormalTexture = L"\Scene\StageNormal.png";
 
     MeshData Static = {};
-    Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Resources\\Teapot.fbx";
+    Static.Filelocation = "\\Resources\\Teapot.fbx";
     Static.DiffuseTexture = L"\Scene\\StageDiffuse.png";
     Static.NormalTexture = L"\Scene\\StageNormal.png";
     Static.MeshName = "3DStudioTeapot";
 
     MeshData Static1 = {};
-    Static1.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\Lemonade.fbx";
+    Static1.Filelocation = "\\Scene\\Lemonade.fbx";
     Static1.DiffuseTexture = L"\Scene\\StageDiffuse.png";
     Static1.NormalTexture = L"\Scene\\StageNormal.png";
     Static1.MeshName = "LemonadeTest";
 
     MeshData Static2 = {};
-    Static2.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\LemonadeASCII.fbx";
+    Static2.Filelocation = "\\Scene\\LemonadeASCII.fbx";
     Static2.DiffuseTexture = L"\Scene\\StageDiffuse.png";
     Static2.NormalTexture = L"\Scene\\StageNormal.png";
     Static2.MeshName = "LemonadeTestASCII";

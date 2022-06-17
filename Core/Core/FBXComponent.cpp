@@ -116,8 +116,6 @@ void FBXComponent::InitalizeImporters(const char* Filename)
 
 	fbxsdk::FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
 
-	//fbxsdk::FbxManager::Get
-
 	PrimaryImporter = FbxImporter::Create(fbxManager, Filename);
 
 	const bool lImportStatus = PrimaryImporter->Initialize(Filename, -1, fbxManager->GetIOSettings());
@@ -401,131 +399,131 @@ DynamicMesh* FBXComponent::CreateDynamicMesh(fbxsdk::FbxNode* Node, Accelerator*
 
 	if (NumberOfDeformers == 0) { return new DynamicMesh(DynamicMeshSkeleton, &Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel); }
 
-	//for (int deformerIndex = 0; deformerIndex < NumberOfDeformers; deformerIndex++)
-	//{
-	//	fbxsdk::FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eSkin));
-	//	int NumberOfSkinClusters = skin->GetClusterCount();
+	for (int deformerIndex = 0; deformerIndex < NumberOfDeformers; deformerIndex++)
+	{
+		fbxsdk::FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eSkin));
+		int NumberOfSkinClusters = skin->GetClusterCount();
 
-	//	//Enumerate all of the skin clusters inside of the mesh, skin clusters act as a subset of a geometry control points -- Similar to a geometry shader
-	//	for (int indexOfSkinCluster = 0; indexOfSkinCluster < NumberOfSkinClusters; ++NumberOfSkinClusters)
-	//	{
-	//		//Get the current cluster and it's link mode.
-	//		fbxsdk::FbxCluster* CurrentCluster = skin->GetCluster(indexOfSkinCluster);
-	//		fbxsdk::FbxCluster::ELinkMode JointLinkMode = CurrentCluster->GetLinkMode();
+		//Enumerate all of the skin clusters inside of the mesh, skin clusters act as a subset of a geometry control points -- Similar to a geometry shader
+		for (int indexOfSkinCluster = 0; indexOfSkinCluster < NumberOfSkinClusters; ++NumberOfSkinClusters)
+		{
+			//Get the current cluster and it's link mode.
+			fbxsdk::FbxCluster* CurrentCluster = skin->GetCluster(indexOfSkinCluster);
+			fbxsdk::FbxCluster::ELinkMode JointLinkMode = CurrentCluster->GetLinkMode();
 
-	//		std::string CurrentJointName = CurrentCluster->GetLink()->GetName();
+			std::string CurrentJointName = CurrentCluster->GetLink()->GetName();
 
-	//		int CurrentBoneIndex = FindBoneIndex(CurrentJointName, DynamicMeshSkeleton->mBones);
+			int CurrentBoneIndex = FindBoneIndex(CurrentJointName, DynamicMeshSkeleton->mBones);
 
-	//		//Three matrixes, one for the transform of the cluster (the cluster of control points)
-	//		fbxsdk::FbxAMatrix              transformMatrix;
-	//		fbxsdk::FbxAMatrix              transformLinkMatrix;
-	//		fbxsdk::FbxAMatrix              globalBindposeInverseMatrix;
+			//Three matrixes, one for the transform of the cluster (the cluster of control points)
+			fbxsdk::FbxAMatrix              transformMatrix;
+			fbxsdk::FbxAMatrix              transformLinkMatrix;
+			fbxsdk::FbxAMatrix              globalBindposeInverseMatrix;
 
-	//		CurrentCluster->GetTransformMatrix(transformMatrix);
-	//		CurrentCluster->GetTransformLinkMatrix(transformLinkMatrix);
-	//		globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
+			CurrentCluster->GetTransformMatrix(transformMatrix);
+			CurrentCluster->GetTransformLinkMatrix(transformLinkMatrix);
+			globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
 
-	//		//A control point is a synoynm for a vertex
-	//		int ControlPointIndCount = CurrentCluster->GetControlPointIndicesCount();
+			//A control point is a synoynm for a vertex
+			int ControlPointIndCount = CurrentCluster->GetControlPointIndicesCount();
 
-	//		globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
-	//		transformLinkMatrix = transformLinkMatrix.Transpose();
+			globalBindposeInverseMatrix = transformLinkMatrix.Inverse();
+			transformLinkMatrix = transformLinkMatrix.Transpose();
 
-	//		//Get the inverse of each bone transform.
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->InvBoneTransform = XMFLOAT4X4((float)globalBindposeInverseMatrix.GetRow(0)[0],
-	//			(float)globalBindposeInverseMatrix.GetRow(0)[1], (float)globalBindposeInverseMatrix.GetRow(0)[2],
-	//			(float)globalBindposeInverseMatrix.GetRow(0)[3], (float)globalBindposeInverseMatrix.GetRow(1)[0],
-	//			(float)globalBindposeInverseMatrix.GetRow(1)[1], (float)globalBindposeInverseMatrix.GetRow(1)[2],
-	//			(float)globalBindposeInverseMatrix.GetRow(1)[3], (float)globalBindposeInverseMatrix.GetRow(2)[0],
-	//			(float)globalBindposeInverseMatrix.GetRow(2)[1], (float)globalBindposeInverseMatrix.GetRow(2)[2],
-	//			(float)globalBindposeInverseMatrix.GetRow(2)[3],
-	//			(float)globalBindposeInverseMatrix.GetRow(3)[0], (float)globalBindposeInverseMatrix.GetRow(3)[1],
-	//			(float)globalBindposeInverseMatrix.GetRow(3)[2], (float)globalBindposeInverseMatrix.GetRow(3)[3]);
+			//Get the inverse of each bone transform.
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->InvBoneTransform = XMFLOAT4X4((float)globalBindposeInverseMatrix.GetRow(0)[0],
+				(float)globalBindposeInverseMatrix.GetRow(0)[1], (float)globalBindposeInverseMatrix.GetRow(0)[2],
+				(float)globalBindposeInverseMatrix.GetRow(0)[3], (float)globalBindposeInverseMatrix.GetRow(1)[0],
+				(float)globalBindposeInverseMatrix.GetRow(1)[1], (float)globalBindposeInverseMatrix.GetRow(1)[2],
+				(float)globalBindposeInverseMatrix.GetRow(1)[3], (float)globalBindposeInverseMatrix.GetRow(2)[0],
+				(float)globalBindposeInverseMatrix.GetRow(2)[1], (float)globalBindposeInverseMatrix.GetRow(2)[2],
+				(float)globalBindposeInverseMatrix.GetRow(2)[3],
+				(float)globalBindposeInverseMatrix.GetRow(3)[0], (float)globalBindposeInverseMatrix.GetRow(3)[1],
+				(float)globalBindposeInverseMatrix.GetRow(3)[2], (float)globalBindposeInverseMatrix.GetRow(3)[3]);
 
-	//		//Set the FBX Node on the Bone itself
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
+			//Set the FBX Node on the Bone itself
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
 
-	//		//Set the transform of the Bone as an XMFloat4x4 Matrix
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->BoneTransform = XMFLOAT4X4((float)transformLinkMatrix.GetRow(0)[0],
-	//			(float)transformLinkMatrix.GetRow(0)[1], (float)transformLinkMatrix.GetRow(0)[2],
-	//			(float)transformLinkMatrix.GetRow(0)[3], (float)transformLinkMatrix.GetRow(1)[0],
-	//			(float)transformLinkMatrix.GetRow(1)[1], (float)transformLinkMatrix.GetRow(1)[2],
-	//			(float)transformLinkMatrix.GetRow(1)[3], (float)transformLinkMatrix.GetRow(2)[0],
-	//			(float)transformLinkMatrix.GetRow(2)[1], (float)transformLinkMatrix.GetRow(2)[2],
-	//			(float)transformLinkMatrix.GetRow(2)[3], (float)transformLinkMatrix.GetRow(3)[0],
-	//			(float)transformLinkMatrix.GetRow(3)[1], (float)transformLinkMatrix.GetRow(3)[2],
-	//			(float)transformLinkMatrix.GetRow(3)[3]); //
+			//Set the transform of the Bone as an XMFloat4x4 Matrix
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->BoneTransform = XMFLOAT4X4((float)transformLinkMatrix.GetRow(0)[0],
+				(float)transformLinkMatrix.GetRow(0)[1], (float)transformLinkMatrix.GetRow(0)[2],
+				(float)transformLinkMatrix.GetRow(0)[3], (float)transformLinkMatrix.GetRow(1)[0],
+				(float)transformLinkMatrix.GetRow(1)[1], (float)transformLinkMatrix.GetRow(1)[2],
+				(float)transformLinkMatrix.GetRow(1)[3], (float)transformLinkMatrix.GetRow(2)[0],
+				(float)transformLinkMatrix.GetRow(2)[1], (float)transformLinkMatrix.GetRow(2)[2],
+				(float)transformLinkMatrix.GetRow(2)[3], (float)transformLinkMatrix.GetRow(3)[0],
+				(float)transformLinkMatrix.GetRow(3)[1], (float)transformLinkMatrix.GetRow(3)[2],
+				(float)transformLinkMatrix.GetRow(3)[3]); //
 
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxTransform(&transformLinkMatrix);
-	//		DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetBoneIndex(CurrentBoneIndex);
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxNode(CurrentCluster->GetLink());
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetFbxTransform(&transformLinkMatrix);
+			DynamicMeshSkeleton->mBones[CurrentBoneIndex]->SetBoneIndex(CurrentBoneIndex);
 
-	//		//For all of the control points inside each cluster, set thier weighting by getting the indicies.
-	//		for (int i = 0; i < CurrentCluster->GetControlPointIndicesCount(); ++i)
-	//		{
-	//			//indexes and Ids of each vertex
-	//			int index = CurrentCluster->GetControlPointIndices()[i];
-	//			int vertexid = Indicies[CurrentCluster->GetControlPointIndices()[i]];
+			//For all of the control points inside each cluster, set thier weighting by getting the indicies.
+			for (int i = 0; i < CurrentCluster->GetControlPointIndicesCount(); ++i)
+			{
+				//indexes and Ids of each vertex
+				int index = CurrentCluster->GetControlPointIndices()[i];
+				int vertexid = Indicies[CurrentCluster->GetControlPointIndices()[i]];
 
-	//			if (Vertexes[index].Boneids.x == -1 && Vertexes[index].Weights.x == -1)
-	//			{
-	//				Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
-	//				Vertexes[index].Weights.x = (float)CurrentCluster->GetControlPointWeights()[i];
-	//			}
-	//			else if (Vertexes[index].Boneids.y == -1 && Vertexes[index].Weights.y == -1)
-	//			{
-	//				Vertexes[index].Boneids.y = (float)CurrentBoneIndex;
-	//				Vertexes[index].Weights.y = (float)CurrentCluster->GetControlPointWeights()[i];
-	//			}
-	//			else if (Vertexes[index].Boneids.z == -1 && Vertexes[index].Weights.z == -1)
-	//			{
-	//				Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
-	//				Vertexes[index].Weights.z = (float)CurrentCluster->GetControlPointWeights()[i];
-	//			}
+				if (Vertexes[index].Boneids.x == -1 && Vertexes[index].Weights.x == -1)
+				{
+					Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
+					Vertexes[index].Weights.x = (float)CurrentCluster->GetControlPointWeights()[i];
+				}
+				else if (Vertexes[index].Boneids.y == -1 && Vertexes[index].Weights.y == -1)
+				{
+					Vertexes[index].Boneids.y = (float)CurrentBoneIndex;
+					Vertexes[index].Weights.y = (float)CurrentCluster->GetControlPointWeights()[i];
+				}
+				else if (Vertexes[index].Boneids.z == -1 && Vertexes[index].Weights.z == -1)
+				{
+					Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
+					Vertexes[index].Weights.z = (float)CurrentCluster->GetControlPointWeights()[i];
+				}
 
-	//			else
-	//			{
-	//				float currentWeight = (float)CurrentCluster->GetControlPointWeights()[i];
+				else
+				{
+					float currentWeight = (float)CurrentCluster->GetControlPointWeights()[i];
 
-	//				if (Vertexes[index].Weights.x < Vertexes[index].Weights.y)
-	//				{
-	//					if (Vertexes[index].Weights.x < Vertexes[index].Weights.z)
-	//					{
-	//						if (Vertexes[index].Weights.x < Vertexes[index].Weights.w)
-	//						{
-	//							Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
-	//							Vertexes[index].Weights.x = (float)currentWeight;
-	//						}
-	//						else
-	//						{
-	//							Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
-	//							Vertexes[index].Weights.w = (float)currentWeight;
-	//						}
-	//					}
-	//					else if (Vertexes[index].Weights.w < Vertexes[index].Weights.z)
-	//					{
-	//						Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
-	//						Vertexes[index].Weights.w = (float)currentWeight;
-	//					}
-	//					else
-	//					{
-	//						Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
-	//						Vertexes[index].Weights.z = (float)currentWeight;
-	//					}
-	//				}
+					if (Vertexes[index].Weights.x < Vertexes[index].Weights.y)
+					{
+						if (Vertexes[index].Weights.x < Vertexes[index].Weights.z)
+						{
+							if (Vertexes[index].Weights.x < Vertexes[index].Weights.w)
+							{
+								Vertexes[index].Boneids.x = (float)CurrentBoneIndex;
+								Vertexes[index].Weights.x = (float)currentWeight;
+							}
+							else
+							{
+								Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
+								Vertexes[index].Weights.w = (float)currentWeight;
+							}
+						}
+						else if (Vertexes[index].Weights.w < Vertexes[index].Weights.z)
+						{
+							Vertexes[index].Boneids.w = (float)CurrentBoneIndex;
+							Vertexes[index].Weights.w = (float)currentWeight;
+						}
+						else
+						{
+							Vertexes[index].Boneids.z = (float)CurrentBoneIndex;
+							Vertexes[index].Weights.z = (float)currentWeight;
+						}
+					}
 
-	//			}
+				}
 
 
-	//		}
+			}
 
-	//	}
+		}
 
-	//	// https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
+		// https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff1f92379812724681e696651.htm,topicNumber=d0e7429 -- Look here
 
-	//	//FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
-	//}
+		//FbxSkin* skin = reinterpret_cast<FbxSkin*>(Mesh->GetDeformer(0, fbxsdk::FbxDeformer::eBlendShape));
+	}
 
 	DynamicMesh* DM = new DynamicMesh(DynamicMeshSkeleton, &Vertexes[0], VertexCount, &Indicies[0], indexCount, _accel);
 	//DM->CalculateTangents(&Vertexes[0], VertexCount, &Indicies[0], indexCount);

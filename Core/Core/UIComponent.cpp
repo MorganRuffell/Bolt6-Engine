@@ -15,11 +15,8 @@ void UIComponent::SetupImGui()
 void UIComponent::DrawImGui()
 {
 	bool VSyncSetting = true;
-
-
 	bool NoTick = false;
 
-	bool ShowDemoWindow = true;
 
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(11.0f, 11.0f));
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(7.0f, 10.0f));
@@ -281,8 +278,6 @@ void UIComponent::DrawImGui()
 	}
 	ImGui::End();
 
-
-	ImGui::ShowDemoWindow(&ShowDemoWindow);
 }
 
 void UIComponent::RenderImGui()
