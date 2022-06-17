@@ -16,9 +16,26 @@ void ResourceManagerComponent::InitalizeComponent()
     Static.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6DX11Test\\Resources\\Teapot.fbx";
     Static.DiffuseTexture = L"\Scene\\StageDiffuse.png";
     Static.NormalTexture = L"\Scene\\StageNormal.png";
+    Static.MeshName = "3DStudioTeapot";
+
+    MeshData Static1 = {};
+    Static1.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\Lemonade.fbx";
+    Static1.DiffuseTexture = L"\Scene\\StageDiffuse.png";
+    Static1.NormalTexture = L"\Scene\\StageNormal.png";
+    Static1.MeshName = "LemonadeTest";
+
+    MeshData Static2 = {};
+    Static2.Filelocation = "C:\\Users\\Morgan\\Desktop\\Bolt6ProgrammingTest\\Scene\\LemonadeASCII.fbx";
+    Static2.DiffuseTexture = L"\Scene\\StageDiffuse.png";
+    Static2.NormalTexture = L"\Scene\\StageNormal.png";
+    Static2.MeshName = "LemonadeTestASCII";
+
 
     LoadTestResources();
     LoadStaticMeshResource(Static);
+    LoadStaticMeshResource(Static1);
+    LoadStaticMeshResource(Static2);
+
     //LoadDynamicMeshResource(Animation);
 
 
@@ -84,7 +101,7 @@ void ResourceManagerComponent::LoadStaticMeshResource(MeshData MeshData)
 
     //Fix the vertex shader issue, if we don't solve that we're going nowhere.
     SM->CreateMaterial(m_Accelerator, MeshData.MeshName, DiffuseContext, NormalContext);
-
+  
     m_World->AddStaticMesh(MeshData.MeshName, SM);
 }
 
@@ -106,6 +123,8 @@ void ResourceManagerComponent::LoadTestResources()
 
     std::string SMeshName = "Stage Static Mesh";
     auto Stage = new StaticMesh(planeVertices.data(), 4, indices, 6, m_Accelerator, SMeshName);
+    Stage->SetVertexCount(4);
+    m_World->AddStaticMesh(SMeshName, Stage);
 
     //The texture context acts similar to a descriptor struct in OpenGL, we indicate options and it creates it!
     TextureContext DiffuseContext = {};

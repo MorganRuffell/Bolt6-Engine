@@ -9,6 +9,7 @@
 #include <memory>
 #include "Core/Core/Engine/Graphics/Accelerator.h"
 #include "EngineComponent.h"
+#include <Core/Core/ResourceManagerComponent.h>
 
 /*
 	This is UI Component a class that will be inside the main engine,
@@ -22,7 +23,7 @@ class UIComponent : public EngineComponent
 
 public:
 
-	UIComponent(_In_ Accelerator* Accel, _In_ HWND window)
+	UIComponent(_In_ Accelerator* Accel, _In_ HWND window, _In_ World* _world)
 	{
 		assert(Accel != nullptr);
 		SetTag(EngineObjTag::Engine);
@@ -33,9 +34,10 @@ public:
 
 		ImGui_ImplWin32_Init(window);
 		ImGui_ImplDX11_Init(Accel->GetDevice(), Accel->GetDeviceContext());
+		m_World = _world;
 	}
 
-	UIComponent(_In_ std::shared_ptr<Accelerator> Accel, _In_ HWND window)
+	UIComponent(_In_ std::shared_ptr<Accelerator> Accel, _In_ HWND window, _In_ World* _world)
 	{
 		assert(Accel != nullptr);
 		SetTag(EngineObjTag::Engine);
@@ -45,6 +47,7 @@ public:
 		SetComponentState(Initialized);
 		SetComponentName(m_ComponentName);
 
+		m_World = _world;
 
 		ImGui_ImplWin32_Init(window);
 		ImGui_ImplDX11_Init(Accel->GetDevice(), Accel->GetDeviceContext());
@@ -62,6 +65,8 @@ public:
 	void RenderImGui();
 
 	bool DestroyImGui();
+
+	World*	m_World;
 
 public:
 

@@ -24,7 +24,7 @@ bool TestEngine::Init(HWND window)
    
     InitalizeScene();
 
-    m_UIComponent = std::make_unique<UIComponent>(m_GraphicsDevice->m_Accelerator, window);
+    m_UIComponent = std::make_unique<UIComponent>(m_GraphicsDevice->m_Accelerator, window, m_WorldComponent.get()->GetCurrentWorld());
 
     std::cout << "UI Component Creation Succeeded!" << std::endl;
 

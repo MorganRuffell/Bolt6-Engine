@@ -1,5 +1,7 @@
 #include "UIComponent.h"
 #include "Core/Core/Engine/Graphics/Accelerator.h"
+#include <string>
+#include <charconv>
 
 void UIComponent::SetupImGui()
 {
@@ -101,6 +103,39 @@ void UIComponent::DrawImGui()
 
 				if (ImGui::BeginTabItem(" Scene Outliner "))
 				{
+					if (ImGui::BeginTable("ObjectsLoaded", 4))
+					{
+						ImGui::TableNextRow(ImGuiTableRowFlags_Headers, 22.0f);
+
+						ImGui::TableNextColumn(); ImGui::Text("Mesh Name");
+						ImGui::TableNextColumn(); ImGui::Text("Data Type");
+						ImGui::TableNextColumn(); ImGui::Text("Has Material");
+						ImGui::TableNextColumn(); ImGui::Text("Poly Count");
+
+						int noOfSMs = m_World->GetSizeOfStaticMeshes();
+
+						for (int i = 0; i < noOfSMs; i++)
+						{
+							//UI Code will be harder than this :D
+							ImGui::TableNextRow(0, 21.0f);
+
+							ImGui::TableNextColumn(); ImGui::Text(m_World->GetStaticMeshes().at(i)->GetName().c_str());
+							ImGui::TableNextColumn(); ImGui::Text(".fbx | Static");
+
+
+							ImGui::TableNextColumn(); ImGui::TextColored({ 0.0f, 1.0f, 0.0f, 1.0f }, "YES");
+
+							UINT val = m_World->GetStaticMeshes().at(i)->GetVertexCount();
+
+							std::string data = std::to_string(val);
+							char const* Pchar = data.c_str();
+
+							ImGui::TableNextColumn(); ImGui::TextWrapped(Pchar);
+						}
+
+
+						ImGui::EndTable();
+					}
 
 					ImGui::EndTabItem();
 				}
@@ -126,8 +161,14 @@ void UIComponent::DrawImGui()
 			ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3.0f);
 			ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(8.0f, 6.0f));
 
+			ImGui::SetWindowFontScale(1.4f);
+
+
 			ImGui::Text("Transformation Data");
 			ImGui::Separator();
+
+			ImGui::SetWindowFontScale(1.0f);
+
 
 			ImGui::Text("Position		  ");
 

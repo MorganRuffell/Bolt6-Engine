@@ -116,6 +116,18 @@ public:
 
 public:
 
+	int GetSizeOfStaticMeshes()
+	{
+		if (StaticMeshes.size() == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			return StaticMeshes.size();
+		}
+	}
+
 	std::vector<StaticMesh*> GetStaticMeshes()
 	{
 		std::vector<StaticMesh*> Result;

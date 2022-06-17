@@ -18,8 +18,19 @@ public:
 
 	void CalculateTangents(Vertex1* vertices, UINT vertexCount, UINT* indices, UINT indexCount);
 
+	UINT GetVertexCount()
+	{
+		return VertexCount;
+	}
+
+	void SetVertexCount(int _VertexCount)
+	{
+		VertexCount = _VertexCount;
+	}
+
+
 private:
 
-
+	int VertexCount;
 };
 
